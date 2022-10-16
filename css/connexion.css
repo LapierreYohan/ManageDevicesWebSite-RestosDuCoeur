@@ -1,0 +1,89 @@
+* {
+    margin: 0;
+    padding:0;
+    height: 100%;
+    width: 100%;
+}
+
+body {
+    display: flex;
+    flex-direction: row;
+    overflow: hidden;
+}
+
+img.login {
+    border: 0;
+    object-fit: cover;
+    margin-bottom: -20px;
+    width: 60%;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    width: 40%;
+    height: 100%;
+    overflow: hidden;
+    align-items: center;
+    justify-content: center;
+    margin-top: -35px;
+}
+
+form input {
+    height: 35px;
+    width: 65%;
+    margin-top: 35px;
+    border-color: #76C2EE;
+    border-style: solid;
+    border-radius: 6px;
+    padding-left: 8px;
+    
+}
+
+form input:focus {
+    
+    outline: none;
+    box-shadow: inset 0 1px 1px rgb(0 0 0 / 18%), 0 0 8px rgb(102 175 233 / 70%);
+}
+
+form button.loginSubmit {
+    margin-top: 40px;
+    align-self: flex-end;
+    margin-right: 16%;
+    height: 35px;
+    width: 110px;
+    font-size: 14px;
+    border-radius: 6px;
+    border-style: none;
+    background-color: #76C2EE;
+    color: white;
+}
+
+form button.loginSubmit:hover {
+
+    font-size: 15px;
+    color: white;
+    box-shadow: inset 0 0, 2px 2px #2aa4eb;;
+    cursor: pointer;
+}
+
+form hr {
+    height: 1%;
+    margin-top: 45px;
+    width: 67%;
+    border: 0;
+    border-top: 1px solid rgb(190, 188, 188);
+}
+
+form a {
+    height: 10px;
+    text-decoration: none;
+    color: black;
+    text-align: center;
+    margin-top: 25px;
+}
+
+form a:hover {
+    font-size: 15px;
+    color: rgb(80, 72, 72);
+}
