@@ -15,5 +15,4 @@ function bddRestos(): PDO
 
 
 //?https://www.linuxtricks.fr/wiki/php-exemples-avec-pdo-pour-interroger-une-base-mariadb
-
 //?https://www.w3schools.com/Php/php_mysql_create_table.asp
