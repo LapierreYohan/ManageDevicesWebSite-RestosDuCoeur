@@ -13,10 +13,16 @@
 
 <body>
     <img class="login" src="./img/login-background.png" alt="Enseigne des Restos du coeur">
-    <form action="" method="POST">
+    <form action="" method="POST" id="connexion">
 
-        <input type="text" name="Identifiant" id="identifiant" class="login" placeholder="Compte utilisateur">
-        <input type="password" name="Mdp" id="mdp" class="mdp" placeholder="Mot de passe">
+        <input type="text" name="Identifiant" id="identifiant" class="login" placeholder="Compte utilisateur" required>
+        <p class="connexionError" id="idError">Veuillez insérer un identifiant valide !</p>
+        <script src="js/emailCheck.js"></script>
+
+        <input type="password" name="Mdp" id="mdp" class="mdp" placeholder="Mot de passe" required>
+        <p class="connexionError" id="mdpError">Veuillez insérer un mot de passe !</p>
+        <script src="js/mdpCheck.js"></script>
+
         <button type="submit" class="loginSubmit">S'indentifier</button>
         <hr>
         <a href="">Vous avez oublié votre mot de passe ?</a>

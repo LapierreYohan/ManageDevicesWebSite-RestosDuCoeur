@@ -88,6 +88,15 @@
         font-size: 15px;
         color: rgb(80, 72, 72);
     }
+
+    form .connexionError {
+        color: red;
+        height: 0px;
+        font-size: 14px;
+        margin-left: 34%;
+        margin-top: 5px;
+        display: none;
+    }
 }
 
 
@@ -175,5 +184,14 @@
     form a:hover {
         font-size: 15px;
         color: rgb(80, 72, 72);
+    }
+
+    form .connexionError {
+        color: red;
+        height: 0px;
+        font-size: 14px;
+        margin-left: 34%;
+        margin-top: 5px;
+        display: none;
     }
 }
