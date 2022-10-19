@@ -5,6 +5,10 @@ nodeEmail.addEventListener("input", (event) => {
 	let error = document.getElementById("idError");
 	let button = document.getElementById("submitConnect");
 
+	if (!button) {
+		return;
+	}
+
 	if ((!value.includes("@") && !value.includes(".")) || !value.includes(".")) {
 		error.style.display = "block";
 		button.disabled = true;

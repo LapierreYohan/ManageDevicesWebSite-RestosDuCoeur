@@ -1,25 +1,51 @@
 <?php
 $erreur = null;
-
-if (!empty($_POST['identifiant']) && !empty($_POST['mdp'])) {
-    $identity = htmlentities($_POST['identifiant']);
-    $password = htmlentities($_POST['mdp']);
-
-    if ($identity !== "lapierre.yohan" || $password !=="1234") {
-        $erreur = true;
-    } else {
-        session_start();
-        $_SESSION["connected"] = 1;
-        header('Location: /pages/home.php');
-        exit();
-    }
-} 
+$connectionsSucces = false;
 
 require_once("./include/auth.php");
 if (is_connected()) {
     header('Location: /pages/home.php');
     exit();
 }  
+
+if (!empty($_POST['identifiant']) && !empty($_POST['mdp'])) {
+    $identity = htmlentities($_POST['identifiant']);
+    $password = htmlentities($_POST['mdp']);
+
+    require_once("./include/MariaDB.php");
+    $bdd = bddRestos();
+   
+    $stmt = $bdd->prepare("SELECT * FROM Utilisateur WHERE Mail=\"$identity\" AND MotDePasse=\"$password\" LIMIT 1");
+    $stmt->execute();
+
+    $res = $stmt->fetchAll();
+
+    foreach ( $res as $row ) {
+        $connectionsSucces = true;
+    }
+
+    if ($connectionsSucces === false) {
+        $stmt = $bdd->prepare("SELECT Nom FROM Utilisateur WHERE concat(lower(Nom), '.', lower(Prenom)) = lower(\"$identity\") AND MotDePasse=\"$password\" LIMIT 1");
+        $stmt->execute();
+
+        $res = $stmt->fetchAll();
+
+        foreach ( $res as $row ) {
+            $connectionsSucces = true;
+        }
+    }
+
+    if ($connectionsSucces === false) {
+        $erreur = true;
+    } else {
+        if (session_status() === PHP_SESSION_NONE) {
+            session_start();
+        }
+        $_SESSION["connected"] = 1;
+        header('Location: /pages/home.php');
+        exit();
+    }
+} 
 ?>
 
 <!DOCTYPE html>
@@ -49,7 +75,7 @@ if (is_connected()) {
         <p class="connexionError" id="mdpError">Veuillez insérer un mot de passe !</p>
         <script src="js/mdpCheck.js"></script>
 
-        <button type="submit" class="loginSubmit" name="submitConnect" id="submitConnect" disabled="true">S'indentifier</button>
+        <button type="submit" class="loginSubmit" name="submitConnect" id="submitConnect" disabled="false">S'indentifier</button>
         <hr>
         <a href="">Vous avez oublié votre mot de passe ?</a>
 
@@ -60,7 +86,6 @@ if (is_connected()) {
 
 <?php if ($erreur) : ?>
     <script type="text/javascript">
-        console.log("coucou")
         let error = document.getElementById("connectError");
         error.style.display = "block";
     </script>
