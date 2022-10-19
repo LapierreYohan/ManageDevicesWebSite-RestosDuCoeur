@@ -26,8 +26,4 @@ function bddRestos(): PDO {
 //     print_r($row);
 // }
 
-//? https://www.linuxtricks.fr/wiki/php-exemples-avec-pdo-pour-interroger-une-base-mariadb
-//? https://www.w3schools.com/Php/php_mysql_create_table.asp
-//? https://kinsta.com/fr/blog/injections-sql/
-
 ?>
