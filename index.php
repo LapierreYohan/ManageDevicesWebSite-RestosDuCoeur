@@ -14,19 +14,19 @@ if (!empty($_POST['identifiant']) && !empty($_POST['mdp'])) {
 
     require_once("./include/MariaDB.php");
     $bdd = bddRestos();
-   
-    $stmt = $bdd->prepare("SELECT * FROM Utilisateur WHERE Mail=\"$identity\" AND MotDePasse=\"$password\" LIMIT 1");
-    $stmt->execute();
+
+    $stmt = $bdd->prepare("SELECT * FROM Utilisateur WHERE Mail= ? AND MotDePasse= ? LIMIT 1");
+    $stmt->execute([$identity, $password]);
 
     $res = $stmt->fetchAll();
-
+    
     foreach ( $res as $row ) {
         $connectionsSucces = true;
     }
 
     if ($connectionsSucces === false) {
-        $stmt = $bdd->prepare("SELECT Nom FROM Utilisateur WHERE concat(lower(Nom), '.', lower(Prenom)) = lower(\"$identity\") AND MotDePasse=\"$password\" LIMIT 1");
-        $stmt->execute();
+        $stmt = $bdd->prepare("SELECT Nom FROM Utilisateur WHERE concat(lower(Nom), '.', lower(Prenom)) = lower( ? ) AND MotDePasse= ? LIMIT 1");
+        $stmt->execute([$identity, $password]);
 
         $res = $stmt->fetchAll();
 
