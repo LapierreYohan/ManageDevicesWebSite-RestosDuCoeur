@@ -57,6 +57,7 @@ if (!empty($_POST['identifiant']) && !empty($_POST['mdp'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Connexion</title>
+    <link rel="shortcut icon" href="./img/mainIcone.png" >
 
     <link rel="stylesheet" href="./css/connexion.css">
 </head>

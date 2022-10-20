@@ -1,16 +1,16 @@
 <?php
 
-const DB = "p2103678";
-const DBHOST = "iutbg-lamp.univ-lyon1.fr";
+// const DB = "p2103678";
+// const DBHOST = "iutbg-lamp.univ-lyon1.fr";
+// const DBPORT = 3306;
+// const DBUSER = "p2103678";
+// const DBPASSWORD = "12103678";
+
+const DB = "resto";
+const DBHOST = "localhost";
 const DBPORT = 3306;
 const DBUSER = "p2103678";
 const DBPASSWORD = "12103678";
-
-// const db = "resto";
-// const dbhost = "localhost";
-// const dbport = 3306;
-// const dbuser = "p2103678";
-// const dbpasswd = "12103678";
 
 function bddRestos(): PDO {
     $bdd = new PDO('mysql:host=' . DBHOST . ';port=' . DBPORT . ';dbname=' . DB . '', DBUSER, DBPASSWORD);
