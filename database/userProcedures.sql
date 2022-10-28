@@ -21,7 +21,7 @@ AUTHOR INT) BEGIN
 	DECLARE i int DEFAULT 2;
 	IF (
 	    Select u.Reference_User
-	    from utilisateur u
+	    from Utilisateur u
 	    where
 	        u.Reference_User = v_ref
 	) is not null Then
