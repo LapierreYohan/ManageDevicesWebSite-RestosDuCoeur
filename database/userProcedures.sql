@@ -5,8 +5,8 @@ SET default_storage_engine = InnoDB;
 SET SQL_SAFE_UPDATES = 0;
 
 DROP PROCEDURE IF EXISTS insertUser;
-
 DROP PROCEDURE IF EXISTS deleteUser;
+DROP PROCEDURE IF EXISTS EDITUSER;
 
 DELIMITER $
 
@@ -86,17 +86,10 @@ END$
 
 DELIMITER ;
 
-/* --Tests insertUser
+
  CALL insertUser("200", "gailliard", "Axel", "1234", "Un gars assez n", true, NULL);
- CALL insertUser("200", "GAilliARD", "AXEl", "1234", "Un gars assez nu", true, NULL);
- CALL insertUser("215", "GAILLIARD", "AXEL", "1234", "Un gars assez nul", true, NULL);
+
  CALL insertUser("1203", "LAPIERRE", "Yohan", "4321", "Un gars trop bien", true, 1);
- SELECT  *
- FROM Utilisateur u
- WHERE 'Axel' = u.Prenom AND CONCAT('GAILLIARD', 2) = u.Nom;
- SELECT * 
- FROM Utilisateur;
- */
 
 DELIMITER $
 
@@ -119,12 +112,7 @@ END$
 
 DELIMITER ;
 
-/* --Tests deleteUser
- call deleteUser(215);
- SELECT * 
- FROM Utilisateur;
- */
-
+DELIMITER $
 CREATE PROCEDURE EDITUSER(IN REF_IN VARCHAR(47), IN 
 REF VARCHAR(47), IN NOM VARCHAR(50), IN PRENOM VARCHAR
 (50), IN MOTDEPASSE VARCHAR(50), IN COM TEXT, IN ADMINUSER 
@@ -143,3 +131,5 @@ BOOLEAN, IN AUTHOR INT) BEGIN
 END$ 
 
 DELIMITER ;
+
+select * from Utilisateur,

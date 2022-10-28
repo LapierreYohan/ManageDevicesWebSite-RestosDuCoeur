@@ -2,25 +2,25 @@
 $erreur = null;
 $connectionsSucces = false;
 
-require_once("./include/auth.php");
+require_once(__DIR__ . "/include/auth.php");
 if (is_connected()) {
     header('Location: /pages/home.php');
     exit();
-}  
+}
 
 if (!empty($_POST['identifiant']) && !empty($_POST['mdp'])) {
     $identity = htmlentities($_POST['identifiant']);
     $password = htmlentities($_POST['mdp']);
 
-    require_once("./include/MariaDB.php");
+    require_once(__DIR__ . "/include/MariaDB.php");
     $bdd = bddRestos();
 
     $stmt = $bdd->prepare("SELECT * FROM Utilisateur WHERE Mail= ? AND MotDePasse= ? LIMIT 1");
     $stmt->execute([$identity, $password]);
 
     $res = $stmt->fetchAll();
-    
-    foreach ( $res as $row ) {
+
+    foreach ($res as $row) {
         $connectionsSucces = true;
     }
 
@@ -30,7 +30,7 @@ if (!empty($_POST['identifiant']) && !empty($_POST['mdp'])) {
 
         $res = $stmt->fetchAll();
 
-        foreach ( $res as $row ) {
+        foreach ($res as $row) {
             $connectionsSucces = true;
         }
     }
@@ -45,7 +45,7 @@ if (!empty($_POST['identifiant']) && !empty($_POST['mdp'])) {
         header('Location: /pages/home.php');
         exit();
     }
-} 
+}
 ?>
 
 <!DOCTYPE html>
@@ -57,24 +57,24 @@ if (!empty($_POST['identifiant']) && !empty($_POST['mdp'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Connexion</title>
-    <link rel="shortcut icon" href="./img/mainIcone.png" >
+    <link rel="shortcut icon" href="/img/mainIcone.png">
 
-    <link rel="stylesheet" href="./css/connexion.css">
+    <link rel="stylesheet" href="/css/connexion.css">
 </head>
 
 <body>
-    <img class="login" src="./img/login-background.png" alt="Enseigne des Restos du coeur">
+    <img class="login" src="/img/login-background.png" alt="Enseigne des Restos du coeur">
     <form action="" method="POST" id="connexion">
 
         <p class="connexionError" id="connectError">Vos identifiants sont invalides...</p>
 
         <input type="text" name="identifiant" id="identifiant" class="login" placeholder="Compte utilisateur" required value="">
         <p class="connexionError" id="idError">Veuillez insérer un identifiant valide !</p>
-        <script src="js/emailCheck.js"></script>
+        <script src="/js/emailCheck.js"></script>
 
         <input type="password" name="mdp" id="mdp" class="mdp" placeholder="Mot de passe" required value="">
         <p class="connexionError" id="mdpError">Veuillez insérer un mot de passe !</p>
-        <script src="js/mdpCheck.js"></script>
+        <script src="/js/mdpCheck.js"></script>
 
         <button type="submit" class="loginSubmit" name="submitConnect" id="submitConnect" disabled="false">S'indentifier</button>
         <hr>

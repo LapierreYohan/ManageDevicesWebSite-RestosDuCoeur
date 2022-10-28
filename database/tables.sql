@@ -1,4 +1,5 @@
 -- Active: 1666192876096@@localhost@3306
+
 SET default_storage_engine=InnoDB;
 
 SET SQL_SAFE_UPDATES=0;
@@ -77,6 +78,7 @@ CREATE TABLE
 CREATE TABLE
     Delegation_Regionale (
         ID_Dr INT AUTO_INCREMENT NOT NULL UNIQUE,
+        Reference VARCHAR(50) NOT NULL UNIQUE,
         Nom_Court VARCHAR(35) NOT NULL UNIQUE,
         Nom_Long VARCHAR(180),
         Adresse VARCHAR(100) NOT NULL,
@@ -91,6 +93,7 @@ CREATE TABLE
     Site (
         ID_Dr INT NOT NULL,
         ID_Site INT AUTO_INCREMENT NOT NULL UNIQUE,
+        Reference VARCHAR(50) NOT NULL UNIQUE,
         Nom_Court VARCHAR(35) NOT NULL UNIQUE,
         Nom_Long VARCHAR(180),
         Adresse VARCHAR(100) NOT NULL,
@@ -199,7 +202,7 @@ CREATE TABLE
         DateInsert DATETIME NOT NULL DEFAULT NOW(),
         Historique BOOLEAN NOT NULL DEFAULT FALSE,
         Materiel VARCHAR(50) NOT NULL DEFAULT "Abonnement",
-        Reference_Abonnement VARCHAR(50) NOT NULL,
+        Reference_Abonnement VARCHAR(50) NOT NULL UNIQUE,
         Operateur VARCHAR(50) NOT NULL,
         Numero_Principal VARCHAR(10),
         Numero_Secondaire VARCHAR(10),
@@ -227,7 +230,7 @@ CREATE TABLE
         DateInsert DATETIME NOT NULL DEFAULT NOW(),
         Historique BOOLEAN NOT NULL DEFAULT FALSE,
         Materiel VARCHAR(50) NOT NULL DEFAULT "Point D'accès Internet",
-        Reference_Acces VARCHAR(50) NOT NULL,
+        Reference_Acces VARCHAR(50) NOT NULL UNIQUE,
         Operateur VARCHAR(50) NOT NULL,
         Nom VARCHAR(50) NOT NULL,
         Serie VARCHAR(50),
@@ -251,7 +254,7 @@ CREATE TABLE
         DateInsert DATETIME NOT NULL DEFAULT NOW(),
         Historique BOOLEAN NOT NULL DEFAULT FALSE,
         Materiel VARCHAR(50) NOT NULL DEFAULT "Switch",
-        Reference_Switch VARCHAR(50) NOT NULL,
+        Reference_Switch VARCHAR(50) NOT NULL UNIQUE,
         Marque VARCHAR(50),
         Modele VARCHAR(50),
         Nb_Port INT NOT NULL,
@@ -274,7 +277,7 @@ CREATE TABLE
         DateInsert DATETIME NOT NULL DEFAULT NOW(),
         Historique BOOLEAN NOT NULL DEFAULT FALSE,
         Materiel VARCHAR(50) NOT NULL DEFAULT "Ordinateur",
-        Reference_Ordinateur VARCHAR(50) NOT NULL,
+        Reference_Ordinateur VARCHAR(50) NOT NULL UNIQUE,
         Serie VARCHAR(50),
         Usages TEXT,
         Compatible_W11 BOOLEAN NOT NULL DEFAULT FALSE,
@@ -308,7 +311,7 @@ CREATE TABLE
         DateInsert DATETIME NOT NULL DEFAULT NOW(),
         Historique BOOLEAN NOT NULL DEFAULT FALSE,
         Materiel VARCHAR(50) NOT NULL DEFAULT "Imprimante",
-        Reference_Imprimante VARCHAR(50) NOT NULL,
+        Reference_Imprimante VARCHAR(50) NOT NULL UNIQUE,
         Marque VARCHAR(50),
         Modele VARCHAR(50),
         Serie VARCHAR(50),
@@ -371,7 +374,7 @@ CREATE TABLE
         DateInsert DATETIME NOT NULL DEFAULT NOW(),
         Historique BOOLEAN NOT NULL DEFAULT FALSE,
         Materiel VARCHAR(50) NOT NULL DEFAULT "Serveur",
-        Reference_Serveur VARCHAR(50) NOT NULL,
+        Reference_Serveur VARCHAR(50) NOT NULL UNIQUE,
         Marque VARCHAR(50),
         Modele VARCHAR(50),
         Capacite VARCHAR(50),
@@ -405,7 +408,7 @@ CREATE TABLE
         DateInsert DATETIME NOT NULL DEFAULT NOW(),
         Historique BOOLEAN NOT NULL DEFAULT FALSE,
         Materiel VARCHAR(50) NOT NULL DEFAULT "Raccordement",
-        Reference_Raccordement VARCHAR(50) NOT NULL,
+        Reference_Raccordement VARCHAR(50) NOT NULL UNIQUE,
         Marque VARCHAR(50),
         Modele VARCHAR(50),
         Serie VARCHAR(50),
@@ -435,7 +438,7 @@ CREATE TABLE
         DateInsert DATETIME NOT NULL DEFAULT NOW(),
         Historique BOOLEAN NOT NULL DEFAULT FALSE,
         Materiel VARCHAR(50) NOT NULL DEFAULT "Telephone",
-        Reference_Telephone VARCHAR(50) NOT NULL,
+        Reference_Telephone VARCHAR(50) NOT NULL UNIQUE,
         Marque VARCHAR(50),
         Modele VARCHAR(50),
         RAM VARCHAR(50),
@@ -462,7 +465,7 @@ CREATE TABLE
         DateInsert DATETIME NOT NULL DEFAULT NOW(),
         Historique BOOLEAN NOT NULL DEFAULT FALSE,
         Materiel VARCHAR(50) NOT NULL DEFAULT "Autre",
-        Reference_Autre VARCHAR(50) NOT NULL,
+        Reference_Autre VARCHAR(50) NOT NULL UNIQUE,
         Marque VARCHAR(50),
         Modele VARCHAR(50),
         Serie VARCHAR(50),
