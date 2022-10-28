@@ -15,6 +15,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
     <link rel="stylesheet" href="/css/test.css">
+
 </head>
 
 <body>
@@ -34,7 +35,7 @@
 
             foreach ($res as $row) {
 
-                echo '<input type="radio" name="siSelector" id="' . $row["Reference"] . '">';
+                echo '<input type="radio" name="drSelector" id="' . $row["Reference"] . '">';
                 echo '<div class="carousel-cell">';
                 echo '<label for="' . $row["Reference"] . '">';
                 echo '<img src="../img/icon/Département.png" alt="">';
@@ -44,9 +45,9 @@
             }
             ?>
 
-
+            <?php require_once __DIR__ . "/../include/changeDr.php" ?>
         </div>
-        <script src="/js/siteSelector.js"></script>
+
     </section>
 
 </body>
