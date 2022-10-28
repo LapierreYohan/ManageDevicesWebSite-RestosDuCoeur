@@ -3,18 +3,14 @@
 
     nodes.forEach((node) => {
         node.addEventListener("change", (event) => {
-            let value = event.target.checked;
-            console.log(event.target.id);
+
+            let a = "coucou";
+
             <?php
-            require_once("../include/MariaDB.php");
-            $bdd = bddRestos();
+            $a = "<script>document.write(event.target.id);</script>";
+            var_dump($a);
+            ?>
 
-            $stmt = $bdd->query("SELECT * FROM Delegation_Regionale");
-            $res = $stmt->fetchAll();
-
-            foreach ($res as $row) { ?>
-                console.log("<?= $row["Reference"] ?>");
-            <?php } ?>
 
         });
     });
