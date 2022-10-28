@@ -6,13 +6,20 @@
 // const DBUSER = "p2103678";
 // const DBPASSWORD = "12103678";
 
-const DB = "resto";
+const DB = "rdc";
 const DBHOST = "localhost";
 const DBPORT = 3306;
-const DBUSER = "p2103678";
-const DBPASSWORD = "12103678";
+const DBUSER = "root";
+const DBPASSWORD = "Agrloul55555";
 
-function bddRestos(): PDO {
+// const DB = "rdc";
+// const DBHOST = "localhost";
+// const DBPORT = 3306;
+// const DBUSER = "root";
+// const DBPASSWORD = "Agrloul55555";
+
+function bddRestos(): PDO
+{
     $bdd = new PDO('mysql:host=' . DBHOST . ';port=' . DBPORT . ';dbname=' . DB . '', DBUSER, DBPASSWORD);
     $bdd->exec("SET CHARACTER SET utf8");
     return $bdd;
@@ -25,5 +32,3 @@ function bddRestos(): PDO {
 // foreach ( $res as $row ) {
 //     print_r($row);
 // }
-
-?>

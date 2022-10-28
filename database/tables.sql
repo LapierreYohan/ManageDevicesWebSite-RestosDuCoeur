@@ -1,4 +1,4 @@
--- Active: 1666192876096@@localhost@3306@rdc
+-- Active: 1666192876096@@localhost@3306
 SET default_storage_engine=InnoDB;
 
 SET SQL_SAFE_UPDATES=0;
