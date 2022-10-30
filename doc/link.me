@@ -9,3 +9,30 @@ Flexity :
  https://flickity.metafizzy.co/#freescroll
 
  https://www.geeksforgeeks.org/how-to-connect-sql-server-database-from-javascript-in-the-browser/
+
+
+                        let input = document.createElement('input');
+                        input.type = "radio";
+                        input.name = "adSelector";
+                        input.id = value.Reference;
+                        flkty.append( input )
+                        
+
+                        let carouselCell = document.createElement('div');
+                        carouselCell.classList.add("carousel-cell")
+                        //carousel.appendChild(carouselCell);
+
+                        let label = document.createElement('label');
+                        label.htmlFor = value.Reference;
+                        carouselCell.appendChild(label);
+
+                        let img = document.createElement('img');
+                        img.src = "/img/icon/Association départementale.png";
+                        img.alt = "Icon maison";
+                        label.appendChild(img);
+
+                        let p = document.createElement('p');
+                        p.textContent = value.Reference;
+                        label.appendChild(p);
+
+                        flkty.add( carouselCell )

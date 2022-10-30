@@ -39,7 +39,7 @@
                 echo '<input type="radio" name="drSelector" id="' . $row["Reference"] . '">';
                 echo '<div class="carousel-cell">';
                 echo '<label for="' . $row["Reference"] . '">';
-                echo '<img src="../img/icon/Département.png" alt="">';
+                echo '<img src="../img/icon/Département.png" alt="Icon Département">';
                 echo '<p>' . $row["Reference"] . '</p>';
                 echo '</label>';
                 echo '</div>';
@@ -50,6 +50,19 @@
         </div>
 
     </section>
+
+    <h1>Association départementale</h1>
+    <br><br>
+
+    <section id="ad">
+        <div class="carousel" data-flickity='{ "groupCells": true, "pageDots": false}'>
+            <div class="carousel-cell">
+                <h3 class="nothing">Vide</h3>
+            </div>
+        </div>
+
+    </section>
+
 
 </body>
 

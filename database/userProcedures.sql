@@ -132,4 +132,4 @@ END$
 
 DELIMITER ;
 
-select * from Utilisateur,
+select * from Utilisateur;
