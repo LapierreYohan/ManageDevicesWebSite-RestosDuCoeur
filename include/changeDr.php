@@ -6,13 +6,13 @@
 
             var value = {'dr':event.target.id};
             let section = document.getElementById('ad');
-            let carousel = section.lastElementChild;
+            let carousel = section.firstElementChild;
             
             section.removeChild(carousel);
 
             carousel = document.createElement('div');
             carousel.classList.add("carousel");
-            section.appendChild(carousel)
+            section.prepend(carousel)
         
             var flkty = new Flickity( carousel, {
                 groupCells: true, 

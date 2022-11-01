@@ -1,10 +1,51 @@
+section {
+ margin-top: 25px;
+ margin-bottom: 25px;
+}
+
+section#dr {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+section#ad {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+section#uo {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+section#ma {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.toolBar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.toolBar a{
+    margin: 10px;
+}
+
 .carousel {
     background: white;
     border-style: groove;
     border-radius: 10px;
     width: 80%;
-    margin-left: 10%;
-    min-height: 208px;
+    min-height: 215px;
   }
   
   .carousel-cell {
@@ -19,7 +60,6 @@
     background: rgb(233, 233, 233);
     border-radius: 20px;
     display: flex;
-    
     align-items: center;
     text-align: center;
   }

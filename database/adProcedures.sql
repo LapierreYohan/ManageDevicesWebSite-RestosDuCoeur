@@ -1,4 +1,4 @@
--- Active: 1666943626683@@iutbg-lamp.univ-lyon1.fr@3306@p2103678
+-- Active: 1667300056977@@localhost@3306@resto
 
 SET default_storage_engine = InnoDB;
 
@@ -38,8 +38,12 @@ DELIMITER ;
 CALL INSERTAD(1 ,"AD1", "DR8, AD01, Lyon", "DR AURA, AD RHONE, Bourg en Bresse", "Une Adresse GIGA FLEMME", "0618880104", "yohan.lapierre@etu.univ-lyon1.fr","");
 CALL INSERTAD(1 ,"AD2", "DR8, AD02, Lyon", "DR AURA, AD RHONE, Bourg en Bresse", "Une Adresse GIGA FLEMME", "0618880104", "yohan.lapierre@etu.univ-lyon1.fr","");
 CALL INSERTAD(1 ,"AD3", "DR8, AD03, Lyon", "DR AURA, AD RHONE, Bourg en Bresse", "Une Adresse GIGA FLEMME", "0618880104", "yohan.lapierre@etu.univ-lyon1.fr","");
+CALL INSERTAD(1 ,"AD4", "DR8, AD04, Lyon", "DR AURA, AD RHONE, Bourg en Bresse", "Une Adresse GIGA FLEMME", "0618880104", "yohan.lapierre@etu.univ-lyon1.fr","");
+CALL INSERTAD(1 ,"AD5", "DR8, AD05, Lyon", "DR AURA, AD RHONE, Bourg en Bresse", "Une Adresse GIGA FLEMME", "0618880104", "yohan.lapierre@etu.univ-lyon1.fr","");
+CALL INSERTAD(1 ,"AD6", "DR8, AD06, Lyon", "DR AURA, AD RHONE, Bourg en Bresse", "Une Adresse GIGA FLEMME", "0618880104", "yohan.lapierre@etu.univ-lyon1.fr","");
 CALL INSERTAD(2 ,"AD1", "DR8, AD01, Lyon", "DR AURA, AD RHONE, Bourg en Bresse", "Une Adresse GIGA FLEMME", "0618880104", "yohan.lapierre@etu.univ-lyon1.fr","");
 CALL INSERTAD(2 ,"AD2", "DR8, AD02, Lyon", "DR AURA, AD RHONE, Bourg en Bresse", "Une Adresse GIGA FLEMME", "0618880104", "yohan.lapierre@etu.univ-lyon1.fr","");
+CALL INSERTAD(2 ,"AD3", "DR8, AD03, Lyon", "DR AURA, AD RHONE, Bourg en Bresse", "Une Adresse GIGA FLEMME", "0618880104", "yohan.lapierre@etu.univ-lyon1.fr","");
 CALL INSERTAD(3 ,"AD1", "DR8, AD01, Lyon", "DR AURA, AD RHONE, Bourg en Bresse", "Une Adresse GIGA FLEMME", "0618880104", "yohan.lapierre@etu.univ-lyon1.fr","");
 CALL INSERTAD(3 ,"AD2", "DR8, AD02, Lyon", "DR AURA, AD RHONE, Bourg en Bresse", "Une Adresse GIGA FLEMME", "0618880104", "yohan.lapierre@etu.univ-lyon1.fr","");
 
