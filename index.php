@@ -2,9 +2,9 @@
 $erreur = null;
 $connectionsSucces = false;
 
-require_once(__DIR__ . "/include/auth.php");
+require_once(__DIR__ . "/include/fonctions/auth.php");
 if (is_connected()) {
-    header('Location: /pages/home.php');
+    header('Location: /pages/test.php');
     exit();
 }
 
@@ -13,36 +13,38 @@ if (!empty($_POST['identifiant']) && !empty($_POST['mdp'])) {
     $password = htmlentities($_POST['mdp']);
 
     require_once(__DIR__ . "/include/MariaDB.php");
-    $bdd = bddRestos();
+    $bdd = Connexion::bddRestos();
 
-    $stmt = $bdd->prepare("SELECT * FROM Utilisateur WHERE Mail= ? AND MotDePasse= ? LIMIT 1");
-    $stmt->execute([$identity, $password]);
+    $stmt = $bdd->prepare("SELECT * FROM Utilisateur WHERE (Mail= ? OR concat(lower(Nom), '.', lower(Prenom)) = lower( ? )) AND MotDePasse= ? LIMIT 1");
+    $stmt->execute([$identity, $identity, $password]);
 
     $res = $stmt->fetchAll();
+    $nom;
+    $prenom;
+    $admin = false;
 
     foreach ($res as $row) {
         $connectionsSucces = true;
-    }
-
-    if ($connectionsSucces === false) {
-        $stmt = $bdd->prepare("SELECT Nom FROM Utilisateur WHERE concat(lower(Nom), '.', lower(Prenom)) = lower( ? ) AND MotDePasse= ? LIMIT 1");
-        $stmt->execute([$identity, $password]);
-
-        $res = $stmt->fetchAll();
-
-        foreach ($res as $row) {
-            $connectionsSucces = true;
+        $nom = $row['Nom'];
+        $prenom = $row['Prenom'];
+        if ($row['Admin_User'] == true) {
+            $admin = true;
         }
     }
 
     if ($connectionsSucces === false) {
         $erreur = true;
+        unset($bdd);
     } else {
         if (session_status() === PHP_SESSION_NONE) {
             session_start();
         }
         $_SESSION["connected"] = 1;
-        header('Location: /pages/home.php');
+        $_SESSION["Prenom"] = $prenom;
+        $_SESSION["Nom"] = $nom;
+        $_SESSION["Admin"] = $admin;
+        unset($bdd);
+        header('Location: /pages/test.php');
         exit();
     }
 }

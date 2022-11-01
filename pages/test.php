@@ -1,3 +1,9 @@
+<?php
+require_once("../include/fonctions/auth.php");
+redirectUser();
+
+//unset($_SESSION['connected']);
+?>
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -24,81 +30,78 @@
 </head>
 
 <body>
+    
+    <section id="app">
+        <h5>Délégations Régionales</h5>
+        <section id="dr">
+            <div class="carousel" data-flickity='{ "groupCells": true, "pageDots": false}'>
+                <?php
+                require_once(__DIR__ . "/../include/MariaDB.php");
+                
+                $res;
+                if ($_SESSION['Admin'] === true) {
+                    $res = Connexion::getResult("SELECT * FROM Delegation_Regionale");
+                } else {
+                    $res = null;
+                }
+                
+                Connexion::printCarouselElements($res, "drSelector");
+                ?>
 
-    <!-- Flickity HTML init -->
-    <section id="dr">
-        <div class="carousel" data-flickity='{ "groupCells": true, "pageDots": false}'>
-            <?php
-            require_once(__DIR__ . "/../include/MariaDB.php");
-            $bdd = bddRestos();
-
-            $stmt = $bdd->query("SELECT * FROM Delegation_Regionale");
-            $res = $stmt->fetchAll();
-
-            foreach ($res as $row) {
-
-                echo '<input type="radio" name="drSelector" id="' . $row["Reference"] . '">';
-                echo '<div class="carousel-cell">';
-                echo '<label for="' . $row["Reference"] . '">';
-                echo '<img src="../img/icon/Département.png" alt="Icon Département">';
-                echo '<p>' . $row["Reference"] . '</p>';
-                echo '</label>';
-                echo '</div>';
-            }
-            ?>
-
-            <?php require_once __DIR__ . "/../include/changeDr.php" ?>
-        </div>
-        <div class="toolBar">
-            <a href="" class="nav-link disabled"><h3 class="bi bi-plus-circle"></h3></a> 
-            <a href="" class="nav-link disabled"><h3 class="bi bi-pencil-square"></h3></a>
-            <a href="" class="nav-link disabled"><h3 class="bi bi-trash3"></h3></a>
-        </div>
-
-    </section>
-
-    <section id="ad">
-        <div class="carousel" data-flickity='{ "groupCells": true, "pageDots": false}'>
-            <div class="carousel-cell">
-                <h3 class="nothing">Vide</h3>
+                <script src="/js/traitements/changeDr.js"></script>
             </div>
-        </div>
-        <div class="toolBar">
-            <a href="" class="nav-link disabled"><h3 class="bi bi-plus-circle"></h3></a> 
-            <a href="" class="nav-link disabled"><h3 class="bi bi-pencil-square"></h3></a>
-            <a href="" class="nav-link disabled"><h3 class="bi bi-trash3"></h3></a>
-        </div>
-
-    </section>
-
-    <section id="uo">
-        <div class="carousel" data-flickity='{ "groupCells": true, "pageDots": false}'>
-            <div class="carousel-cell">
-                <h3 class="nothing">Vide</h3>
+            <div class="toolBar">
+                <a id="dr" href="" class="nav-link disabled"><h3 class="bi bi-plus-circle"></h3></a> 
+                <a id="dr" href="" class="nav-link disabled"><h3 class="bi bi-pencil-square"></h3></a>
+                <a id="dr" href="" class="nav-link disabled"><h3 class="bi bi-trash3"></h3></a>
             </div>
-        </div>
-        <div class="toolBar">
-            <a href="" class="nav-link disabled"><h3 class="bi bi-plus-circle"></h3></a> 
-            <a href="" class="nav-link disabled"><h3 class="bi bi-pencil-square"></h3></a>
-            <a href="" class="nav-link disabled"><h3 class="bi bi-trash3"></h3></a>
-        </div>
+        </section>
 
-    </section>
-
-    <section id="ma">
-        <div class="carousel" data-flickity='{ "groupCells": true, "pageDots": false}'>
-            <div class="carousel-cell">
-                <h3 class="nothing">Vide</h3>
+        <h5>Associations Départementales</h5>
+        <section id="ad">
+            <div class="carousel" data-flickity='{ "groupCells": true, "pageDots": false}'>
+                <div class="carousel-cell">
+                    <h3 class="nothing">Vide</h3>
+                </div>
             </div>
-        </div>
-        <div class="toolBar">
-            <a href="" class="nav-link disabled"><h3 class="bi bi-plus-circle"></h3></a> 
-            <a href="" class="nav-link disabled"><h3 class="bi bi-pencil-square"></h3></a>
-            <a href="" class="nav-link disabled"><h3 class="bi bi-trash3"></h3></a>
-        </div>
+            <div class="toolBar">
+                <a id="ad" href="" class="nav-link disabled"><h3 class="bi bi-plus-circle"></h3></a> 
+                <a id="ad" href="" class="nav-link disabled"><h3 class="bi bi-pencil-square"></h3></a>
+                <a id="ad" href="" class="nav-link disabled"><h3 class="bi bi-trash3"></h3></a>
+            </div>
 
+        </section>
+
+        <h5>Unités Opérationelles</h5>
+        <section id="uo">
+            <div class="carousel" data-flickity='{ "groupCells": true, "pageDots": false}'>
+                <div class="carousel-cell">
+                    <h3 class="nothing">Vide</h3>
+                </div>
+            </div>
+            <div class="toolBar">
+                <a id="uo" href="" class="nav-link disabled"><h3 class="bi bi-plus-circle"></h3></a> 
+                <a id="uo"  href="" class="nav-link disabled"><h3 class="bi bi-pencil-square"></h3></a>
+                <a id="uo"  href="" class="nav-link disabled"><h3 class="bi bi-trash3"></h3></a>
+            </div>
+
+        </section>
+
+        <h5>Matériels</h5>
+        <section id="ma">
+            <div class="carousel" data-flickity='{ "groupCells": true, "pageDots": false}'>
+                <div class="carousel-cell">
+                    <h3 class="nothing">Vide</h3>
+                </div>
+            </div>
+            <div class="toolBar">
+                <a id="ma" href="" class="nav-link disabled"><h3 class="bi bi-plus-circle"></h3></a> 
+                <a id="ma" href="" class="nav-link disabled"><h3 class="bi bi-pencil-square"></h3></a>
+                <a id="ma" href="" class="nav-link disabled"><h3 class="bi bi-trash3"></h3></a>
+            </div>
+
+        </section>
     </section>
-
 
 
 

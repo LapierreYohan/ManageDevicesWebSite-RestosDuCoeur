@@ -3,6 +3,11 @@ section {
  margin-bottom: 25px;
 }
 
+h5 {
+    margin-left: 8.2%;
+    height: 10px;
+}
+
 section#dr {
     display: flex;
     flex-direction: row;
