@@ -2,7 +2,7 @@
 require_once("../include/fonctions/auth.php");
 redirectUser();
 
-//unset($_SESSION['connected']);
+unset($_SESSION['H!g0h?s,BVDVo']);
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -42,7 +42,7 @@ redirectUser();
                 if ($_SESSION['Admin'] === true) {
                     $res = Connexion::getResult("SELECT * FROM Delegation_Regionale");
                 } else {
-                    $res = null;
+                    $res = Connexion::getResult("SELECT * FROM Delegation_Regionale WHERE ID_Dr = ANY (SELECT ID_Dr FROM Administrer WHERE ID_User =" . $_SESSION['ID_User'] . ") OR ID_Dr = Any (SELECT ID_Dr FROM Gerer WHERE ID_User =" . $_SESSION['ID_User'] . ");");
                 }
                 
                 Connexion::printCarouselElements($res, "drSelector");
@@ -51,9 +51,13 @@ redirectUser();
                 <script src="/js/traitements/changeDr.js"></script>
             </div>
             <div class="toolBar">
-                <a id="dr" href="" class="nav-link disabled"><h3 class="bi bi-plus-circle"></h3></a> 
+                <?php if ($_SESSION['Admin'] === true) {  ?>
+                    <a id="dr" href="" class="nav-link disabled"><h3 class="bi bi-plus-circle"></h3></a> 
+                <?php } ?>
                 <a id="dr" href="" class="nav-link disabled"><h3 class="bi bi-pencil-square"></h3></a>
-                <a id="dr" href="" class="nav-link disabled"><h3 class="bi bi-trash3"></h3></a>
+                <?php if ($_SESSION['Admin'] === true) {  ?>
+                    <a id="dr" href="" class="nav-link disabled"><h3 class="bi bi-trash3"></h3></a>
+                <?php } ?>
             </div>
         </section>
 

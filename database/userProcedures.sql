@@ -1,4 +1,4 @@
--- Active: 1666192876096@@localhost@3306@rdc
+-- Active: 1667300056977@@localhost@3306@resto
 
 SET default_storage_engine = InnoDB;
 
@@ -87,9 +87,15 @@ END$
 DELIMITER ;
 
 
- CALL insertUser("200", "gailliard", "Axel", "1234", "Un gars assez n", true, NULL);
+CALL insertUser("200", "gailliard", "Axel", "1234", "Un gars assez n", true, NULL);
 
- CALL insertUser("1203", "LAPIERRE", "Yohan", "4321", "Un gars trop bien", true, 1);
+CALL insertUser("1203", "LAPIERRE", "Yohan", "4321", "Un gars trop bien", true, 1);
+CALL insertUser("1204", "BERGER", "Amandine", "4321", "Professeur de Mathématiques", false, 1);
+CALL insertUser("1205", "LAGRAH", "Amida", "4321", "Professeur de Base de données", false, 1);
+
+INSERT INTO Administrer VALUES (3, 2);
+INSERT INTO Gerer VALUES (3, 1, 2);
+INSERT INTO Gerer VALUES (4, 1, 2);
 
 DELIMITER $
 

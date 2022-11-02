@@ -21,10 +21,12 @@ if (!empty($_POST['identifiant']) && !empty($_POST['mdp'])) {
     $res = $stmt->fetchAll();
     $nom;
     $prenom;
+    $idUser;
     $admin = false;
 
     foreach ($res as $row) {
         $connectionsSucces = true;
+        $idUser = $row['ID_User'];
         $nom = $row['Nom'];
         $prenom = $row['Prenom'];
         if ($row['Admin_User'] == true) {
@@ -39,7 +41,8 @@ if (!empty($_POST['identifiant']) && !empty($_POST['mdp'])) {
         if (session_status() === PHP_SESSION_NONE) {
             session_start();
         }
-        $_SESSION["connected"] = 1;
+        $_SESSION["H!g0h?s,BVDVo"] = 1;
+        $_SESSION["ID_User"] = $idUser;
         $_SESSION["Prenom"] = $prenom;
         $_SESSION["Nom"] = $nom;
         $_SESSION["Admin"] = $admin;
