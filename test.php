@@ -1,23 +1,15 @@
 <?php
-require_once("./include/MariaDB.php");
-
-$identity = htmlentities("yohan.lapierre@restosducoeur.org");
-$password = htmlentities("432");
-
-$bdd = bddRestos();
-   
-$stmt = $bdd->prepare("SELECT * FROM Utilisateur WHERE Mail=\"$identity\" AND MotDePasse=\"$password\"");
-$stmt->execute();
-
-
-$res = $stmt->fetchAll();
-
-    if ($res) {
-        echo "Coucou \n";
-    }
-    
-foreach ( $res as $row ) {
-    echo $row['Reference_User'];
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
 }
 
-?>
+require_once(__DIR__ . "/include/MariaDB.php");
+
+$res = Connexion::getResult("SELECT * FROM Administrer WHERE ID_Dr = ANY (SELECT ID_Dr FROM Delegation_Regionale WHERE Reference ='" . "DR-RHONE" . "') AND ID_User =" . 3);
+    if (empty($res) && $_SESSION['Admin'] === false) {
+        echo '{"CAN_INTERACTION": false}';
+    } else {
+        echo '{"CAN_INTERACTION": true}';
+    }
+// require_once __DIR__ . "/include/fonctions/debug.php";
+// debug($res, true);

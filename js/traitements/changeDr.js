@@ -28,13 +28,25 @@ nodes.forEach((node) => {
 
                 $.each(data, function (index, value) {
 
-                    var $cellElems = $('<input type="radio" name="adSelector" id="' + value.Reference + '">');
+                    var $cellElems = $('<input type="radio" name="adSelector" id="' + value.ID_Site + '">');
                     flkty.append( $cellElems)
 
-                    var $cellElem = $('<div class="carousel-cell"> <label for="' + value.Reference + '"> <img src="/img/icon/Association départementale.png" alt="Icon maison"> <p>' + value.Reference + '</p></label></div>');
+                    var $cellElem = $('<div class="carousel-cell"> <label for="' + value.ID_Site + '"> <img src="/img/icon/Association départementale.png" alt="Icon maison"> <p>' + value.Reference + '</p></label></div>');
                     flkty.append( $cellElem)
 
                 })
+            }
+        });
+
+        var value2 = {'buttons':event.target.id};
+        
+        $.ajax({
+            type: "POST",
+            url: "/include/traitements/dr.php",
+            dataType:"json",
+            data:value2, 
+            success: function(data){
+                console.log(data);
             }
         });
     });
