@@ -2,7 +2,7 @@
 require_once("../include/fonctions/auth.php");
 redirectUser();
 
-unset($_SESSION['H!g0h?s,BVDVo']);
+//unset($_SESSION['H!g0h?s,BVDVo']);
 ?>
 <!DOCTYPE html>
 <html lang="fr">

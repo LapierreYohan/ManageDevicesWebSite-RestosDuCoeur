@@ -1,10 +1,10 @@
-let nodes = document.querySelectorAll('input[name="drSelector"]');
+nodes = document.querySelectorAll('input[name="adSelector"]');
 
 nodes.forEach((node) => {
     node.addEventListener("change", (event) => {
 
-        var value = {'dr':event.target.id};
-        let section = document.getElementById('ad');
+        var value = {'ad':event.target.id};
+        let section = document.getElementById('uo');
         let carousel = section.firstElementChild;
         
         section.removeChild(carousel);
@@ -21,31 +21,32 @@ nodes.forEach((node) => {
 
         $.ajax({
             type: "POST",
-            url: "/include/traitements/dr.php",
+            url: "/include/traitements/ad.php",
             dataType:"json",
             data:value, 
             success: function(data){
 
                 $.each(data, function (index, value) {
 
-                    var $cellElems = $('<input type="radio" name="adSelector" id="' + value.ID_Site + '">');
+                    var $cellElems = $('<input type="radio" name="uoSelector" id="' + value.ID_Site + '">');
                     flkty.append( $cellElems)
 
-                    var $cellElem = $('<div class="carousel-cell"> <label for="' + value.ID_Site + '"> <img src="/img/icon/Association départementale.png" alt="Icon maison"> <p>' + value.Reference + '</p></label></div>');
+                    var $cellElem = $('<div class="carousel-cell"> <label for="' + value.ID_Site + '"> <img src="/img/icon/Unité opérationnelle.png" alt="Icon maison"> <p>' + value.Reference + '</p></label></div>');
                     flkty.append( $cellElem)
 
                 })
-                let script = document.createElement('script');
+                /*let script = document.createElement('script');
                 script.src = "/js/traitements/changeAd.js";
-                carousel.prepend(script);
+                section.prepend(script);*/
             }
         });
 
+        
         var value2 = {'buttons':event.target.id};
         
         $.ajax({
             type: "POST",
-            url: "/include/traitements/dr.php",
+            url: "/include/traitements/ad.php",
             dataType:"json",
             data:value2, 
             success: function(data){
