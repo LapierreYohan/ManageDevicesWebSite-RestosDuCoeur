@@ -14,6 +14,11 @@ if (isset($_POST['buttons'])) {
     }
     unset($_POST['buttons']);
 
+} else if (isset($_POST['materiels'])) {
+    $res = Connexion::getResult("SELECT * FROM Site WHERE ID_SiteParent =" . $_POST['materiels']);
+    echo json_encode($res);
+
+    unset($_POST['materiels']);
 } else if (isset($_POST['ad'])) {
  
     $res = Connexion::getResult("SELECT * FROM Site WHERE ID_SiteParent =" . $_POST['ad']);

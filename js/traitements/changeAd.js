@@ -5,19 +5,31 @@ nodes.forEach((node) => {
 
         var value = {'ad':event.target.id};
         let section = document.getElementById('uo');
+        let sectionMa= document.getElementById('ma');
+
         let carousel = section.firstElementChild;
+        let carousel2 = sectionMa.firstElementChild;
         
         section.removeChild(carousel);
+        sectionMa.removeChild(carousel2);
 
         carousel = document.createElement('div');
         carousel.classList.add("carousel");
         section.prepend(carousel)
+
+        carousel2 = document.createElement('div');
+        carousel2.classList.add("carousel");
+        sectionMa.prepend(carousel2)
     
         var flkty = new Flickity( carousel, {
             groupCells: true, 
             pageDots: false
         });
 
+        var flkty2 = new Flickity( carousel2, {
+            groupCells: true, 
+            pageDots: false
+        });
 
         $.ajax({
             type: "POST",
@@ -41,6 +53,25 @@ nodes.forEach((node) => {
             }
         });
 
+
+        var value3 = {'materiels':event.target.id};
+        
+        $.ajax({
+            type: "POST",
+            url: "/include/traitements/ad.php",
+            dataType:"json",
+            data:value3, 
+            success: function(data){
+                $.each(data, function (index, value) {
+
+                    var $cellElems = $('<input type="radio" name="maSelector" id="' + value.ID_Site + '">');
+                    flkty2.append( $cellElems)
+
+                    var $cellElem = $('<div class="carousel-cell"> <label for="' + value.ID_Site + '"> <img src="/img/icon/Unité opérationnelle.png" alt="Icon maison"> <p>' + value.Reference + '</p></label></div>');
+                    flkty2.append( $cellElem)
+                })
+            }
+        });
         
         var value2 = {'buttons':event.target.id};
         
