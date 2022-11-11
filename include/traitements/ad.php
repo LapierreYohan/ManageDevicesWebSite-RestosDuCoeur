@@ -21,7 +21,7 @@ if (isset($_POST['buttons'])) {
     unset($_POST['materiels']);
 } else if (isset($_POST['ad'])) {
  
-    $res = Connexion::getResult("SELECT * FROM Site WHERE ID_SiteParent =" . $_POST['ad']);
+    $res = Connexion::getResult("SELECT * FROM Site WHERE Statut = TRUE AND ID_SiteParent =" . $_POST['ad'] . " ORDER BY Reference ASC");
     echo json_encode($res);
     
     unset($_POST['dr']);

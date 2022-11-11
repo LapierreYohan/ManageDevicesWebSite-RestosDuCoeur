@@ -43,7 +43,7 @@ nodes.forEach((node) => {
                     var $cellElems = $('<input type="radio" name="uoSelector" id="' + value.ID_Site + '">');
                     flkty.append( $cellElems)
 
-                    var $cellElem = $('<div class="carousel-cell"> <label for="' + value.ID_Site + '"> <img src="/img/icon/Unité opérationnelle.png" alt="Icon maison"> <p>' + value.Reference + '</p></label></div>');
+                    var $cellElem = $('<div class="carousel-cell"> <label for="' + value.ID_Site + '"> <img src="/img/icon/Unité opérationnelle.png" alt="Icon maison"> <p><b>' + value.Reference + "</b></p> <br> <p class=\"adress\"><b>" + value.Adresse + '</b></p></label></div>');
                     flkty.append( $cellElem)
 
                 })

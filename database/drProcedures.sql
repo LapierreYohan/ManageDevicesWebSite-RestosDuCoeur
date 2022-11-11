@@ -26,140 +26,19 @@ VARCHAR(100), IN TELEPHONE VARCHAR(10), IN MAIL VARCHAR
 	INSERT INTO
 	    Delegation_Regionale
 	VALUES (
-	        0,
-	        v_ref,
-	        lower(NOM_COURT),
-	        lower(NOM_LONG),
+	        null,
+	        UPPER(v_ref),
+	        NOM_COURT,
+	        NOM_LONG,
 	        ADRESSE,
 	        TELEPHONE,
 	        MAIL,
 	        v_statut,
-	        COMMENTAIRE
+	        COMMENTAIRE,
+            DEFAULT
 	    );
 	END IF;
 END$ 
 
 DELIMITER ;
 
-CALL
-    INSERTDR(
-        "AIN",
-        "DR8, AD01, Bourg en Bresse",
-        "DR AURA, AD AIN, Bourg en Bresse",
-        "Une Adresse GIGA FLEMME",
-        "0618880104",
-        "yohan.lapierre@etu.univ-lyon1.fr",
-        ""
-    );
-
-CALL
-    INSERTDR(
-        "RHONE",
-        "DR8, AD02, Lyon",
-        "DR AURA, AD RHONE, Bourg en Bresse",
-        "Une Adresse GIGA FLEMME",
-        "0618880104",
-        "yohan.lapierre@etu.univ-lyon1.fr",
-        ""
-    );
-
-CALL
-    INSERTDR(
-        "AUVERGNE",
-        "DR8, AD03, Bourg en Bresse",
-        "DR AURA, AD AUVERGNE, Bourg en Bresse",
-        "Une Adresse GIGA FLEMME",
-        "0618880104",
-        "yohan.lapierre@etu.univ-lyon1.fr",
-        ""
-    );
-
-CALL
-    INSERTDR(
-        "NORMANDIE",
-        "DR8, AD04, Bourg en Bresse",
-        "DR AURA, AD NORMANDIE, Bourg en Bresse",
-        "Une Adresse GIGA FLEMME",
-        "0618880104",
-        "yohan.lapierre@etu.univ-lyon1.fr",
-        ""
-    );
-
-CALL
-    INSERTDR(
-        "BRETAGNE",
-        "DR8, AD05, Bourg en Bresse",
-        "DR AURA, AD BRETAGNE, Bourg en Bresse",
-        "Une Adresse GIGA FLEMME",
-        "0618880104",
-        "yohan.lapierre@etu.univ-lyon1.fr",
-        ""
-    );
-
-CALL
-    INSERTDR(
-        "ARDECHE",
-        "DR8, AD06, Bourg en Bresse",
-        "DR AURA, AD ARDECHE, Bourg en Bresse",
-        "Une Adresse GIGA FLEMME",
-        "0618880104",
-        "yohan.lapierre@etu.univ-lyon1.fr",
-        ""
-    );
-
-CALL
-    INSERTDR(
-        "JURA",
-        "DR8, AD07, Bourg en Bresse",
-        "DR AURA, AD JURA, Bourg en Bresse",
-        "Une Adresse GIGA FLEMME",
-        "0618880104",
-        "yohan.lapierre@etu.univ-lyon1.fr",
-        ""
-    );
-
-CALL
-    INSERTDR(
-        "ISERE",
-        "DR8, AD08, Bourg en Bresse",
-        "DR AURA, AD ISERE, Bourg en Bresse",
-        "Une Adresse GIGA FLEMME",
-        "0618880104",
-        "yohan.lapierre@etu.univ-lyon1.fr",
-        ""
-    );
-
-CALL
-    INSERTDR(
-        "LOIRE",
-        "DR8, AD09, Bourg en Bresse",
-        "DR AURA, AD LOIRE, Bourg en Bresse",
-        "Une Adresse GIGA FLEMME",
-        "0618880104",
-        "yohan.lapierre@etu.univ-lyon1.fr",
-        ""
-    );
-
-CALL
-    INSERTDR(
-        "SAONE",
-        "DR8, AD010, Bourg en Bresse",
-        "DR AURA, AD SAONE, Bourg en Bresse",
-        "Une Adresse GIGA FLEMME",
-        "0618880104",
-        "yohan.lapierre@etu.univ-lyon1.fr",
-        ""
-    );
-
-CALL
-    INSERTDR(
-        "TOULOUSE",
-        "DR8, AD011, Bourg en Bresse",
-        "DR AURA, AD TOULOUSE, Bourg en Bresse",
-        "Une Adresse GIGA FLEMME",
-        "0618880104",
-        "yohan.lapierre@etu.univ-lyon1.fr",
-        ""
-    );
-
-SELECT * FROM Delegation_Regionale;

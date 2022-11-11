@@ -18,10 +18,10 @@ if (isset($_POST['buttons'])) {
     $res;
 
     if ($_SESSION['Admin'] === true) { 
-        $res = Connexion::getResult("SELECT * FROM Site WHERE ID_Dr = (SELECT ID_Dr FROM Delegation_Regionale WHERE Reference ='" . $_POST['dr'] . "') AND ID_SiteParent IS NULL");
+        $res = Connexion::getResult("SELECT * FROM Site WHERE Statut = TRUE AND ID_Dr = (SELECT ID_Dr FROM Delegation_Regionale WHERE Reference ='" . $_POST['dr'] . "') AND ID_SiteParent IS NULL ORDER BY Reference ASC");
         echo json_encode($res);
     } else {
-        $res = Connexion::getResult("SELECT * FROM Site WHERE ID_SiteParent IS NULL AND ID_Dr = ANY (SELECT ID_Dr FROM Delegation_Regionale WHERE Reference ='" . $_POST['dr'] . "' AND (ID_Site = Any (SELECT ID_Site FROM Gerer WHERE ID_User = " . $_SESSION['ID_User'] . ") OR ID_Dr = ANY (SELECT ID_Dr FROM Administrer WHERE ID_User = " . $_SESSION['ID_User'] . ")))");
+        $res = Connexion::getResult("SELECT * FROM Site WHERE Statut = TRUE AND ID_SiteParent IS NULL AND ID_Dr = ANY (SELECT ID_Dr FROM Delegation_Regionale WHERE Reference ='" . $_POST['dr'] . "' AND (ID_Site = Any (SELECT ID_Site FROM Gerer WHERE ID_User = " . $_SESSION['ID_User'] . ") OR ID_Dr = ANY (SELECT ID_Dr FROM Administrer WHERE ID_User = " . $_SESSION['ID_User'] . "))) ORDER BY Reference ASC");
         echo json_encode($res);
     }
     unset($_POST['dr']);

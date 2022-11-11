@@ -6,6 +6,8 @@ SET SQL_SAFE_UPDATES=0;
 
 DROP TABLE IF EXISTS Gerer;
 
+DROP TABLE IF EXISTS Lier;
+
 DROP TABLE IF EXISTS Administrer;
 
 DROP TABLE IF EXISTS Autre;
@@ -69,6 +71,7 @@ CREATE TABLE
         Admin_User BOOLEAN DEFAULT FALSE NOT NULL,
         Commentaire TEXT,
         ID_Author INT DEFAULT NULL,
+        Image VARCHAR(600) DEFAULT "/img/icon/utilisateur.png", 
         CONSTRAINT `pk_Utilisateur` PRIMARY KEY (ID_User),
         CONSTRAINT `fk_User` FOREIGN KEY (ID_Author) REFERENCES Utilisateur(ID_User) ON DELETE
         SET NULL ON UPDATE
@@ -86,6 +89,7 @@ CREATE TABLE
         Mail VARCHAR(100),
         Statut BOOLEAN DEFAULT FALSE NOT NULL,
         Commentaire TEXT,
+        Image VARCHAR(600) DEFAULT "/img/icon/Département.png", 
         CONSTRAINT `pk_dr` PRIMARY KEY (ID_Dr)
     );
 
@@ -102,6 +106,7 @@ CREATE TABLE
         Statut BOOLEAN DEFAULT FALSE NOT NULL,
         Commentaire TEXT,
         ID_SiteParent INT DEFAULT NULL,
+        Image VARCHAR(600) DEFAULT "/img/icon/Association départementale.png", 
         CONSTRAINT `pk_site` PRIMARY KEY (ID_Dr, ID_Site),
         CONSTRAINT `fk_site_dr` FOREIGN KEY (ID_Dr) REFERENCES Delegation_Regionale(ID_Dr) ON DELETE RESTRICT ON UPDATE RESTRICT,
         CONSTRAINT `fk_site_siteSite` FOREIGN KEY (ID_SiteParent) REFERENCES Site(ID_Site) ON DELETE RESTRICT ON UPDATE RESTRICT
@@ -147,7 +152,8 @@ CREATE TABLE
 CREATE TABLE
     TypeMateriel(
         ID_TypeMateriel INT AUTO_INCREMENT NOT NULL UNIQUE,
-        Nom VARCHAR(100) NOT NULL UNIQUE,
+        Nom VARCHAR(100) NOT NULL,
+        Device VARCHAR(255) DEFAULT NULL,
         CONSTRAINT `pk_typemateriel` PRIMARY KEY (ID_TypeMateriel)
     );
 
@@ -214,6 +220,7 @@ CREATE TABLE
         ID_Statut INT NOT NULL,
         ID_Reseau INT NOT NULL,
         ID_Connexion INT NOT NULL,
+        Image VARCHAR(600) DEFAULT "/img/icon/Subscribe.png", 
         CONSTRAINT `pk_abonnement` PRIMARY KEY(ID_Abonnement),
         CONSTRAINT `fk_abonnement_siteDr` FOREIGN KEY (ID_Dr) REFERENCES Site(ID_Dr) ON DELETE RESTRICT ON UPDATE RESTRICT,
         CONSTRAINT `fk_abonnement_siteSite` FOREIGN KEY (ID_Site) REFERENCES Site(ID_Site) ON DELETE RESTRICT ON UPDATE RESTRICT,
@@ -238,6 +245,7 @@ CREATE TABLE
         ID_Site INT,
         ID_Statut INT NOT NULL,
         ID_Connexion INT NOT NULL,
+        Image VARCHAR(600) DEFAULT "/img/icon/Router.png", 
         CONSTRAINT `pk_pointAccesInternet` PRIMARY KEY(ID_Acces),
         CONSTRAINT `fk_pointAccesInternet_abonnement` FOREIGN KEY(ID_Abonnement) REFERENCES Abonnement(ID_Abonnement) ON DELETE RESTRICT ON UPDATE RESTRICT,
         CONSTRAINT `fk_pointAccesInternet_siteDr` FOREIGN KEY (ID_Dr) REFERENCES Site(ID_Dr) ON DELETE RESTRICT ON UPDATE RESTRICT,
@@ -262,6 +270,7 @@ CREATE TABLE
         ID_Site INT NOT NULL,
         ID_Acces INT,
         ID_Statut INT NOT NULL,
+        Image VARCHAR(600) DEFAULT "/img/icon/Switch.png", 
         CONSTRAINT `pk_switch` PRIMARY KEY(ID_Switch),
         CONSTRAINT `fk_switch_siteDr` FOREIGN KEY (ID_Dr) REFERENCES Site(ID_Dr) ON DELETE RESTRICT ON UPDATE RESTRICT,
         CONSTRAINT `fk_switch_siteSite` FOREIGN KEY (ID_Site) REFERENCES Site(ID_Site) ON DELETE RESTRICT ON UPDATE RESTRICT,
@@ -286,13 +295,14 @@ CREATE TABLE
         Disque_Partition VARCHAR(50),
         Marque VARCHAR(50),
         Commentaire TEXT,
-        ID_TypeMateriel INT,
-        ID_Statut INT,
-        ID_Systeme INT,
+        ID_TypeMateriel INT NOT NULL,
+        ID_Statut INT NOT NULL,
+        ID_Systeme INT NOT NULL,
         ID_Dr INT NOT NULL,
         ID_Site INT NOT NULL,
         ID_Acces INT,
         ID_Switch INT,
+        Image VARCHAR(600) DEFAULT "/img/icon/Desktop.png", 
         CONSTRAINT `pk_ordinateur` PRIMARY KEY (ID_Ordinateur),
         CONSTRAINT `fk_ordinateur_typemateriel` FOREIGN KEY (ID_TypeMateriel) REFERENCES TypeMateriel(ID_TypeMateriel) ON DELETE RESTRICT ON UPDATE RESTRICT,
         CONSTRAINT `fk_ordinateur_statut` FOREIGN KEY (ID_Statut) REFERENCES Statut(ID_Statut) ON DELETE RESTRICT ON UPDATE RESTRICT,
@@ -318,6 +328,7 @@ CREATE TABLE
         ID_Dr INT NOT NULL,
         ID_Site INT NOT NULL,
         ID_Statut INT NOT NULL,
+        Image VARCHAR(600) DEFAULT "/img/icon/Printer.png", 
         CONSTRAINT `pk_imprimante` PRIMARY KEY(ID_Imprimante),
         CONSTRAINT `fk_imprimante_switch` FOREIGN KEY(ID_Switch) REFERENCES Switch(ID_Switch) ON DELETE RESTRICT ON UPDATE RESTRICT,
         CONSTRAINT `fk_imprimante_siteSite` FOREIGN KEY(ID_Site) REFERENCES Site(ID_Site) ON DELETE RESTRICT ON UPDATE RESTRICT,
@@ -352,10 +363,17 @@ CREATE TABLE
         SynchroPartage TEXT,
         AdminCompte BOOLEAN NOT NULL DEFAULT FALSE,
         Commentaire TEXT,
+        CONSTRAINT `pk_compteUtilisateur` PRIMARY KEY(ID_Compte)
+);
+
+CREATE TABLE
+    Lier (
+        ID_Compte INT NOT NULL,
         ID_Ordinateur INT NOT NULL,
-        CONSTRAINT `pk_compteUtilisateur` PRIMARY KEY(ID_Compte),
-        CONSTRAINT `fk_compteUtilisateur_ordinateur` FOREIGN KEY(ID_Ordinateur) REFERENCES Ordinateur(ID_Ordinateur)
-    );
+        CONSTRAINT `pk_lier` PRIMARY KEY (ID_Compte, ID_Ordinateur),
+        CONSTRAINT `fk_lier_ordinateur` FOREIGN KEY (ID_Ordinateur) REFERENCES Ordinateur(ID_Ordinateur) ON DELETE RESTRICT ON UPDATE RESTRICT,
+        CONSTRAINT `fk_lier_compteUtilisateur` FOREIGN KEY (ID_Compte) REFERENCES Compte_Utilisateur(ID_Compte) ON DELETE RESTRICT ON UPDATE RESTRICT
+	);
 
 CREATE TABLE
     Imprimer(
@@ -383,6 +401,7 @@ CREATE TABLE
         ID_Dr INT NOT NULL,
         ID_Site INT NOT NULL,
         ID_Statut INT NOT NULL,
+        Image VARCHAR(600) DEFAULT "/img/icon/Server.png", 
         CONSTRAINT `pk_serveur` PRIMARY KEY(ID_Serveur),
         CONSTRAINT `fk_serveur_pointAccesInternet` FOREIGN KEY(ID_Acces) REFERENCES PointAccesInternet(ID_Acces) ON DELETE RESTRICT ON UPDATE RESTRICT,
         CONSTRAINT `fk_serveur_switch` FOREIGN KEY(ID_Switch) REFERENCES Switch(ID_Switch) ON DELETE RESTRICT ON UPDATE RESTRICT,
@@ -419,6 +438,7 @@ CREATE TABLE
         ID_Switch INT,
         ID_Imprimante INT,
         ID_Ordinateur INT,
+        Image VARCHAR(600) DEFAULT "/img/icon/CPL.png", 
         CONSTRAINT `pk_raccordement` PRIMARY KEY(ID_Raccordement),
         CONSTRAINT `fk_raccordement_statut` FOREIGN KEY(ID_Statut) REFERENCES Statut(ID_Statut) ON DELETE RESTRICT ON UPDATE RESTRICT,
         CONSTRAINT `fk_raccordement_siteDr` FOREIGN KEY (ID_Dr) REFERENCES Site(ID_Dr) ON DELETE RESTRICT ON UPDATE RESTRICT,
@@ -448,6 +468,7 @@ CREATE TABLE
         ID_TypeMateriel INT NOT NULL,
         ID_Abonnement INT,
         ID_Acces INT,
+        Image VARCHAR(600) DEFAULT "/img/icon/Smartphone.png", 
         CONSTRAINT `pk_telephone` PRIMARY KEY(ID_Telephone),
         CONSTRAINT `fk_telephone_siteSite` FOREIGN KEY(ID_Site) REFERENCES Site(ID_Site) ON DELETE RESTRICT ON UPDATE RESTRICT,
         CONSTRAINT `fk_telephone_siteDr` FOREIGN KEY(ID_Dr) REFERENCES Site(ID_Dr) ON DELETE RESTRICT ON UPDATE RESTRICT,
@@ -474,6 +495,7 @@ CREATE TABLE
         ID_Statut INT NOT NULL,
         ID_Dr INT NOT NULL,
         ID_Site INT NOT NULL,
+        Image VARCHAR(600) DEFAULT "/img/icon/Other.png", 
         CONSTRAINT `pk_autre` PRIMARY KEY(ID_Autre),
         CONSTRAINT `fk_autre_switch` FOREIGN KEY(ID_Switch) REFERENCES Switch(ID_Switch) ON DELETE RESTRICT ON UPDATE RESTRICT,
         CONSTRAINT `fk_autre_pointAccesInternet` FOREIGN KEY(ID_Acces) REFERENCES PointAccesInternet(ID_Acces) ON DELETE RESTRICT ON UPDATE RESTRICT,

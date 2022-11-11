@@ -2,7 +2,7 @@
 require_once("../include/fonctions/auth.php");
 redirectUser();
 
-unset($_SESSION['H!g0h?s,BVDVo']);
+//unset($_SESSION['H!g0h?s,BVDVo']);
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -40,9 +40,9 @@ unset($_SESSION['H!g0h?s,BVDVo']);
                 
                 $res;
                 if ($_SESSION['Admin'] === true) {
-                    $res = Connexion::getResult("SELECT * FROM Delegation_Regionale");
+                    $res = Connexion::getResult("SELECT * FROM Delegation_Regionale WHERE Statut = TRUE ORDER BY Reference ASC");
                 } else {
-                    $res = Connexion::getResult("SELECT * FROM Delegation_Regionale WHERE ID_Dr = ANY (SELECT ID_Dr FROM Administrer WHERE ID_User =" . $_SESSION['ID_User'] . ") OR ID_Dr = Any (SELECT ID_Dr FROM Gerer WHERE ID_User =" . $_SESSION['ID_User'] . ");");
+                    $res = Connexion::getResult("SELECT * FROM Delegation_Regionale WHERE Statut = TRUE AND ID_Dr = ANY (SELECT ID_Dr FROM Administrer WHERE ID_User =" . $_SESSION['ID_User'] . ") OR ID_Dr = Any (SELECT ID_Dr FROM Gerer WHERE ID_User =" . $_SESSION['ID_User'] . ") ORDER BY Reference ASC;");
                 }
                 
                 Connexion::printCarouselElements($res, "drSelector");

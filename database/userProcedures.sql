@@ -57,28 +57,30 @@ AUTHOR INT) BEGIN
 	IF Author IS NULL THEN
 	INSERT INTO Utilisateur
 	VALUES (
-	        0,
-	        v_ref,
+	        null,
+	        UPPER(v_ref),
 	        v_nom,
 	        v_prenom,
 	        v_mail,
 	        MotDePasse,
 	        AdminUser,
 	        Com,
-	        NULL
+	        NULL,
+            DEFAULT
 	    );
 	ELSE
 	INSERT INTO Utilisateur
 	VALUES (
-	        0,
-	        v_ref,
+	        null,
+	        UPPER(v_ref),
 	        v_nom,
 	        v_prenom,
 	        v_mail,
 	        MotDePasse,
 	        AdminUser,
 	        Com,
-	        Author
+	        Author,
+            DEFAULT
 	    );
 	END IF;
 	END IF;
@@ -86,16 +88,6 @@ END$
 
 DELIMITER ;
 
-
-CALL insertUser("200", "gailliard", "Axel", "1234", "Un gars assez n", true, NULL);
-
-CALL insertUser("1203", "LAPIERRE", "Yohan", "4321", "Un gars trop bien", true, 1);
-CALL insertUser("1204", "BERGER", "Amandine", "4321", "Professeur de Mathématiques", false, 1);
-CALL insertUser("1205", "LAGRAH", "Amida", "4321", "Professeur de Base de données", false, 1);
-
-INSERT INTO Administrer VALUES (3, 2);
-INSERT INTO Gerer VALUES (3, 1, 2);
-INSERT INTO Gerer VALUES (4, 1, 2);
 
 DELIMITER $
 
@@ -109,7 +101,7 @@ CREATE PROCEDURE DELETEUSER(IN REF VARCHAR(47)) BEGIN
 	) is not null Then
 	Delete From Utilisateur
 	where
-	    Reference_User = concat("US-", Ref);
+	    Reference_User = concat("US-", UPPER(Ref));
 	else
 	Select
 	    "La reference entrée n'existe pas dans la table utilisateur";
@@ -138,4 +130,3 @@ END$
 
 DELIMITER ;
 
-select * from Utilisateur;
