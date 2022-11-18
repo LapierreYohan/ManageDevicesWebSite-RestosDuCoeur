@@ -67,7 +67,6 @@ CALL INSERTUO(1 ,"Centre d'Andert-et-Condon", "Centre 07, Andert-et-Condon", "DR
 CALL INSERTUO(1 ,"Dépot d'Andert-et-Condon", "Dépot 01, Andert-et-Condon", "DR AURA, AD AIN, Andert-et-Condon", "29 Chemin des Roches, Andert-et-Condon - 01009", "0636727310", "Pellentesque.ultricies.dignissim@feugiat.edu","Dépot 1 de l'Unité Opérationnelle d'Andert-et-Condon", 3);
 CALL INSERTUO(1 ,"Entrepot d'Andert-et-Condon", "Entrepot 01, Andert-et-Condon", "DR AURA, AD AIN, Andert-et-Condon", "29 Chemin des Roches, Andert-et-Condon - 01009", "0636727310", "Pellentesque.ultricies.dignissim@feugiat.edu","Entrepot 1 de l'Unité Opérationnelle d'Andert-et-Condon", 3);
 
-
 -- CALL INSERTUO(1 ,"UO1", "UO, UO01, Lyon", "UO AURA, AD RHONE, Bourg en Bresse", "Une Adresse GIGA FLEMME", "0618880104", "yohan.lapierre@etu.univ-lyon1.fr","", 1);
 
 /*------------------------------------------*/
@@ -210,4 +209,9 @@ INSERT INTO typemateriel VALUES (null, "Portable", "Ordinateur");
 INSERT INTO typemateriel VALUES (null, "Fixe", "Telephone");
 INSERT INTO typemateriel VALUES (null, "SmartPhone", "Telephone");
 INSERT INTO typemateriel VALUES (null, "Tablette", "Telephone");
+
+/*------------------------------------------*/
+/*Insertion de Matériels      */
+/*------------------------------------------*/
+
 
