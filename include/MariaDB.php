@@ -3,43 +3,49 @@
 class Connexion{
 
 	private $h, $d, $u, $p;
+	private $connexion;
 
-	public function __construct(){
-	}
-
-	public function getDB(){
+	private function __construct(){
+		
 		$this->h = "localhost";
 		$this->d = "resto";
 		$this->u = "p2103678";
 		$this->p = "12103678";
 
-		$db = new PDO('mysql:host='.$this->h.';dbname='.$this->d.';',$this->u,$this->p);
-		$db->exec('SET NAMES utf8');
-        $db->exec('SET default_storage_engine = InnoDB');
-        $db->exec('SET SQL_SAFE_UPDATES = 0');
-		return $db;
+		try {
+            $this->connexion = new PDO('mysql:host='.$this->h.';dbname='.$this->d.';',$this->u,$this->p);
+            $this->connexion->exec('SET NAMES utf8');
+			$this->connexion->exec('SET default_storage_engine = InnoDB');
+			$this->connexion->exec('SET SQL_SAFE_UPDATES = 0');
+            $this->connexion->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+        } catch (PDOException $Exception) {
+            echo $Exception->getMessage();
+            die();
+        }
 	}
 
-    public static function bddRestos() {
-        $db = new Connexion();
-		return $db->getDB();
-    }
+	public static function getDB(){
+
+		if (self::$connexion == null)
+        {
+            self::$connexion = new Connexion();
+        }
+    
+        return self::$connexion;
+	}
 
 	public static function exec($sql){
-		$db = new Connexion();
-		$dbh = $db->getDB();
+		$dbh = self::getDB();
 		$res = $dbh->exec($sql);
-		$dbh = null;
 		return true;
 	}
 
 	public static function getResult($sql){
 		$tmp=array();
 
-		$db = new Connexion();
-		$dbh = $db->getDB();
+		$dbh = self::getDB();
 		$res = $dbh->query($sql);
-		$dbh = null;
 		while($data = $res->fetch(PDO::FETCH_ASSOC)){
 			$tmp[] = $data;
 		}

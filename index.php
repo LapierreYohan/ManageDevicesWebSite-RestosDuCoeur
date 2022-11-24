@@ -13,7 +13,7 @@ if (!empty($_POST['identifiant']) && !empty($_POST['mdp'])) {
     $password = htmlentities($_POST['mdp']);
 
     require_once(__DIR__ . "/include/MariaDB.php");
-    $bdd = Connexion::bddRestos();
+    $bdd = Connexion::getDB();
 
     $stmt = $bdd->prepare("SELECT * FROM Utilisateur WHERE (Mail= ? OR concat(lower(Nom), '.', lower(Prenom)) = lower( ? )) AND MotDePasse= ? LIMIT 1");
     $stmt->execute([$identity, $identity, $password]);
