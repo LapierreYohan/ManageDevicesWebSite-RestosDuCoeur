@@ -3,9 +3,10 @@
 class Connexion{
 
 	private $h, $d, $u, $p;
-	private $connexion;
+	private static $instance = null;
+	private $connexion = null;
 
-	private function __construct(){
+	private function __construct() {
 		
 		$this->h = "localhost";
 		$this->d = "resto";
@@ -14,7 +15,7 @@ class Connexion{
 
 		try {
             $this->connexion = new PDO('mysql:host='.$this->h.';dbname='.$this->d.';',$this->u,$this->p);
-            $this->connexion->exec('SET NAMES utf8');
+			$this->connexion->exec('SET NAMES utf8');
 			$this->connexion->exec('SET default_storage_engine = InnoDB');
 			$this->connexion->exec('SET SQL_SAFE_UPDATES = 0');
             $this->connexion->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -25,26 +26,30 @@ class Connexion{
         }
 	}
 
-	public static function getDB(){
+	public static function getDB() {
 
-		if (self::$connexion == null)
+		if (self::$instance === null)
         {
-            self::$connexion = new Connexion();
+            self::$instance = new Connexion();
         }
     
-        return self::$connexion;
+        return self::$instance;
 	}
 
-	public static function exec($sql){
-		$dbh = self::getDB();
+	public function get() {
+		return $this->connexion;
+	}
+
+	public function exec($sql) {
+		$dbh = $this->connexion;
 		$res = $dbh->exec($sql);
 		return true;
 	}
 
-	public static function getResult($sql){
+	public function getResult($sql) {
 		$tmp=array();
 
-		$dbh = self::getDB();
+		$dbh = $this->connexion;
 		$res = $dbh->query($sql);
 		while($data = $res->fetch(PDO::FETCH_ASSOC)){
 			$tmp[] = $data;
@@ -52,7 +57,7 @@ class Connexion{
 		return $tmp;
 	}
 
-    public static function printCarouselElements ($res, $selector) {
+    public function printCarouselElements ($res, $selector) {
         foreach ($res as $row) {
 
             echo '<input type="radio" name="'. $selector .'" id="' . $row["Reference"] . '">';

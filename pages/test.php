@@ -1,5 +1,5 @@
 <?php
-require_once("../include/fonctions/auth.php");
+require_once("../includes/fonctions/auth.php");
 redirectUser();
 
 unset($_SESSION['H!g0h?s,BVDVo']);
@@ -36,16 +36,16 @@ unset($_SESSION['H!g0h?s,BVDVo']);
         <section id="dr">
             <div class="carousel" data-flickity='{ "groupCells": true, "pageDots": false}'>
                 <?php
-                require_once(__DIR__ . "/../include/MariaDB.php");
+                require_once(__DIR__ . "/../includes/MariaDB.php");
                 
                 $res;
                 if ($_SESSION['Admin'] === true) {
-                    $res = Connexion::getResult("SELECT * FROM Delegation_Regionale WHERE Statut = TRUE ORDER BY Reference ASC");
+                    $res = Connexion::getDB()->getResult("SELECT * FROM Delegation_Regionale WHERE Statut = TRUE ORDER BY Reference ASC");
                 } else {
-                    $res = Connexion::getResult("SELECT * FROM Delegation_Regionale WHERE Statut = TRUE AND ID_Dr = ANY (SELECT ID_Dr FROM Administrer WHERE ID_User =" . $_SESSION['ID_User'] . ") OR ID_Dr = Any (SELECT ID_Dr FROM Gerer WHERE ID_User =" . $_SESSION['ID_User'] . ") ORDER BY Reference ASC;");
+                    $res = Connexion::getDB()->getResult("SELECT * FROM Delegation_Regionale WHERE Statut = TRUE AND ID_Dr = ANY (SELECT ID_Dr FROM Administrer WHERE ID_User =" . $_SESSION['ID_User'] . ") OR ID_Dr = Any (SELECT ID_Dr FROM Gerer WHERE ID_User =" . $_SESSION['ID_User'] . ") ORDER BY Reference ASC;");
                 }
                 
-                Connexion::printCarouselElements($res, "drSelector");
+                Connexion::getDB()->printCarouselElements($res, "drSelector");
                 ?>
 
                 <script src="/js/traitements/changeDr.js"></script>

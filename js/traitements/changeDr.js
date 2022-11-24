@@ -21,7 +21,7 @@ nodes.forEach((node) => {
 
         $.ajax({
             type: "POST",
-            url: "/include/traitements/dr.php",
+            url: "/includes/traitements/dr.php",
             dataType:"json",
             data:value, 
             success: function(data){
@@ -45,7 +45,7 @@ nodes.forEach((node) => {
         
         $.ajax({
             type: "POST",
-            url: "/include/traitements/dr.php",
+            url: "/includes/traitements/dr.php",
             dataType:"json",
             data:value2, 
             success: function(data){

@@ -2,9 +2,9 @@
 $erreur = null;
 $connectionsSucces = false;
 
-require_once(__DIR__ . "/include/fonctions/auth.php");
+require_once(__DIR__ . "/includes/fonctions/auth.php");
 if (is_connected()) {
-    header('Location: /pages/test.php');
+    header('Location: /pages/home.php');
     exit();
 }
 
@@ -12,8 +12,8 @@ if (!empty($_POST['identifiant']) && !empty($_POST['mdp'])) {
     $identity = htmlentities($_POST['identifiant']);
     $password = htmlentities($_POST['mdp']);
 
-    require_once(__DIR__ . "/include/MariaDB.php");
-    $bdd = Connexion::getDB();
+    require_once(__DIR__ . "/includes/MariaDB.php");
+    $bdd = Connexion::getDB()->get();
 
     $stmt = $bdd->prepare("SELECT * FROM Utilisateur WHERE (Mail= ? OR concat(lower(Nom), '.', lower(Prenom)) = lower( ? )) AND MotDePasse= ? LIMIT 1");
     $stmt->execute([$identity, $identity, $password]);
@@ -47,7 +47,7 @@ if (!empty($_POST['identifiant']) && !empty($_POST['mdp'])) {
         $_SESSION["Nom"] = $nom;
         $_SESSION["Admin"] = $admin;
         unset($bdd);
-        header('Location: /pages/test.php');
+        header('Location: /pages/home.php');
         exit();
     }
 }
