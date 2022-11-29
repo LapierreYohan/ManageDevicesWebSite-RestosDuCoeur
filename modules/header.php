@@ -41,7 +41,7 @@ function active_class(string $link, string $title): string
                         <ul class="dropdown-menu dropdown-menu-end dropdown-menu-dark shadow">
                             <li><a class="dropdown-item" href="#">Profile</a></li>
                             <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item" href="#">Se Déconnecter</a></li>
+                            <li><a class="dropdown-item" href="/pages/disconnect.php">Se Déconnecter</a></li>
                         </ul>
                     </div>
 

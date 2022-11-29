@@ -2,7 +2,7 @@
 require_once("../includes/fonctions/auth.php");
 redirectUser();
 
-//unset($_SESSION['connected']);
+//unset($_SESSION['H!g0h?s,BVDVo']);
 
 ?>
 
@@ -12,7 +12,7 @@ redirectUser();
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=², initial-scale=1.0">
-  <link rel="shortcut icon" href="../img/mainIcone.png">
+  <link rel="shortcut icon" href="/img/mainIcone.png">
   
   <!-- CSS -->
   <link rel="stylesheet" href="/css/flickity.min.css">
