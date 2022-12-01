@@ -63,10 +63,11 @@ class Connexion{
             echo '<input type="radio" name="'. $selector .'" id="' . $row["Reference"] . '">';
             echo '<div class="carousel-cell">';
             echo '<label for="' . $row["Reference"] . '">';
-            echo '<img src="../img/icon/Département.png" alt="Icon Département">';
+            echo '<img src="'. $row["Image"] .'" alt="Icon Département">';
             echo '<p><b>' . $row["Reference"] . '</b></p>';
 			echo '</label>';
             echo '</div>';
+			
         }
         return true;
     }

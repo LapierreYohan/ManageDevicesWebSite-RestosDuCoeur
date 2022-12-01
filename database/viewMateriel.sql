@@ -23,7 +23,9 @@ UNION
 SELECT ID_Dr, ID_Site, ID_Switch AS ID_Materiel, Materiel, Reference_Switch AS Reference_Materiel, ID_Statut, null, Historique, DateInsert, image
 FROM switch
 UNION
-SELECT ID_Dr, ID_Site, ID_Telephone AS ID_Materiel, Materiel, Reference_Telephone AS Reference_Materiel, ID_Statut, null, Historique, DateInsert, image
+SELECT ID_Dr, ID_Site, ID_Telephone AS ID_Materiel, Materiel, Reference_Telephone AS Reference_Materiel, ID_Statut, ID_TypeMateriel, Historique, DateInsert, image
 FROM telephone;
 
 Select * from Materials;
+SELECT * FROM delegation_regionale;
+SELECT * FROM Site;

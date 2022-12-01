@@ -43,7 +43,7 @@ nodes.forEach((node) => {
                     var $cellElems = $('<input type="radio" name="uoSelector" id="' + value.ID_Site + '">');
                     flkty.append( $cellElems)
 
-                    var $cellElem = $('<div class="carousel-cell"> <label for="' + value.ID_Site + '"> <img src="/img/icon/Unité opérationnelle.png" alt="Icon maison"> <p><b>' + value.Reference + "</b></p> <br> <p class=\"adress\"><b>" + value.Adresse + '</b></p></label></div>');
+                    var $cellElem = $('<div class="carousel-cell"> <label for="' + value.ID_Site + '"> <img src="'+value.Image+'" alt="Icon maison"> <p><b>' + value.Reference + "</b></p> <br> <p class=\"adress\"><b>" + value.Adresse + '</b></p></label></div>');
                     flkty.append( $cellElem)
 
                 })
@@ -64,10 +64,10 @@ nodes.forEach((node) => {
             success: function(data){
                 $.each(data, function (index, value) {
 
-                    var $cellElems = $('<input type="radio" name="maSelector" id="' + value.ID_Site + '">');
+                    var $cellElems = $('<input type="radio" name="maSelector" id="' + value.Reference_Materiel + '">');
                     flkty2.append( $cellElems)
 
-                    var $cellElem = $('<div class="carousel-cell"> <label for="' + value.ID_Site + '"> <img src="/img/icon/Unité opérationnelle.png" alt="Icon maison"> <p>' + value.Reference + '</p></label></div>');
+                    var $cellElem = $('<div class="carousel-cell"> <label for="' + value.Reference_Materiel + '"> <img src="'+value.image+'" alt="Icon Matériels"> <p><b>' + value.Reference_Materiel + '</b></p></label></div>');
                     flkty2.append( $cellElem)
                 })
             }

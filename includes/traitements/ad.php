@@ -15,7 +15,9 @@ if (isset($_POST['buttons'])) {
     unset($_POST['buttons']);
 
 } else if (isset($_POST['materiels'])) {
-    $res = Connexion::getDB()->getResult("SELECT * FROM Site WHERE ID_SiteParent =" . $_POST['materiels']);
+
+    $res = Connexion::getDB()->getResult("SELECT * FROM Materials WHERE ID_Site =" . $_POST['materiels'] ." AND Historique = FALSE");
+   
     echo json_encode($res);
 
     unset($_POST['materiels']);
