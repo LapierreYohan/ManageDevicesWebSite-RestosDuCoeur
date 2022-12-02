@@ -63,12 +63,22 @@ nodes.forEach((node) => {
             data:value3, 
             success: function(data){
                 $.each(data, function (index, value) {
-
+                    let stat;
+                    if (value.Etat == "Actif") {
+                        stat = '<div class="spinner-grow spinner-grow-sm text-success" role="status" style="position: absolute; margin-left: 20px; margin-bottom: 160px;"></div>'
+                    } else if (value.Etat == "Hors Service") {
+                        stat = '<div class="spinner-grow spinner-grow-sm text-danger" role="status" style="position: absolute; margin-left: 20px; margin-bottom: 160px;"></div>'
+                    } else if (value.Etat == "Hors Parc") {
+                        stat = '<div class="spinner-grow spinner-grow-sm text-secondary" role="status" style="position: absolute; margin-left: 20px; margin-bottom: 160px;"></div>'
+                    } else if (value.Etat == "Résilié") {
+                        stat = '<div class="spinner-grow spinner-grow-sm text-warning" role="status" style="position: absolute; margin-left: 20px; margin-bottom: 160px;"></div>'
+                    }
                     var $cellElems = $('<input type="radio" name="maSelector" id="' + value.Reference_Materiel + '">');
                     flkty2.append( $cellElems)
 
-                    var $cellElem = $('<div class="carousel-cell"> <label for="' + value.Reference_Materiel + '"> <img src="'+value.image+'" alt="Icon Matériels"> <p><b>' + value.Reference_Materiel + '</b></p></label></div>');
+                    var $cellElem = $('<div class="carousel-cell"> ' + stat + ' <label for="' + value.Reference_Materiel + '"><img src="'+value.image+'" alt="Icon Matériels"> <p><b>' + value.Reference_Materiel + '</b></p></label></div>');
                     flkty2.append( $cellElem)
+
                 })
             }
         });

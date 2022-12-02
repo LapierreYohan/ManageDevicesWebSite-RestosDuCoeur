@@ -1,4 +1,8 @@
 <?php
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
 function active_class(string $link, string $title): string
 {
     if ($link == "/") {
@@ -35,8 +39,10 @@ function active_class(string $link, string $title): string
                         
                     <div class="flex-shrink-0 dropdown text-end me-3">
                         <a href="#" class="d-flex align-items-center text-light link-light text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" data-bs-auto-close="inside" aria-expanded="false">
-                            <img src="https://github.com/mdo.png" alt="" width="50" height="50" class="rounded-circle me-2">
-                            <strong>Yohan LAPIERRE</strong>
+                            <?php if (isset($_SESSION['User'])) { ?>
+                            <img src="<?= $_SESSION['User']['Image'] ?>" alt="" width="50" height="50" class="rounded-circle me-2">
+                            <strong><?= ucfirst($_SESSION['User']['Prenom']) . ' ' . $_SESSION['User']['Nom'] ?></strong>
+                            <?php } ?>
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end dropdown-menu-dark shadow">
                             <li><a class="dropdown-item" href="/pages/profil.php">Profile</a></li>

@@ -16,7 +16,7 @@ if (isset($_POST['buttons'])) {
 
 } else if (isset($_POST['materiels'])) {
 
-    $res = Connexion::getDB()->getResult("SELECT * FROM Materials WHERE ID_Site =" . $_POST['materiels'] ." AND Historique = FALSE");
+    $res = Connexion::getDB()->getResult("SELECT * FROM Materials ma JOIN Statut st ON st.ID_Statut = ma.ID_Statut WHERE ma.ID_Site =" . $_POST['materiels'] ." AND ma.Historique = FALSE");
    
     echo json_encode($res);
 

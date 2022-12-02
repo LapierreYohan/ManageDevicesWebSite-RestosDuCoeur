@@ -4,7 +4,7 @@ redirectUser();
 
 ?>
 
-<html lang="en">
+<html lang="fr">
 
 <head>
   <meta charset="UTF-8">
@@ -52,7 +52,7 @@ redirectUser();
             </div>
             <div class="toolBar">
                 <?php if ($_SESSION['Admin'] === true) {  ?>
-                    <a id="dr" href="" class="nav-link disabled"><h3 class="bi bi-plus-circle"></h3></a> 
+                    <a id="dr" href="/pages/addSite.php" class="nav-link"><h3 class="bi bi-plus-circle"></h3></a> 
                 <?php } ?>
                 <a id="dr" href="" class="nav-link disabled"><h3 class="bi bi-pencil-square"></h3></a>
                 <?php if ($_SESSION['Admin'] === true) {  ?>

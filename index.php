@@ -19,16 +19,10 @@ if (!empty($_POST['identifiant']) && !empty($_POST['mdp'])) {
     $stmt->execute([$identity, $identity, $password]);
 
     $res = $stmt->fetchAll();
-    $nom;
-    $prenom;
-    $idUser;
     $admin = false;
 
     foreach ($res as $row) {
         $connectionsSucces = true;
-        $idUser = $row['ID_User'];
-        $nom = $row['Nom'];
-        $prenom = $row['Prenom'];
         if ($row['Admin_User'] == true) {
             $admin = true;
         }
@@ -42,9 +36,7 @@ if (!empty($_POST['identifiant']) && !empty($_POST['mdp'])) {
             session_start();
         }
         $_SESSION["H!g0h?s,BVDVo"] = 1;
-        $_SESSION["ID_User"] = $idUser;
-        $_SESSION["Prenom"] = $prenom;
-        $_SESSION["Nom"] = $nom;
+        $_SESSION["User"] = $row;
         $_SESSION["Admin"] = $admin;
         unset($bdd);
         header('Location: /pages/home.php');

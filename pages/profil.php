@@ -3,7 +3,7 @@ require_once("../includes/fonctions/auth.php");
 redirectUser();
 ?>
 
-<html lang="en">
+<html lang="fr">
 
 <head>
     <?php require_once __DIR__ . "/../modules/head.php"; ?>
