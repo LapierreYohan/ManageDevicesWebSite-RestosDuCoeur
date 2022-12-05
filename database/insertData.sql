@@ -1,3 +1,4 @@
+-- Active: 1666192876096@@localhost@3306@rdc
 /*------------------------------------------*/
 /*Insertion de Délégation régionale         */
 /*------------------------------------------*/
@@ -214,4 +215,38 @@ INSERT INTO typemateriel VALUES (null, "Tablette", "Telephone");
 /*Insertion de Matériels      */
 /*------------------------------------------*/
 
+/*Insertion d'ordinateur      */
 
+CALL INSERTORDINATEUR(35,"37282836T732202827","tkt",true,"orange","64","DDR4","500","pas de partition","Dell","un commentaire au hasard","1","1","1","1",NULL,NULL,'');
+
+/*Insertion de switch      */
+
+CALL INSERTSWITCH("180","SISCO","1229M-45C","16","3456787654567","PAS DE COMMENTAIRE","1","1");
+
+/*Insertion d'imprimante      */
+
+CALL INSERTIMPRIMANTE("67","HP","35-22V","0987644","PAS DE COMMENTAIRE","1","1");
+
+/*Insertion de serveur      */
+
+CALL INSERTSERVEUR("82","Fujitsu","35-22V","2500","9042288493","PAS DE COMMENTAIRE","1","1");
+
+/*Insertion d'abonnement      */
+
+CALL INSERTABONNEMENT("145","red","0612345678","0123456789","C2738392","Axel","TJC345","mdptkt","PAS DE COMMENTAIRE","1","1","1","1");
+
+/*Insertion d'abonnement      */
+
+CALL INSERTPOINTACCESINTERNET("12","free","reseau24","45602936","PAS DE COMMENTAIRE",1,1);
+
+/*Insertion d'autre      */
+
+CALL INSERTAUTRE("55","OnePlus","Nord","638293679","v6 turbo 5L7","PAS DE COMMENTAIRE","1","1");
+
+/*Insertion de telephone      */
+
+CALL INSERTTELEPHONE(1,"OnePlus","nord","12","256","PAS DE COMMENTAIRE","1","1","1");
+
+/*Insertion de telephone      */
+
+CALL INSERTRACCORDEMENT("320","marque RA","modele RA","749207ATG","RAS",1,1,1);

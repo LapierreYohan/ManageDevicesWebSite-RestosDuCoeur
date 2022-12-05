@@ -65,13 +65,13 @@ nodes.forEach((node) => {
                 $.each(data, function (index, value) {
                     let stat;
                     if (value.Etat == "Actif") {
-                        stat = '<div class="spinner-grow spinner-grow-sm text-success" role="status" style="position: absolute; margin-left: 20px; margin-bottom: 160px;"></div>'
+                        stat = '<div class="spinner-grow spinner-grow-sm text-success" role="status" style="position: absolute; margin-left: 20px; margin-bottom: 170px;"></div>'
                     } else if (value.Etat == "Hors Service") {
-                        stat = '<div class="spinner-grow spinner-grow-sm text-danger" role="status" style="position: absolute; margin-left: 20px; margin-bottom: 160px;"></div>'
+                        stat = '<div class="spinner-grow spinner-grow-sm text-danger" role="status" style="position: absolute; margin-left: 20px; margin-bottom: 170px;"></div>'
                     } else if (value.Etat == "Hors Parc") {
-                        stat = '<div class="spinner-grow spinner-grow-sm text-secondary" role="status" style="position: absolute; margin-left: 20px; margin-bottom: 160px;"></div>'
+                        stat = '<div class="spinner-grow spinner-grow-sm text-secondary" role="status" style="position: absolute; margin-left: 20px; margin-bottom: 170px;"></div>'
                     } else if (value.Etat == "Résilié") {
-                        stat = '<div class="spinner-grow spinner-grow-sm text-warning" role="status" style="position: absolute; margin-left: 20px; margin-bottom: 160px;"></div>'
+                        stat = '<div class="spinner-grow spinner-grow-sm text-warning" role="status" style="position: absolute; margin-left: 20px; margin-bottom: 170px;"></div>'
                     }
                     var $cellElems = $('<input type="radio" name="maSelector" id="' + value.Reference_Materiel + '">');
                     flkty2.append( $cellElems)

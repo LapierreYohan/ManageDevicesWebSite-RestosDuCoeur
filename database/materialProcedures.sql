@@ -1,3 +1,4 @@
+-- Active: 1666192876096@@localhost@3306@rdc
 
 SET default_storage_engine = InnoDB;
 
@@ -13,7 +14,8 @@ VARCHAR(50), IN USAGES TEXT, IN COMPATIBLE_W11 BOOLEAN
 VARCHAR(50), IN DISQUE VARCHAR(50), IN DISQUE_PARTITION 
 VARCHAR(50), IN MARQUE VARCHAR(50), IN COMMENTAIRE 
 TEXT, IN ID_TYPEMATERIEL INT, IN ID_SYSTEME INT, IN 
-ID_DR INT, IN ID_SITE INT) BEGIN 
+ID_DR INT, IN ID_SITE INT, IN ID_ACCES INT, IN ID_SWITCH 
+INT, IN IMAGE VARCHAR(600)) BEGIN 
 	DECLARE v_statut BOOLEAN DEFAULT true;
 	DECLARE v_ref VARCHAR(50) DEFAULT CONCAT("OR-", REF);
 	IF (
@@ -22,9 +24,39 @@ ID_DR INT, IN ID_SITE INT) BEGIN
 	    FROM Ordinateur o
 	    WHERE
 	        o.REFERENCE_ORDINATEUR = v_ref
+	        AND Historique = false
 	) IS NOT NULL THEN
 	SELECT
 	    "REFERENCE_ORDINATEUR déja utilisé";
+	ELSEIF (
+	    IMAGE = ''
+	    or IMAGE = NULL
+	) then
+	INSERT INTO Ordinateur
+	VALUES (
+	        null,
+	        now(),
+	        default,
+	        default,
+	        UPPER(v_ref),
+	        SERIE,
+	        USAGES,
+	        COMPATIBLE_W11,
+	        RESEAU,
+	        RAM,
+	        RAM_TYPE,
+	        DISQUE,
+	        DISQUE_PARTITION,
+	        MARQUE,
+	        COMMENTAIRE,
+	        v_statut,
+	        ID_SYSTEME,
+	        ID_DR,
+	        ID_SITE,
+	        ID_Acces,
+	        ID_Switch,
+	        DEFAULT
+	    );
 	ELSE
 	INSERT INTO Ordinateur
 	VALUES (
@@ -48,35 +80,14 @@ ID_DR INT, IN ID_SITE INT) BEGIN
 	        ID_SYSTEME,
 	        ID_DR,
 	        ID_SITE,
-	        DEFAULT,
-	        DEFAULT,
-	        DEFAULT
+	        ID_Acces,
+	        ID_Switch,
+	        Image
 	    );
 	END IF;
 END$ 
 
 DELIMITER ;
-
-CALL
-    INSERTORDINATEUR(
-        15,
-        "37282836T732202827",
-        "tkt",
-        true,
-        "orange",
-        "64",
-        "DDR4",
-        "500",
-        "pas de partition",
-        "Dell",
-        "un commentaire au hasard",
-        "1",
-        "1",
-        "1",
-        "1"
-    );
-
-select * from ordinateur;
 
 /*-------------------------------------------------*/
 
@@ -123,20 +134,6 @@ END$
 
 DELIMITER ;
 
-CALL
-    INSERTSWITCH(
-        "180",
-        "SISCO",
-        "1229M-45C",
-        "16",
-        "3456787654567",
-        "PAS DE COMMENTAIRE",
-        "1",
-        "1"
-    );
-
-SELECT * FROM switch;
-
 /*------------------------------------------*/
 
 DROP PROCEDURE IF EXISTS INSERTIMPRIMANTE;
@@ -180,19 +177,6 @@ INT) BEGIN
 END$ 
 
 DELIMITER ;
-
-CALL
-    INSERTIMPRIMANTE(
-        "67",
-        "HP",
-        "35-22V",
-        "0987644",
-        "PAS DE COMMENTAIRE",
-        "1",
-        "1"
-    );
-
-SELECT * FROM imprimante;
 
 /*------------------------------------------*/
 
@@ -239,20 +223,6 @@ INT) BEGIN
 END$ 
 
 DELIMITER ;
-
-CALL
-    INSERTSERVEUR(
-        "82",
-        "Fujitsu",
-        "35-22V",
-        "2500",
-        "9042288493",
-        "PAS DE COMMENTAIRE",
-        "1",
-        "1"
-    );
-
-SELECT * FROM serveur;
 
 /*------------------------------------------*/
 
@@ -306,25 +276,6 @@ END$
 
 DELIMITER ;
 
-CALL
-    INSERTABONNEMENT(
-        "145",
-        "red",
-        "0612345678",
-        "0123456789",
-        "C2738392",
-        "Axel",
-        "TJC345",
-        "mdptkt",
-        "PAS DE COMMENTAIRE",
-        "1",
-        "1",
-        "1",
-        "1"
-    );
-
-SELECT * FROM PointAccesInternet;
-
 /*------------------------------------------*/
 
 DROP PROCEDURE IF EXISTS INSERTPOINTACCESINTERNET;
@@ -370,19 +321,6 @@ END$
 
 DELIMITER ;
 
-CALL
-    INSERTPOINTACCESINTERNET(
-        "12",
-        "free",
-        "reseau24",
-        "45602936",
-        "PAS DE COMMENTAIRE",
-        1,
-        1
-    );
-
-SELECT * FROM PointAccesInternet;
-
 /*------------------------------------------*/
 
 DROP PROCEDURE IF EXISTS INSERTAUTRE;
@@ -427,18 +365,6 @@ IN ID_DR INT, IN ID_SITE INT) BEGIN
 END$ 
 
 DELIMITER ;
-
-CALL
-    INSERTAUTRE(
-        "55",
-        "OnePlus",
-        "Nord",
-        "638293679",
-        "v6 turbo 5L7",
-        "PAS DE COMMENTAIRE",
-        "1",
-        "1"
-    );
 
 SELECT * FROM Autre;
 
@@ -490,21 +416,6 @@ END$
 
 DELIMITER ;
 
-CALL
-    INSERTTELEPHONE(
-        1,
-        "OnePlus",
-        "nord",
-        "12",
-        "256",
-        "PAS DE COMMENTAIRE",
-        "1",
-        "1",
-        "1"
-    );
-
-SELECT * FROM Telephone;
-
 /*------------------------------------------*/
 
 DROP PROCEDURE IF EXISTS INSERTRACCORDEMENT;
@@ -552,17 +463,3 @@ ID_SITE INT, IN ID_STATUT INT) BEGIN
 END$ 
 
 DELIMITER ;
-
-CALL
-    INSERTRACCORDEMENT(
-        "320",
-        "marque RA",
-        "modele RA",
-        "749207ATG",
-        "RAS",
-        1,
-        1,
-        1
-    );
-
-SELECT * FROM Raccordement;
