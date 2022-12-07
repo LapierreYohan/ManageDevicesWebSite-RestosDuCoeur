@@ -218,6 +218,7 @@ INSERT INTO typemateriel VALUES (null, "Tablette", "Telephone");
 /*Insertion d'ordinateur      */
 
 CALL INSERTORDINATEUR(35,"37282836T732202827","tkt",true,"orange","64","DDR4","500","pas de partition","Dell","un commentaire au hasard","1","1","1","1",NULL,NULL,'');
+CALL INSERTORDINATEUR(28, "37282836T73220287","tkt",true,"orange","64","DDR4","500","pas de partition","Dell","un commentaire au hasard","1","1","1","28",NULL,NULL,'');
 
 /*Insertion de switch      */
 

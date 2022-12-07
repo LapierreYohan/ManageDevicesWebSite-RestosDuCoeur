@@ -11,7 +11,7 @@ DELIMITER $
 CREATE PROCEDURE INSERTDR(IN REF VARCHAR(47), IN NOM_COURT 
 VARCHAR(35), IN NOM_LONG VARCHAR(180), IN ADRESSE 
 VARCHAR(100), IN TELEPHONE VARCHAR(10), IN MAIL VARCHAR
-(100), IN COMMENTAIRE TEXT) BEGIN 
+(100), IN COMMENTAIRE TEXT, IN IMAGE VARCHAR(600)) BEGIN 
 	DECLARE v_statut BOOLEAN DEFAULT true;
 	DECLARE v_ref VARCHAR(50) DEFAULT CONCAT("DR-", Ref);
 	IF (
@@ -23,20 +23,38 @@ VARCHAR(100), IN TELEPHONE VARCHAR(10), IN MAIL VARCHAR
 	SELECT
 	    "Reference_DR déja utilisé";
 	ELSE
-	INSERT INTO
-	    Delegation_Regionale
-	VALUES (
-	        null,
-	        UPPER(v_ref),
-	        NOM_COURT,
-	        NOM_LONG,
-	        ADRESSE,
-	        TELEPHONE,
-	        MAIL,
-	        v_statut,
-	        COMMENTAIRE,
-            DEFAULT
-	    );
+		IF IMAGE IS NULL THEN
+		INSERT INTO
+			Delegation_Regionale
+		VALUES (
+				null,
+				UPPER(v_ref),
+				NOM_COURT,
+				NOM_LONG,
+				ADRESSE,
+				TELEPHONE,
+				MAIL,
+				v_statut,
+				COMMENTAIRE,
+				DEFAULT
+			);
+		ELSE 
+        INSERT INTO
+			Delegation_Regionale
+		VALUES (
+				null,
+				UPPER(v_ref),
+				NOM_COURT,
+				NOM_LONG,
+				ADRESSE,
+				TELEPHONE,
+				MAIL,
+				v_statut,
+				COMMENTAIRE,
+				DEFAULT
+			);
+            END IF;
+        
 	END IF;
 END$ 
 

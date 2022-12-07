@@ -49,6 +49,7 @@ INT, IN IMAGE VARCHAR(600)) BEGIN
 	        DISQUE_PARTITION,
 	        MARQUE,
 	        COMMENTAIRE,
+            ID_TYPEMATERIEL,
 	        v_statut,
 	        ID_SYSTEME,
 	        ID_DR,
@@ -365,8 +366,6 @@ IN ID_DR INT, IN ID_SITE INT) BEGIN
 END$ 
 
 DELIMITER ;
-
-SELECT * FROM Autre;
 
 /*------------------------------------------*/
 
