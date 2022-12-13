@@ -33,14 +33,47 @@ section#ma {
     justify-content: center;
 }
 
-.toolBar {
+.toolBarDr {
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
 }
 
-.toolBar a{
+.toolBarDr a{
+    margin: 10px;
+}
+
+.toolBarAd {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.toolBarAd a{
+    margin: 10px;
+}
+
+.toolBarUo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.toolBarUo a{
+    margin: 10px;
+}
+
+.toolBarMa {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.toolBarMa a{
     margin: 10px;
 }
 

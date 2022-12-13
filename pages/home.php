@@ -2,6 +2,11 @@
 require_once("../includes/fonctions/auth.php");
 redirectUser();
 
+/*
+<a id="ad" href="" class="nav-link disabled ad"><h3 class="bi bi-plus-circle"></h3></a> 
+<a id="ad" href="" class="nav-link disabled ad"><h3 class="bi bi-pencil-square"></h3></a>
+<a id="ad" href="" class="nav-link disabled ad"><h3 class="bi bi-trash3"></h3></a>
+*/
 ?>
 
 <html lang="fr">
@@ -50,13 +55,9 @@ redirectUser();
 
                 <script src="/js/traitements/changeDr.js"></script>
             </div>
-            <div class="toolBar">
+            <div class="toolBarDr" id="toolBarDr">
                 <?php if ($_SESSION['Admin'] === true) {  ?>
-                    <a id="dr" href="/pages/addSite.php" class="nav-link"><h3 class="bi bi-plus-circle"></h3></a> 
-                <?php } ?>
-                <a id="dr" href="" class="nav-link disabled"><h3 class="bi bi-pencil-square"></h3></a>
-                <?php if ($_SESSION['Admin'] === true) {  ?>
-                    <a id="dr" href="" class="nav-link disabled"><h3 class="bi bi-trash3"></h3></a>
+                    <a id="newDr" href="/pages/addSite.php" class="nav-link"><h3 class="bi bi-plus-circle"></h3></a> 
                 <?php } ?>
             </div>
         </section>
@@ -68,10 +69,8 @@ redirectUser();
                     <h3 class="nothing">Vide</h3>
                 </div>
             </div>
-            <div class="toolBar">
-                <a id="ad" href="" class="nav-link disabled"><h3 class="bi bi-plus-circle"></h3></a> 
-                <a id="ad" href="" class="nav-link disabled"><h3 class="bi bi-pencil-square"></h3></a>
-                <a id="ad" href="" class="nav-link disabled"><h3 class="bi bi-trash3"></h3></a>
+            <div class="toolBarAd" id="toolBarAd">
+               
             </div>
 
         </section>
@@ -83,10 +82,10 @@ redirectUser();
                     <h3 class="nothing">Vide</h3>
                 </div>
             </div>
-            <div class="toolBar">
-                <a id="uo" href="" class="nav-link disabled"><h3 class="bi bi-plus-circle"></h3></a> 
-                <a id="uo"  href="" class="nav-link disabled"><h3 class="bi bi-pencil-square"></h3></a>
-                <a id="uo"  href="" class="nav-link disabled"><h3 class="bi bi-trash3"></h3></a>
+            <div class="toolBarUo" id="toolBarUo">
+                <a id="newUo" href="" class="nav-link disabled"><h3 class="bi bi-plus-circle"></h3></a> 
+                <a id="editUo"  href="" class="nav-link disabled"><h3 class="bi bi-pencil-square"></h3></a>
+                <a id="removeUo"  href="" class="nav-link disabled"><h3 class="bi bi-trash3"></h3></a>
             </div>
 
         </section>
@@ -98,10 +97,10 @@ redirectUser();
                     <h3 class="nothing">Vide</h3>
                 </div>
             </div>
-            <div class="toolBar">
-                <a id="ma" href="" class="nav-link disabled"><h3 class="bi bi-plus-circle"></h3></a> 
-                <a id="ma" href="" class="nav-link disabled"><h3 class="bi bi-pencil-square"></h3></a>
-                <a id="ma" href="" class="nav-link disabled"><h3 class="bi bi-trash3"></h3></a>
+            <div class="toolBarMa" id="toolBarMa">
+                <a id="newMa" href="" class="nav-link disabled"><h3 class="bi bi-plus-circle"></h3></a> 
+                <a id="editMa" href="" class="nav-link disabled"><h3 class="bi bi-pencil-square"></h3></a>
+                <a id="removeMa" href="" class="nav-link disabled"><h3 class="bi bi-trash3"></h3></a>
             </div>
 
         </section>

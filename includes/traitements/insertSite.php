@@ -53,13 +53,41 @@ if (
 
         $pdo = Connexion::getDB()->get();
 
-        $sql = "CALL INSERTDR(:ref,:nom_court,:nom_long,:adresse,:tel,:mail,:com, :file)";
-        $stmt = $pdo->prepare($sql);
+        if (!empty($_POST['dr'])) {
 
-        $stmt->execute($array);
+            $array['site'] = $_POST['dr'];
+            $stmt;
 
-        header('Location: /pages/home.php');
-        exit();
+            if ($array['file'] == "DEFAULT") {
+                unset($array['file']);
+                $sql = "CALL INSERTAD(:site, :ref,:nom_court,:nom_long,:adresse,:tel,:mail,:com, NULL)";
+                $stmt = $pdo->prepare($sql);
+            } else {
+                $sql = "CALL INSERTAD(:site, :ref,:nom_court,:nom_long,:adresse,:tel,:mail,:com, :file)";
+                $stmt = $pdo->prepare($sql);
+            }
+    
+            $stmt->execute($array);
+    
+            header('Location: /pages/home.php');
+            exit();
+        }
+        else {
+            $stmt;
+            if ($array['file'] == "DEFAULT") {
+                unset($array['file']);
+                $sql = "CALL INSERTDR(:ref,:nom_court,:nom_long,:adresse,:tel,:mail,:com, NULL)";
+                $stmt = $pdo->prepare($sql);
+            } else {
+                $sql = "CALL INSERTDR(:ref,:nom_court,:nom_long,:adresse,:tel,:mail,:com, :file)";
+                $stmt = $pdo->prepare($sql);
+            }
+    
+            $stmt->execute($array);
+    
+            header('Location: /pages/home.php');
+            exit();
+        }
 } 
 
 header('Location: /pages/addSite.php');

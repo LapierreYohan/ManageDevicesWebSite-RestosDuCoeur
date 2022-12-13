@@ -31,7 +31,19 @@ function active_class(string $link, string $title): string
                     <?= active_class("", "DashBoard") ?>
                     <?= active_class("", "Sites") ?>
                     <?= active_class("", "Matériels") ?>
-                    <?= active_class("", "Paramètres") ?>
+
+                    <?php if ($_SESSION['Admin'] === true) : ?>
+                    <li class="nav-item">
+                        <div class="dropdown">
+                            <a class="nav-link  dropdown-toggle" data-bs-toggle="dropdown" href="">Paramètres</a>
+                            <ul class="dropdown-menu dropdown-menu-dark shadow">
+                                <li><a class="dropdown-item" href="/pages/utilisateurs.php">Utilisateurs</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item" href="">Types Matériels</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <?php endif; ?>
                 </ul>
                 
                 <ul class="navbar-nav">

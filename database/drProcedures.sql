@@ -51,7 +51,7 @@ VARCHAR(100), IN TELEPHONE VARCHAR(10), IN MAIL VARCHAR
 				MAIL,
 				v_statut,
 				COMMENTAIRE,
-				DEFAULT
+				IMAGE
 			);
             END IF;
         

@@ -24,13 +24,12 @@ INT, IN IMAGE VARCHAR(600)) BEGIN
 	    FROM Ordinateur o
 	    WHERE
 	        o.REFERENCE_ORDINATEUR = v_ref
-	        AND Historique = false
 	) IS NOT NULL THEN
 	SELECT
 	    "REFERENCE_ORDINATEUR déja utilisé";
 	ELSEIF (
 	    IMAGE = ''
-	    or IMAGE = NULL
+	    or IMAGE IS NULL
 	) then
 	INSERT INTO Ordinateur
 	VALUES (
@@ -49,7 +48,7 @@ INT, IN IMAGE VARCHAR(600)) BEGIN
 	        DISQUE_PARTITION,
 	        MARQUE,
 	        COMMENTAIRE,
-            ID_TYPEMATERIEL,
+	        ID_TYPEMATERIEL,
 	        v_statut,
 	        ID_SYSTEME,
 	        ID_DR,
@@ -99,7 +98,8 @@ DELIMITER $
 CREATE PROCEDURE INSERTSWITCH(IN REF INT, IN MARQUE 
 VARCHAR(50), IN MODELE VARCHAR(50), IN NB_PORT INT
 , IN SERIE VARCHAR(50), IN COMMENTAIRE TEXT, IN ID_DR 
-INT, IN ID_SITE INT) BEGIN 
+INT, IN ID_SITE INT, IN ID_ACCES INT, IN IMAGE VARCHAR
+(600)) BEGIN 
 	DECLARE v_statut BOOLEAN DEFAULT true;
 	DECLARE v_ref VARCHAR(50) DEFAULT CONCAT("SW-", REF);
 	IF (
@@ -111,6 +111,28 @@ INT, IN ID_SITE INT) BEGIN
 	) IS NOT NULL THEN
 	SELECT
 	    "REFERENCE_SWITCH déja utilisé";
+	ELSEIF (
+	    IMAGE = ''
+	    or IMAGE IS NULL
+	) then
+	INSERT INTO Switch
+	VALUES (
+	        null,
+	        now(),
+	        DEFAULT,
+	        DEFAULT,
+	        UPPER(v_ref),
+	        MARQUE,
+	        MODELE,
+	        NB_PORT,
+	        SERIE,
+	        COMMENTAIRE,
+	        ID_DR,
+	        ID_SITE,
+	        ID_Acces,
+	        v_statut,
+	        DEFAULT
+	    );
 	ELSE
 	INSERT INTO Switch
 	VALUES (
@@ -126,9 +148,9 @@ INT, IN ID_SITE INT) BEGIN
 	        COMMENTAIRE,
 	        ID_DR,
 	        ID_SITE,
-	        DEFAULT,
+	        ID_Acces,
 	        v_statut,
-	        DEFAULT
+	        Image
 	    );
 	END IF;
 END$ 
@@ -143,8 +165,8 @@ DELIMITER $
 
 CREATE PROCEDURE INSERTIMPRIMANTE(IN REF INT, IN MARQUE 
 VARCHAR(50), IN MODELE VARCHAR(50), IN SERIE VARCHAR
-(50), IN COMMENTAIRE TEXT, IN ID_DR INT, IN ID_SITE 
-INT) BEGIN 
+(50), IN COMMENTAIRE TEXT, IN ID_SWITCH INT, IN ID_DR 
+INT, IN ID_SITE INT, IN IMAGE VARCHAR(600)) BEGIN 
 	DECLARE v_statut BOOLEAN DEFAULT true;
 	DECLARE v_ref VARCHAR(50) DEFAULT CONCAT("IM-", REF);
 	IF (
@@ -156,6 +178,27 @@ INT) BEGIN
 	) IS NOT NULL THEN
 	SELECT
 	    "Reference_Imprimante déja utilisé";
+	ELSEIF (
+	    IMAGE = ''
+	    or IMAGE IS NULL
+	) then
+	INSERT INTO Imprimante
+	VALUES (
+	        null,
+	        now(),
+	        DEFAULT,
+	        DEFAULT,
+	        UPPER(v_ref),
+	        MARQUE,
+	        MODELE,
+	        SERIE,
+	        COMMENTAIRE,
+	        ID_SWITCH,
+	        ID_DR,
+	        ID_SITE,
+	        v_statut,
+	        DEFAULT
+	    );
 	ELSE
 	INSERT INTO Imprimante
 	VALUES (
@@ -168,11 +211,11 @@ INT) BEGIN
 	        MODELE,
 	        SERIE,
 	        COMMENTAIRE,
-	        NULL,
+	        ID_SWITCH,
 	        ID_DR,
 	        ID_SITE,
 	        v_statut,
-	        DEFAULT
+	        IMAGE
 	    );
 	END IF;
 END$ 
@@ -187,8 +230,9 @@ DELIMITER $
 
 CREATE PROCEDURE INSERTSERVEUR(REF INT, MARQUE VARCHAR
 (50), MODELE VARCHAR(50), CAPACITE VARCHAR(50), SERIE 
-VARCHAR(50), COMMENTAIRE TEXT, ID_DR INT, ID_SITE 
-INT) BEGIN 
+VARCHAR(50), COMMENTAIRE TEXT, IN ID_ACCES INT, IN 
+ID_SWITCH INT, ID_DR INT, ID_SITE INT, IN IMAGE VARCHAR
+(600)) BEGIN 
 	DECLARE v_statut BOOLEAN DEFAULT true;
 	DECLARE v_ref VARCHAR(50) DEFAULT CONCAT("SE-", REF);
 	IF (
@@ -200,6 +244,29 @@ INT) BEGIN
 	) IS NOT NULL THEN
 	SELECT
 	    "Reference_Serveur déja utilisé";
+	ELSEIF (
+	    IMAGE = ''
+	    or IMAGE IS NULL
+	) then
+	INSERT INTO Serveur
+	VALUES (
+	        null,
+	        now(),
+	        DEFAULT,
+	        DEFAULT,
+	        UPPER(v_ref),
+	        MARQUE,
+	        MODELE,
+	        Capacite,
+	        SERIE,
+	        COMMENTAIRE,
+	        ID_Acces,
+	        ID_Switch,
+	        ID_DR,
+	        ID_SITE,
+	        v_statut,
+	        DEFAULT
+	    );
 	ELSE
 	INSERT INTO Serveur
 	VALUES (
@@ -213,12 +280,12 @@ INT) BEGIN
 	        Capacite,
 	        SERIE,
 	        COMMENTAIRE,
-	        NULL,
-	        NULL,
+	        ID_Acces,
+	        ID_Switch,
 	        ID_DR,
 	        ID_SITE,
 	        v_statut,
-	        DEFAULT
+	        IMAGE
 	    );
 	END IF;
 END$ 
@@ -237,7 +304,7 @@ VARCHAR(10), IN NUMERO_CLIENT VARCHAR(50), IN TITULAIRE
 VARCHAR(50), IN ID_SERVICE_CLIENT VARCHAR(50), IN 
 MDP_SERVICE_CLIENT VARCHAR(50), IN COMMENTAIRE TEXT
 , IN ID_DR INT, IN ID_SITE INT, IN ID_RESEAU INT, 
-IN ID_CONNEXION INT) BEGIN 
+IN ID_CONNEXION INT, IN IMAGE VARCHAR(600)) BEGIN 
 	DECLARE v_statut BOOLEAN DEFAULT true;
 	DECLARE v_ref VARCHAR(50) DEFAULT CONCAT("AB-", REF);
 	IF (
@@ -249,7 +316,10 @@ IN ID_CONNEXION INT) BEGIN
 	) IS NOT NULL THEN
 	SELECT
 	    "Reference_Abonnement déja utilisé";
-	ELSE
+	ELSEIF (
+	    IMAGE = ''
+	    or IMAGE IS NULL
+	) then
 	INSERT INTO Abonnement
 	VALUES (
 	        null,
@@ -272,6 +342,29 @@ IN ID_CONNEXION INT) BEGIN
 	        ID_CONNEXION,
 	        DEFAULT
 	    );
+	ELSE
+	INSERT INTO Abonnement
+	VALUES (
+	        null,
+	        now(),
+	        DEFAULT,
+	        DEFAULT,
+	        UPPER(v_ref),
+	        OPERATEUR,
+	        Numero_Principal,
+	        Numero_Secondaire,
+	        Numero_Client,
+	        Titulaire,
+	        ID_Service_Client,
+	        MDP_Service_Client,
+	        COMMENTAIRE,
+	        ID_DR,
+	        ID_SITE,
+	        v_statut,
+	        ID_Reseau,
+	        ID_CONNEXION,
+	        IMAGE
+	    );
 	END IF;
 END$ 
 
@@ -286,7 +379,8 @@ DELIMITER $
 CREATE PROCEDURE INSERTPOINTACCESINTERNET(IN REF INT
 , IN OPERATEUR VARCHAR(50), IN NOM VARCHAR(50), IN 
 SERIE VARCHAR(50), IN COMMENTAIRE TEXT, IN ID_ABONNEMENT 
-INT, IN ID_CONNEXION INT) BEGIN 
+INT, IN ID_DR INT, IN ID_SITE INT, IN ID_CONNEXION 
+INT, IN IMAGE VARCHAR(600)) BEGIN 
 	DECLARE v_statut BOOLEAN DEFAULT true;
 	DECLARE v_ref VARCHAR(50) DEFAULT CONCAT("PA-", REF);
 	IF (
@@ -297,6 +391,29 @@ INT, IN ID_CONNEXION INT) BEGIN
 	) IS NOT NULL THEN
 	SELECT
 	    "PointAccesInternet déja utilisé";
+	ELSEIF (
+	    IMAGE = ''
+	    or IMAGE IS NULL
+	) then
+	INSERT INTO
+	    PointAccesInternet
+	VALUES (
+	        null,
+	        now(),
+	        DEFAULT,
+	        DEFAULT,
+	        UPPER(v_ref),
+	        OPERATEUR,
+	        NOM,
+	        SERIE,
+	        COMMENTAIRE,
+	        ID_ABONNEMENT,
+	        ID_Dr,
+	        ID_Site,
+	        v_statut,
+	        ID_CONNEXION,
+	        DEFAULT
+	    );
 	ELSE
 	INSERT INTO
 	    PointAccesInternet
@@ -311,11 +428,11 @@ INT, IN ID_CONNEXION INT) BEGIN
 	        SERIE,
 	        COMMENTAIRE,
 	        ID_ABONNEMENT,
-	        NULL,
-	        NULL,
+	        ID_Dr,
+	        ID_Site,
 	        v_statut,
 	        ID_CONNEXION,
-	        DEFAULT
+	        IMAGE
 	    );
 	END IF;
 END$ 
@@ -331,7 +448,8 @@ DELIMITER $
 CREATE PROCEDURE INSERTAUTRE(IN REF INT, IN MARQUE 
 VARCHAR(50), IN MODELE VARCHAR(50), IN SERIE VARCHAR
 (50), IN SPECIFICATION TEXT, IN COMMENTAIRE TEXT, 
-IN ID_DR INT, IN ID_SITE INT) BEGIN 
+IN ID_DR INT, IN ID_SITE INT, IN IMAGE VARCHAR(600
+)) BEGIN 
 	DECLARE v_statut BOOLEAN DEFAULT true;
 	DECLARE v_ref VARCHAR(50) DEFAULT CONCAT("AU-", REF);
 	IF (
@@ -342,6 +460,29 @@ IN ID_DR INT, IN ID_SITE INT) BEGIN
 	) IS NOT NULL THEN
 	SELECT
 	    "Reference_Autre déja utilisé";
+	ELSEIF (
+	    IMAGE = ''
+	    or IMAGE IS NULL
+	) then
+	INSERT INTO Autre
+	VALUES (
+	        null,
+	        now(),
+	        DEFAULT,
+	        DEFAULT,
+	        UPPER(v_ref),
+	        Marque,
+	        Modele,
+	        Serie,
+	        Specification,
+	        COMMENTAIRE,
+	        ID_Dr,
+	        ID_Site,
+	        v_statut,
+	        ID_DR,
+	        ID_SITE,
+	        DEFAULT
+	    );
 	ELSE
 	INSERT INTO Autre
 	VALUES (
@@ -355,12 +496,12 @@ IN ID_DR INT, IN ID_SITE INT) BEGIN
 	        Serie,
 	        Specification,
 	        COMMENTAIRE,
-	        NULL,
-	        NULL,
+	        ID_Dr,
+	        ID_Site,
 	        v_statut,
 	        ID_DR,
 	        ID_SITE,
-	        DEFAULT
+	        IMAGE
 	    );
 	END IF;
 END$ 
@@ -377,7 +518,7 @@ CREATE PROCEDURE INSERTTELEPHONE(IN REF INT, IN MARQUE
 VARCHAR(50), IN MODELE VARCHAR(50), IN RAM VARCHAR
 (50), IN DISQUE VARCHAR(50), IN COMMENTAIRE TEXT, 
 IN ID_DR INT, IN ID_SITE INT, IN ID_TYPEMATERIEL INT
-) BEGIN 
+, IN IMAGE VARCHAR(600)) BEGIN 
 	DECLARE v_statut BOOLEAN DEFAULT true;
 	DECLARE v_ref VARCHAR(50) DEFAULT CONCAT("TE-", REF);
 	IF (
@@ -389,7 +530,10 @@ IN ID_DR INT, IN ID_SITE INT, IN ID_TYPEMATERIEL INT
 	) IS NOT NULL THEN
 	SELECT
 	    "Reference_Telephone déja utilisé";
-	ELSE
+	ELSEIF (
+	    IMAGE = ''
+	    or IMAGE IS NULL
+	) then
 	INSERT INTO Telephone
 	VALUES (
 	        null,
@@ -406,9 +550,30 @@ IN ID_DR INT, IN ID_SITE INT, IN ID_TYPEMATERIEL INT
 	        ID_SITE,
 	        v_statut,
 	        ID_TYPEMATERIEL,
-	        null,
-	        null,
+	        ID_Dr,
+	        ID_Site,
 	        DEFAULT
+	    );
+	else
+	INSERT INTO Telephone
+	VALUES (
+	        null,
+	        now(),
+	        DEFAULT,
+	        DEFAULT,
+	        UPPER(v_ref),
+	        Marque,
+	        Modele,
+	        RAM,
+	        Disque,
+	        COMMENTAIRE,
+	        ID_DR,
+	        ID_SITE,
+	        v_statut,
+	        ID_TYPEMATERIEL,
+	        ID_Dr,
+	        ID_Site,
+	        IMAGE
 	    );
 	END IF;
 END$ 
@@ -424,7 +589,9 @@ DELIMITER $
 CREATE PROCEDURE INSERTRACCORDEMENT(IN REF INT, IN 
 MARQUE VARCHAR(50), IN MODELE VARCHAR(50), IN SERIE 
 VARCHAR(50), IN COMMENTAIRE TEXT, IN ID_DR INT, IN 
-ID_SITE INT, IN ID_STATUT INT) BEGIN 
+ID_SITE INT, IN ID_ACCES INT, IN ID_SERVEUR INT, IN 
+ID_SWITCH INT, IN ID_IMPRIMANTE INT, IN ID_ORDINATEUR 
+INT, IN IMAGE VARCHAR(600)) BEGIN 
 	DECLARE v_statut BOOLEAN DEFAULT true;
 	DECLARE v_ref VARCHAR(50) DEFAULT CONCAT("RA-", REF);
 	IF (
@@ -436,6 +603,31 @@ ID_SITE INT, IN ID_STATUT INT) BEGIN
 	) IS NOT NULL THEN
 	SELECT
 	    "Reference_Telephone déja utilisé";
+	ELSEIF (
+	    IMAGE = ''
+	    or IMAGE IS NULL
+	) then
+	INSERT INTO Raccordement
+	VALUES (
+	        null,
+	        now(),
+	        DEFAULT,
+	        DEFAULT,
+	        UPPER(v_ref),
+	        Marque,
+	        Modele,
+	        Serie,
+	        Commentaire,
+	        ID_Dr,
+	        ID_Site,
+	        v_statut,
+	        ID_Acces,
+	        ID_Serveur,
+	        ID_Switch,
+	        ID_Imprimante,
+	        ID_Ordinateur,
+	        DEFAULT
+	    );
 	ELSE
 	INSERT INTO Raccordement
 	VALUES (
@@ -450,13 +642,13 @@ ID_SITE INT, IN ID_STATUT INT) BEGIN
 	        Commentaire,
 	        ID_Dr,
 	        ID_Site,
-	        ID_Statut,
-	        NULL,
-	        NULL,
-	        NULL,
-	        null,
-	        null,
-	        DEFAULT
+	        v_statut,
+	        ID_Acces,
+	        ID_Serveur,
+	        ID_Switch,
+	        ID_Imprimante,
+	        ID_Ordinateur,
+	        IMAGE
 	    );
 	END IF;
 END$ 

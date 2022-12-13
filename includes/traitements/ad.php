@@ -5,8 +5,8 @@ if (session_status() === PHP_SESSION_NONE) {
 require_once(__DIR__ . "/../../includes/MariaDB.php");
 
 if (isset($_POST['buttons'])) {
-
-    $res = Connexion::getDB()->getResult("SELECT * FROM Administrer WHERE ID_Dr = ANY (SELECT ID_Dr FROM Delegation_Regionale WHERE Reference ='" . $_POST['buttons'] . "') AND ID_User =" . $_SESSION['ID_User']);
+    //On utilise un ID ici !!!!
+    $res = Connexion::getDB()->getResult("SELECT * FROM Administrer WHERE ID_Dr = ANY (SELECT ID_Dr FROM Delegation_Regionale WHERE Reference ='" . $_POST['buttons'] . "') AND ID_User =" . $_SESSION['User']['ID_User']);
     if (empty($res) && $_SESSION['Admin'] === false) {
         echo '{"CAN_INTERACTION": false}';
     } else {
