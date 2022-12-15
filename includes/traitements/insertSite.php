@@ -71,6 +71,27 @@ if (
     
             header('Location: /pages/home.php');
             exit();
+        } else if (!empty($_POST['ad'])) {
+
+            $dr = Connexion::getDB()->getResult("SELECT * FROM Site WHERE ID_Site=". $_POST['ad']);
+
+            $array['dr'] = $dr[0]['ID_Dr'];
+            $array['site'] = $_POST['ad'];
+            $stmt;
+
+            if ($array['file'] == "DEFAULT") {
+                unset($array['file']);
+                $sql = "CALL INSERTUO(:dr, :ref,:nom_court,:nom_long,:adresse,:tel,:mail,:com,:site, NULL)";
+                $stmt = $pdo->prepare($sql);
+            } else {
+                $sql = "CALL INSERTAD(:dr, :ref,:nom_court,:nom_long,:adresse,:tel,:mail,:com,:site, :file)";
+                $stmt = $pdo->prepare($sql);
+            }
+    
+            $stmt->execute($array);
+    
+            header('Location: /pages/home.php');
+            exit();
         }
         else {
             $stmt;

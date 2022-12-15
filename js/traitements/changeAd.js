@@ -92,7 +92,67 @@ nodes.forEach((node) => {
             dataType:"json",
             data:value2, 
             success: function(data){
-                console.log(data);
+
+                let toolBarAd = document.getElementById('toolBarAd'); 
+                let toolBarUo = document.getElementById('toolBarUo');
+
+                if (data.CAN_INTERACTION && data.idAd != "") {
+
+                    let testEditAd = document.getElementById('editDr'); 
+                    let testRemoveAd = document.getElementById('removeDr'); 
+                    let testNewUo = document.getElementById('newUo'); 
+
+                    if (testEditAd) {
+                        testEditAd.remove();
+                    }
+
+                    if (testRemoveAd) {
+                        testRemoveAd.remove();
+                    }
+
+                    if (testNewUo) {
+                        testNewUo.remove();
+                    }
+
+                    let aEditAd = document.createElement('a');
+                    aEditAd.id = "editDr";
+                    aEditAd.classList.add('nav-link')
+                    aEditAd.href = "/pages/editSite.php?ad=" + data.idAd
+
+                    let h3EditAd = document.createElement('h3');
+                    h3EditAd.classList.add('bi')
+                    h3EditAd.classList.add('bi-pencil-square')
+
+                    aEditAd.prepend(h3EditAd);
+
+                    toolBarAd.append(aEditAd)
+
+                    let aRemoveAd = document.createElement('a');
+                    aRemoveAd.id = "removeDr";
+                    aRemoveAd.classList.add('nav-link')
+                    aRemoveAd.href = "/pages/removeSite.php?ad=" + data.idAd
+
+                    let h3RemoveAd = document.createElement('h3');
+                    h3RemoveAd.classList.add('bi')
+                    h3RemoveAd.classList.add('bi-trash3')
+
+                    aRemoveAd.prepend(h3RemoveAd);
+
+                    toolBarAd.append(aRemoveAd)
+
+                    let aNewUo = document.createElement('a');
+                    aNewUo.id = "newUo";
+                    aNewUo.classList.add('nav-link')
+                    aNewUo.href = "/pages/addSite.php?ad=" + data.idAd
+
+                    let h3NewUo = document.createElement('h3');
+                    h3NewUo.classList.add('bi')
+                    h3NewUo.classList.add('bi-plus-circle')
+
+                    aNewUo.prepend(h3NewUo);
+
+                    toolBarUo.append(aNewUo)
+                }
             }
         });
     });

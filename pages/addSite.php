@@ -80,6 +80,8 @@ redirectUser();
 
                 <?php if (!empty($_GET['dr'])) : ?>
                     <input type="hidden" name="dr" value="<?= $_GET['dr'] ?>">
+                <?php elseif (!empty($_GET['ad'])) : ?>    
+                    <input type="hidden" name="ad" value="<?= $_GET['ad'] ?>">
                 <?php endif; ?>
                 <button class="w-35 btn btn-secondary btn-lg mb-4" type="submit">Ajouter un Site</button>
             </form>

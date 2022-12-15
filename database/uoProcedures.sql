@@ -11,10 +11,11 @@ DELIMITER $
 CREATE PROCEDURE INSERTUO(IN DR INT, IN REF VARCHAR(47), IN NOM_COURT 
 VARCHAR(35), IN NOM_LONG VARCHAR(180), IN ADRESSE 
 VARCHAR(100), IN TELEPHONE VARCHAR(10), IN MAIL VARCHAR
-(100), IN COMMENTAIRE TEXT, IN ID_SiteParent INT) BEGIN 
+(100), IN COMMENTAIRE TEXT, IN ID_SiteParent INT, IN IMAGE VARCHAR(600)) BEGIN 
 	DECLARE v_statut BOOLEAN DEFAULT true;
 	DECLARE v_ref VARCHAR(50) DEFAULT CONCAT("UO-", Ref);
 	
+    IF IMAGE IS NULL THEN
 	INSERT INTO
 	    Site
 	VALUES (
@@ -31,6 +32,24 @@ VARCHAR(100), IN TELEPHONE VARCHAR(10), IN MAIL VARCHAR
             ID_SiteParent,
             "/img/icon/Unité opérationnelle.png"
 	    );
+	ELSE 
+    INSERT INTO
+	    Site
+	VALUES (
+			DR,
+	        null,
+	        UPPER(v_ref),
+	        NOM_COURT,
+	        NOM_LONG,
+	        ADRESSE,
+	        TELEPHONE,
+	        MAIL,
+	        v_statut,
+	        COMMENTAIRE,
+            ID_SiteParent,
+            IMAGE
+	    );
+	END IF;
 END$ 
 
 DELIMITER ;
