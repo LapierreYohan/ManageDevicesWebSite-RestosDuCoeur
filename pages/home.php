@@ -3,9 +3,13 @@ require_once("../includes/fonctions/auth.php");
 redirectUser();
 
 /*
-<a id="ad" href="" class="nav-link disabled ad"><h3 class="bi bi-plus-circle"></h3></a> 
-<a id="ad" href="" class="nav-link disabled ad"><h3 class="bi bi-pencil-square"></h3></a>
-<a id="ad" href="" class="nav-link disabled ad"><h3 class="bi bi-trash3"></h3></a>
+<a id="newUo" href="" class="nav-link disabled"><h3 class="bi bi-plus-circle"></h3></a> 
+<a id="editUo"  href="" class="nav-link disabled"><h3 class="bi bi-pencil-square"></h3></a>
+<a id="removeUo"  href="" class="nav-link disabled"><h3 class="bi bi-trash3"></h3></a>
+
+<a id="newMa" href="" class="nav-link disabled"><h3 class="bi bi-plus-circle"></h3></a> 
+<a id="editMa" href="" class="nav-link disabled"><h3 class="bi bi-pencil-square"></h3></a>
+<a id="removeMa" href="" class="nav-link disabled"><h3 class="bi bi-trash3"></h3></a>
 */
 ?>
 
@@ -83,9 +87,7 @@ redirectUser();
                 </div>
             </div>
             <div class="toolBarUo" id="toolBarUo">
-                <a id="newUo" href="" class="nav-link disabled"><h3 class="bi bi-plus-circle"></h3></a> 
-                <a id="editUo"  href="" class="nav-link disabled"><h3 class="bi bi-pencil-square"></h3></a>
-                <a id="removeUo"  href="" class="nav-link disabled"><h3 class="bi bi-trash3"></h3></a>
+                
             </div>
 
         </section>
@@ -98,9 +100,7 @@ redirectUser();
                 </div>
             </div>
             <div class="toolBarMa" id="toolBarMa">
-                <a id="newMa" href="" class="nav-link disabled"><h3 class="bi bi-plus-circle"></h3></a> 
-                <a id="editMa" href="" class="nav-link disabled"><h3 class="bi bi-pencil-square"></h3></a>
-                <a id="removeMa" href="" class="nav-link disabled"><h3 class="bi bi-trash3"></h3></a>
+                
             </div>
 
         </section>

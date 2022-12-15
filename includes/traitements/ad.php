@@ -6,11 +6,17 @@ require_once(__DIR__ . "/../../includes/MariaDB.php");
 
 if (isset($_POST['buttons'])) {
     //On utilise un ID ici !!!!
-    $res = Connexion::getDB()->getResult("SELECT * FROM Administrer WHERE ID_Dr = ANY (SELECT ID_Dr FROM Delegation_Regionale WHERE Reference ='" . $_POST['buttons'] . "') AND ID_User =" . $_SESSION['User']['ID_User']);
+    $res = Connexion::getDB()->getResult("SELECT ID_Site FROM Gerer WHERE ID_Site= ".$_POST['buttons']." AND ID_User = " . $_SESSION['User']['ID_User']);
     if (empty($res) && $_SESSION['Admin'] === false) {
-        echo '{"CAN_INTERACTION": false}';
+
+        $res = Connexion::getDb()->getResult("SELECT * FROM Site WHERE ID_Dr = ANY (SELECT * FROM Administrer) AND ID_Site = ".$_POST['buttons']);
+        if (empty($res)) {
+            echo '{"CAN_INTERACTION": false, "idAd": ""}';
+        } else {
+            echo '{"CAN_INTERACTION": true, "idAd": "' . $_POST['buttons'] .'"}';
+        }
     } else {
-        echo '{"CAN_INTERACTION": true}';
+        echo '{"CAN_INTERACTION": true, "idAd": "' . $_POST['buttons'] .'"}';
     }
     unset($_POST['buttons']);
 
