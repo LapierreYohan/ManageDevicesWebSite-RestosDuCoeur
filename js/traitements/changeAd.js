@@ -95,12 +95,18 @@ nodes.forEach((node) => {
 
                 let toolBarAd = document.getElementById('toolBarAd'); 
                 let toolBarUo = document.getElementById('toolBarUo');
+                let toolBarMa = document.getElementById('toolBarMa');
 
                 if (data.CAN_INTERACTION && data.idAd != "") {
 
                     let testEditAd = document.getElementById('editDr'); 
                     let testRemoveAd = document.getElementById('removeDr'); 
-                    let testNewUo = document.getElementById('newUo'); 
+                    let testNewUo = document.getElementById('newUo');
+                    let testNewMa = document.getElementById('newMa'); 
+
+                    if (testNewMa) {
+                        testNewMa.remove();
+                    }
 
                     if (testEditAd) {
                         testEditAd.remove();
@@ -152,6 +158,19 @@ nodes.forEach((node) => {
                     aNewUo.prepend(h3NewUo);
 
                     toolBarUo.append(aNewUo)
+
+                    let aNewMa = document.createElement('a');
+                    aNewMa.id = "newMa";
+                    aNewMa.classList.add('nav-link')
+                    aNewMa.href = "/pages/addMateirel.php?ad=" + data.idAd
+
+                    let h3NewMa = document.createElement('h3');
+                    h3NewMa.classList.add('bi')
+                    h3NewMa.classList.add('bi-plus-circle')
+
+                    aNewMa.prepend(h3NewMa);
+
+                    toolBarMa.append(aNewMa)
                 }
             }
         });
