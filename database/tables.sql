@@ -67,7 +67,7 @@ CREATE TABLE
         Nom VARCHAR(50) NOT NULL,
         Prenom VARCHAR(50) NOT NULL,
         Mail VARCHAR(100) NOT NULL UNIQUE,
-        MotDePasse VARCHAR(50) NOT NULL,
+        MotDePasse TEXT NOT NULL,
         Admin_User BOOLEAN DEFAULT FALSE NOT NULL,
         Commentaire TEXT,
         ID_Author INT DEFAULT NULL,

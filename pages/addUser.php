@@ -42,7 +42,7 @@ redirectUser();
                     <div class="mb-4">
                         <div class="input-group">
                             <span class="input-group-text"><label for="mdp">Mot De Passe <p style="color: red; display: inline;">*</p></label></span>
-                            <input type="password" class="form-control" id="mdp" name="mdp" placeholder="" autocomplete="new-password" maxlength="50" required>
+                            <input type="password" class="form-control" id="mdp" name="mdp" placeholder="" autocomplete="new-password" required>
                             <a class="input-group-text"><i class="bi bi-eye-slash" id="togglePassword1"></i></a>
                         </div>
                     </div>
@@ -70,7 +70,7 @@ redirectUser();
                     <div class="mb-4">
                         <div class="input-group">
                             <span class="input-group-text"><label for="mdpConfirm">Confirmer le Mot De Passe <p style="color: red; display: inline;">*</p></label></span>
-                            <input type="password" class="form-control" id="mdpConfirm" name="mdpConfirm" placeholder="" autocomplete="new-password" maxlength="50" required>
+                            <input type="password" class="form-control" id="mdpConfirm" name="mdpConfirm" placeholder="" autocomplete="new-password" required>
                             <a class="input-group-text"><i class="bi bi-eye-slash" id="togglePassword2"></i></a>
                         </div>
                     </div>

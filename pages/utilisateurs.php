@@ -32,6 +32,7 @@ redirectUser();
                             <th scope="col">Nom Prénom</th>
                             <th scope="col">Mail</th>
                             <th scope="col">Rôle</th>
+                            <th scope="col">Créateur</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -65,6 +66,7 @@ redirectUser();
                             }
 
                             echo '<td>'. $value . '</td>';   
+                            echo '<td>'. $row['ID_Author'] . '</td>';  
                         echo '</tr>';
                     }
                     ?>

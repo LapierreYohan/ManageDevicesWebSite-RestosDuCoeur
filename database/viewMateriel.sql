@@ -25,7 +25,3 @@ FROM switch
 UNION
 SELECT ID_Dr, ID_Site, ID_Telephone AS ID_Materiel, Materiel, Reference_Telephone AS Reference_Materiel, ID_Statut, ID_TypeMateriel, Historique, DateInsert, image
 FROM telephone;
-
-Select * from Materials;
-SELECT * FROM delegation_regionale;
-SELECT * FROM Site;

@@ -15,8 +15,8 @@ if (!empty($_POST['identifiant']) && !empty($_POST['mdp'])) {
     require_once(__DIR__ . "/includes/MariaDB.php");
     $bdd = Connexion::getDB()->get();
 
-    $stmt = $bdd->prepare("SELECT * FROM Utilisateur WHERE (Mail= ? OR concat(lower(Nom), '.', lower(Prenom)) = lower( ? )) AND MotDePasse= ? LIMIT 1");
-    $stmt->execute([$identity, $identity, $password]);
+    $stmt = $bdd->prepare("SELECT * FROM Utilisateur WHERE (Mail= ? OR concat(lower(Nom), '.', lower(Prenom)) = lower( ? )) LIMIT 1");
+    $stmt->execute([$identity, $identity]);
 
     $res = $stmt->fetchAll();
     $admin = false;
@@ -28,7 +28,7 @@ if (!empty($_POST['identifiant']) && !empty($_POST['mdp'])) {
         }
     }
 
-    if ($connectionsSucces === false) {
+    if ($connectionsSucces === false ||  !password_verify($password, $res[0]['MotDePasse'])) {
         $erreur = true;
         unset($bdd);
     } else {

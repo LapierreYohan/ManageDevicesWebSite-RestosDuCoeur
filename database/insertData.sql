@@ -251,3 +251,5 @@ CALL INSERTTELEPHONE(1,"OnePlus","nord","12","256","PAS DE COMMENTAIRE","1","1",
 /*Insertion de telephone      */
 
 CALL INSERTRACCORDEMENT("3200","marque RA","modele RA","749207ATG","RAS",1,1,1,1,1,1,1,null);
+
+SELECT * FROM utilisateur;
