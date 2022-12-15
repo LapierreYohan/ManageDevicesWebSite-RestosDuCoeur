@@ -1,3 +1,4 @@
+-- Active: 1666192876096@@localhost@3306@rdc
 CREATE OR REPLACE VIEW Materials AS
 SELECT ID_Dr, ID_Site, ID_Ordinateur AS ID_Materiel, Materiel, Reference_Ordinateur AS Reference_Materiel, ID_Statut, ID_TypeMateriel, Historique, DateInsert, image
 FROM Ordinateur

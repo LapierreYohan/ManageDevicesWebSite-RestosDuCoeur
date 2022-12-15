@@ -1,4 +1,4 @@
--- Active: 1666943626683@@iutbg-lamp.univ-lyon1.fr@3306@p2103678
+-- Active: 1666192876096@@localhost@3306@rdc
 
 SET default_storage_engine = InnoDB;
 
