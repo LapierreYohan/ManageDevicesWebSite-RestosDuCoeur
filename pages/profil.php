@@ -4,12 +4,35 @@ require_once("../includes/fonctions/auth.php");
 redirectUser();
 require_once __DIR__ . "/../includes/MariaDB.php";
 
-if (!empty($_SESSION["User"]["ID_Author"])) {
+$_idurl = false;
+
+if (!empty($_GET["id"])) {
+    $rec = Connexion::getDB()->getResult("Select * from Utilisateur where ID_User = " . $_GET["id"]);
+    if ($rec[0]["ID_Author"] != NULL && $rec[0]["ID_Author"] != 0) {
+        $rec2 = Connexion::getDB()->getResult("Select * from Utilisateur where ID_User = " . $rec[0]["ID_Author"]);
+        if ($rec[0]["Admin_User"]) {
+            $adminverif = "administrateur";
+        } else {
+            $adminverif = "non administrateur";
+        }
+        $res = $rec2[0]["Nom"] . ' ' . $rec2[0]["Prenom"] . ' ' . $rec2[0]["Reference_User"] . ' ' . $adminverif;
+    } else {
+        $res = "Zeus (Ζεύς)";
+    }
+    $_idurl = true;
+} elseif (!empty($_SESSION["User"]["ID_Author"])) {
     $rec = Connexion::getDB()->getResult("Select * from Utilisateur where ID_User = " . $_SESSION["User"]["ID_Author"]);
-    $res = $rec[0]["Nom"] . ' ' . $rec[0]["Prenom"] . ' ' . $rec[0]["Reference_User"]; // pas sa ref mais plutot si admin ou pas
+    if ($rec[0]["Admin_User"]) {
+        $adminverif = "administrateur";
+    } else {
+        $adminverif = "non administrateur";
+    }
+    $res = $rec[0]["Nom"] . ' ' . $rec[0]["Prenom"] . ' ' . $rec[0]["Reference_User"] . ' ' . $adminverif;
 } else {
-    $res = "Zeus (Ζεύς) est le roi des dieux dans la mythologie grecque et est nommé Jupiter chez les Romains. Il est le fils des Titans Cronos et Rhéa et le frère de plusieurs dieux : Hestia, Déméter, Hadès, Poséidon et Héra, avec laquelle il est marié. Ses fonctions principales sont celles de dieu du ciel et du tonnerre.";
+    $res = "Zeus (Ζεύς) 2";
 }
+
+
 ?>
 
 <html lang="fr">
@@ -25,7 +48,11 @@ if (!empty($_SESSION["User"]["ID_Author"])) {
     <?php require_once __DIR__ . "/../modules/header.php"; ?>
     <section class="container">
         <div class="bg bg-secondary rounded-circle" style="width: 350px; height: 350px;">
-            <img src="<?= $_SESSION['User']['Image'] ?>" style=" margin-left: 10px; margin-top: 10px;" alt="" width="330" height="330" class="rounded-circle me-2">
+            <img src="<?php if ($_idurl == true) {
+                            echo $rec[0]['Image'];
+                        } else {
+                            echo $_SESSION['User']['Image'];
+                        } ?>" style=" margin-left: 10px; margin-top: 10px;" alt="" width="330" height="330" class="rounded-circle me-2">
         </div>
         <div class="border border-secondary border-3 rounded-4 bg bg-light" style="margin: 40px 2% 0 2%;">
             <section method="POST" action="/includes/traitements/insertUser.php" style="margin: 30px 2% 0 2%;">
@@ -33,25 +60,41 @@ if (!empty($_SESSION["User"]["ID_Author"])) {
                 <div class="mb-4">
                     <div class="input-group">
                         <p class="input-group-text">Prenom</p>
-                        <p class="form-control"><?= $_SESSION["User"]["Prenom"] ?></p>
+                        <p class="form-control"><?php if ($_idurl) {
+                                                    echo $rec[0]['Prenom'];
+                                                } else {
+                                                    echo $_SESSION["User"]["Prenom"];
+                                                } ?></p>
                     </div>
                 </div>
                 <div class="mb-4">
                     <div class="input-group">
                         <p class="input-group-text">Nom</p>
-                        <p class="form-control"><?= $_SESSION["User"]["Nom"] ?></p>
+                        <p class="form-control"><?php if ($_idurl) {
+                                                    echo $rec[0]['Nom'];
+                                                } else {
+                                                    echo $_SESSION["User"]["Nom"];
+                                                } ?></p>
                     </div>
                 </div>
                 <div class="mb-4">
                     <div class="input-group">
                         <p class="input-group-text">Reférence</p>
-                        <p class="form-control"><?= $_SESSION["User"]["Reference_User"] ?></p>
+                        <p class="form-control"><?php if ($_idurl) {
+                                                    echo $rec[0]['Reference_User'];
+                                                } else {
+                                                    echo $_SESSION["User"]["Reference_User"];
+                                                } ?></p>
                     </div>
                 </div>
                 <div class="mb-4">
                     <div class="input-group">
                         <p class="input-group-text">Mail</p>
-                        <p class="form-control"><?= $_SESSION["User"]["Mail"] ?></p>
+                        <p class="form-control"><?php if ($_idurl) {
+                                                    echo $rec[0]['Mail'];
+                                                } else {
+                                                    echo $_SESSION["User"]["Mail"];
+                                                } ?></p>
                     </div>
                 </div>
                 <div class="mb-4">
@@ -63,7 +106,11 @@ if (!empty($_SESSION["User"]["ID_Author"])) {
                 <div class="col mb-4">
                     <div class="input-group">
                         <p class="input-group-text">Commentaire</p>
-                        <p class="form-control" style="height: 100px;"><?= $_SESSION["User"]["Commentaire"] ?></p>
+                        <p class="form-control" style="height: 100px;"><?php if ($_idurl) {
+                                                                            echo $rec[0]['Commentaire'];
+                                                                        } else {
+                                                                            echo $_SESSION["User"]["Commentaire"];
+                                                                        } ?></p>
                     </div>
                 </div>
             </section>
