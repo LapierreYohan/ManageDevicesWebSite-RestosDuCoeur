@@ -37,10 +37,14 @@ if (
 
     $pdo = Connexion::getDB()->get();
 
-    $sql = "Update User SET nom = :nom, prenom = :prenom";
+    $sql = "Update Utilisateur SET Nom = :nom, Prenom = :prenom, Commentaire = :com where ID_User = " . $_SESSION["User"]["ID_User"];
     $stmt = $pdo->prepare($sql);
 
     $stmt->execute($array);
+
+    $_SESSION["User"]["Prenom"] = $_POST['prenom'];
+    $_SESSION["User"]["Nom"] = $_POST['nom'];
+    $_SESSION["User"]["Commentaire"] = $_POST['com'];
 
     header('Location: /pages/profil.php');
     exit();
