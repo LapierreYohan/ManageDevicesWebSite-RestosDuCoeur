@@ -3,19 +3,12 @@ session_start();
 require_once __DIR__ . "/../MariaDB.php";
 
 if (
-    !empty($_POST['ref']) &&
-    strlen($_POST['ref']) <= 47 &&
-
     !empty($_POST['nom']) &&
     strlen($_POST['nom']) <= 35 &&
 
     !empty($_POST['prenom']) &&
-    strlen($_POST['prenom']) <= 180 &&
+    strlen($_POST['prenom']) <= 180
 
-    !empty($_POST['mdp']) &&
-    !empty($_POST['mdpConfirm']) &&
-
-    $_POST['mdpConfirm'] === $_POST['mdp']
 ) {
 
     $bool = 0;
@@ -26,12 +19,8 @@ if (
     }
 
     $array = [
-        "ref" => $_POST['ref'],
         "nom" => $_POST['nom'],
         "prenom" => $_POST['prenom'],
-        "mdp" => password_hash($_POST['mdp'], PASSWORD_DEFAULT),
-        "admin" => $bool,
-        "author" => $_SESSION['User']['ID_User']
     ];
 
     if (!empty($_POST['com'])) {
@@ -48,13 +37,13 @@ if (
 
     $pdo = Connexion::getDB()->get();
 
-    $sql = "CALL insertUser(:ref,:nom,:prenom,:mdp,:com, :admin, :author)";
+    $sql = "Update User SET nom = :nom, prenom = :prenom";
     $stmt = $pdo->prepare($sql);
 
     $stmt->execute($array);
 
-    header('Location: /pages/utilisateurs.php');
+    header('Location: /pages/profil.php');
     exit();
 }
 
-header('Location: /pages/addUser.php');
+header('Location: /pages/profil.php');

@@ -52,29 +52,29 @@ if (!empty($_GET["id"])) {
                             echo $rec[0]['Image'];
                         } else {
                             echo $_SESSION['User']['Image'];
-                        } ?>" style=" margin-left: 10px; margin-top: 10px;" alt="" width="330" height="330" class="rounded-circle me-2">
+                        } ?>" style=" margin-left: 10px; margin-top: 10px; margin-bottom: 40px;" alt="" width="330" height="330" class="rounded-circle me-2">
         </div>
-        <div class="border border-secondary border-3 rounded-4 bg bg-light" style="margin: 40px 2% 0 2%;">
-            <section method="POST" action="/includes/traitements/insertUser.php" style="margin: 30px 2% 0 2%;">
+        <div class="border border-secondary border-3 rounded-4 bg bg-light" style="margin: 40px 2% 30px 2%;">
+            <form method="POST" action="/includes/traitements/modifyUser.php" style="margin: 30px 2% 0 2%;">
                 <h4 class="mb-3">Informations personnelles</h4>
                 <div class="mb-4">
                     <div class="input-group">
-                        <p class="input-group-text">Prenom</p>
-                        <p class="form-control"><?php if ($_idurl) {
-                                                    echo $rec[0]['Prenom'];
-                                                } else {
-                                                    echo $_SESSION["User"]["Prenom"];
-                                                } ?></p>
+                        <label class="input-group-text">Prenom</label>
+                        <input type="text" class="form-control" id="prenom" name="prenom" value="<?php if ($_idurl) {
+                                                                                                        echo $rec[0]['Prenom'];
+                                                                                                    } else {
+                                                                                                        echo $_SESSION["User"]["Prenom"];
+                                                                                                    } ?>" maxlength="47" required>
                     </div>
                 </div>
                 <div class="mb-4">
                     <div class="input-group">
-                        <p class="input-group-text">Nom</p>
-                        <p class="form-control"><?php if ($_idurl) {
-                                                    echo $rec[0]['Nom'];
-                                                } else {
-                                                    echo $_SESSION["User"]["Nom"];
-                                                } ?></p>
+                        <label class="input-group-text">Nom</label>
+                        <input type="text" class="form-control" id="nom" name="nom" value="<?php if ($_idurl) {
+                                                                                                echo $rec[0]['Nom'];
+                                                                                            } else {
+                                                                                                echo $_SESSION["User"]["Nom"];
+                                                                                            } ?>" maxlength="47" required>
                     </div>
                 </div>
                 <div class="mb-4">
@@ -105,15 +105,16 @@ if (!empty($_GET["id"])) {
                 </div>
                 <div class="col mb-4">
                     <div class="input-group">
-                        <p class="input-group-text">Commentaire</p>
-                        <p class="form-control" style="height: 100px;"><?php if ($_idurl) {
-                                                                            echo $rec[0]['Commentaire'];
-                                                                        } else {
-                                                                            echo $_SESSION["User"]["Commentaire"];
-                                                                        } ?></p>
+                        <label class="input-group-text">Commentaire</label>
+                        <input type="text" class="form-control" id="com" name="com" value="<?php if ($_idurl) {
+                                                                                                echo $rec[0]['Commentaire'];
+                                                                                            } else {
+                                                                                                echo $_SESSION["User"]["Commentaire"];
+                                                                                            } ?>" maxlength="47" required>
                     </div>
                 </div>
-            </section>
+                <button class="w-35 btn btn-outline-secondary btn-lg mb-4" type="submit" style=" margin-left: 2%;">Enregistrer</button>
+            </form>
         </div>
     </section>
 

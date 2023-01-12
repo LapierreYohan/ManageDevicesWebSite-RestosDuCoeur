@@ -8,7 +8,7 @@ redirectUser();
 <head>
     <?php require_once __DIR__ . "/../modules/head.php"; ?>
 
-    <title>Add Utilisateur</title>
+    <title>Edit Utilisateur</title>
 </head>
 
 <body>
@@ -21,7 +21,7 @@ redirectUser();
                 <div class="mb-4">
                     <div class="input-group">
                         <span class="input-group-text"><label for="ref">Ref <p style="color: red; display: inline;">*</p></label></span>
-                        <input type="text" class="form-control" id="ref" name="ref" value="Réference" maxlength="47" required>
+                        <input type="text" class="form-control" id="ref" name="ref" placeholder="Réference" maxlength="47" required>
                     </div>
                 </div>
                 <div class="row">
