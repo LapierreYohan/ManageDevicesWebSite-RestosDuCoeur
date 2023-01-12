@@ -2,12 +2,16 @@
 session_start();
 require_once __DIR__ . "/../MariaDB.php";
 
+
 if (
     !empty($_POST['nom']) &&
     strlen($_POST['nom']) <= 35 &&
 
     !empty($_POST['prenom']) &&
-    strlen($_POST['prenom']) <= 180
+    strlen($_POST['prenom']) <= 180 &&
+
+    !empty($_POST['ref']) &&
+    strlen($_POST['ref']) <= 180
 
 ) {
 
@@ -36,18 +40,23 @@ if (
     }
 
     $pdo = Connexion::getDB()->get();
+    $sql;
+    if ($_POST["id"] != "-1") {
+        $sql = "Update Utilisateur SET Nom = :nom, Prenom = :prenom, Commentaire = :com where ID_User = " . $_POST["id"];
+    } else {
+        $sql = "Update Utilisateur SET Nom = :nom, Prenom = :prenom, Commentaire = :com where ID_User = " . $_SESSION["User"]["ID_User"];
+        $_SESSION["User"]["Prenom"] = $_POST['prenom'];
+        $_SESSION["User"]["Nom"] = $_POST['nom'];
+        $_SESSION["User"]["Commentaire"] = $_POST['com'];
+    }
 
-    $sql = "Update Utilisateur SET Nom = :nom, Prenom = :prenom, Commentaire = :com where ID_User = " . $_SESSION["User"]["ID_User"];
     $stmt = $pdo->prepare($sql);
 
     $stmt->execute($array);
-
-    $_SESSION["User"]["Prenom"] = $_POST['prenom'];
-    $_SESSION["User"]["Nom"] = $_POST['nom'];
-    $_SESSION["User"]["Commentaire"] = $_POST['com'];
 
     header('Location: /pages/profil.php');
     exit();
 }
 
 header('Location: /pages/profil.php');
+exit();

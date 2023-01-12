@@ -7,6 +7,9 @@ require_once __DIR__ . "/../includes/MariaDB.php";
 $_idurl = false;
 
 if (!empty($_GET["id"])) {
+    if (!$_SESSION["User"]["Admin_User"]) {
+        header('Location: /pages/profil.php');
+    }
     $rec = Connexion::getDB()->getResult("Select * from Utilisateur where ID_User = " . $_GET["id"]);
     if ($rec[0]["ID_Author"] != NULL && $rec[0]["ID_Author"] != 0) {
         $rec2 = Connexion::getDB()->getResult("Select * from Utilisateur where ID_User = " . $rec[0]["ID_Author"]);
@@ -31,7 +34,6 @@ if (!empty($_GET["id"])) {
 } else {
     $res = "Zeus (Ζεύς) 2";
 }
-
 
 ?>
 
@@ -79,13 +81,18 @@ if (!empty($_GET["id"])) {
                 </div>
                 <div class="mb-4">
                     <div class="input-group">
-                        <p class="input-group-text">Reférence</p>
-                        <p class="form-control"><?php if ($_idurl) {
-                                                    echo $rec[0]['Reference_User'];
-                                                } else {
-                                                    echo $_SESSION["User"]["Reference_User"];
-                                                } ?></p>
+                        <label class="input-group-text">Reférence</label>
+                        <input type="text" class="form-control" id="ref" name="ref" value="<?php if ($_idurl) {
+                                                                                                echo $rec[0]['Reference_User'];
+                                                                                            } else {
+                                                                                                echo $_SESSION["User"]["Reference_User"];
+                                                                                            } ?>" maxlength="47" required>
                     </div>
+                    <input type="hidden" id="id" name="id" value="<?php if (!empty($_GET["id"])) {
+                                                                        echo $_GET["id"];
+                                                                    } else {
+                                                                        echo -1;
+                                                                    } ?>">
                 </div>
                 <div class="mb-4">
                     <div class="input-group">
