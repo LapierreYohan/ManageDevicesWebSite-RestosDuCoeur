@@ -42,12 +42,16 @@ if (
     $pdo = Connexion::getDB()->get();
     $sql;
     if ($_POST["id"] != "-1") {
-        $sql = "Update Utilisateur SET Nom = :nom, Prenom = :prenom, Commentaire = :com where ID_User = " . $_POST["id"];
+        $sql = "Call CONTROLEDITUSER(" . $_POST["id"] . ", :nom, :prenom, :com)";
     } else {
-        $sql = "Update Utilisateur SET Nom = :nom, Prenom = :prenom, Commentaire = :com where ID_User = " . $_SESSION["User"]["ID_User"];
+        $sql = "Call CONTROLEDITUSER(" . $_SESSION["User"]["ID_User"] . ", :nom, :prenom, :com)";
         $_SESSION["User"]["Prenom"] = $_POST['prenom'];
         $_SESSION["User"]["Nom"] = $_POST['nom'];
         $_SESSION["User"]["Commentaire"] = $_POST['com'];
+
+
+        session_destroy();
+        header('Location: /index.php');
     }
 
     $stmt = $pdo->prepare($sql);
