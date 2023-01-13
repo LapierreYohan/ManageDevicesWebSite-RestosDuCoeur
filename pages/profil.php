@@ -56,6 +56,10 @@ if (!empty($_GET["id"])) {
                             echo $_SESSION['User']['Image'];
                         } ?>" style=" margin-left: 10px; margin-top: 10px; margin-bottom: 40px;" alt="" width="330" height="330" class="rounded-circle me-2">
         </div>
+        <div style="margin-top: 25px; margin-left: 25px;">
+            <input type="hidden" name="MAX_FILE_SIZE" value="100000" />
+            Changer de photo de profile : <input type="file" name="MaPhoto  " />
+        </div>
         <div class="border border-secondary border-3 rounded-4 bg bg-light" style="margin: 40px 2% 30px 2%;">
             <form method="POST" action="/includes/traitements/modifyUser.php" style="margin: 30px 2% 0 2%;">
                 <h4 class="mb-3">Informations personnelles</h4>
