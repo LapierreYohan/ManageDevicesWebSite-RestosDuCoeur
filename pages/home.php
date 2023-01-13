@@ -51,7 +51,7 @@ redirectUser();
                 if ($_SESSION['Admin'] === true) {
                     $res = Connexion::getDB()->getResult("SELECT * FROM Delegation_Regionale WHERE Statut = TRUE ORDER BY Reference ASC");
                 } else {
-                    $res = Connexion::getDB()->getResult("SELECT * FROM Delegation_Regionale WHERE Statut = TRUE AND ID_Dr = ANY (SELECT ID_Dr FROM Administrer WHERE ID_User =" . $_SESSION['ID_User'] . ") OR ID_Dr = Any (SELECT ID_Dr FROM Gerer WHERE ID_User =" . $_SESSION['ID_User'] . ") ORDER BY Reference ASC;");
+                    $res = Connexion::getDB()->getResult("SELECT * FROM Delegation_Regionale WHERE Statut = TRUE AND ID_Dr = ANY (SELECT ID_Dr FROM Administrer WHERE ID_User =" . $_SESSION['User']['ID_User'] . ") OR ID_Dr = Any (SELECT ID_Dr FROM Gerer WHERE ID_User =" . $_SESSION['User']['ID_User'] . ") ORDER BY Reference ASC;");
                 }
                 
                 Connexion::getDB()->printCarouselElements($res, "drSelector");

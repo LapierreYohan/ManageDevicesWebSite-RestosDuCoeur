@@ -39,7 +39,11 @@ function active_class(string $link, string $title): string
                             <ul class="dropdown-menu dropdown-menu-dark shadow">
                                 <li><a class="dropdown-item" href="/pages/utilisateurs.php">Utilisateurs</a></li>
                                 <li><hr class="dropdown-divider"></li>
-                                <li><a class="dropdown-item" href="">Types Matériels</a></li>
+                                <li><a class="dropdown-item" href="/pages/typesmateriels.php">Types Matériels</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item" href="/pages/typeslogiciel.php">Types Logiciels</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item" href="/pages/systeme.php">Système d'Exploitation</a></li>
                             </ul>
                         </div>
                     </li>

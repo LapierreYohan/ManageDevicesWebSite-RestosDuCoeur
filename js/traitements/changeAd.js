@@ -99,8 +99,8 @@ nodes.forEach((node) => {
 
                 if (data.CAN_INTERACTION && data.idAd != "") {
 
-                    let testEditAd = document.getElementById('editDr'); 
-                    let testRemoveAd = document.getElementById('removeDr'); 
+                    let testEditAd = document.getElementById('editAd'); 
+                    let testRemoveAd = document.getElementById('removeAd'); 
                     let testNewUo = document.getElementById('newUo');
                     let testNewMa = document.getElementById('newMa'); 
 
@@ -121,7 +121,7 @@ nodes.forEach((node) => {
                     }
 
                     let aEditAd = document.createElement('a');
-                    aEditAd.id = "editDr";
+                    aEditAd.id = "editAd";
                     aEditAd.classList.add('nav-link')
                     aEditAd.href = "/pages/editSite.php?ad=" + data.idAd
 
@@ -134,7 +134,7 @@ nodes.forEach((node) => {
                     toolBarAd.append(aEditAd)
 
                     let aRemoveAd = document.createElement('a');
-                    aRemoveAd.id = "removeDr";
+                    aRemoveAd.id = "removeAd";
                     aRemoveAd.classList.add('nav-link')
                     aRemoveAd.href = "/pages/removeSite.php?ad=" + data.idAd
 
@@ -162,7 +162,7 @@ nodes.forEach((node) => {
                     let aNewMa = document.createElement('a');
                     aNewMa.id = "newMa";
                     aNewMa.classList.add('nav-link')
-                    aNewMa.href = "/pages/addMateirel.php?ad=" + data.idAd
+                    aNewMa.href = "/pages/addMateriel.php?ad=" + data.idAd
 
                     let h3NewMa = document.createElement('h3');
                     h3NewMa.classList.add('bi')

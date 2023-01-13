@@ -8,7 +8,7 @@ redirectUser();
 <head>
     <?php require_once __DIR__ . "/../modules/head.php"; ?>
 
-    <title>Utilisateurs</title>
+    <title>Types Logiciels</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 </head>
@@ -19,7 +19,7 @@ redirectUser();
 
     <div class="container">
         <div class="wrapper">
-            <h1 class="mb-4">Liste d'Utilisateurs</h1>
+            <h1 class="mb-4">Liste des Types de Logiciels</h1>
             <section class="border border-dark border-2 rounded-1 bg bg-light">
                         
                 <div class="table-responsive">   
@@ -27,11 +27,7 @@ redirectUser();
                     <thead>
                         <tr>
                             <th scope="col">#</th>
-                            <th scope="col">Référence</th>
-                            <th scope="col">Nom Prénom</th>
-                            <th scope="col">Mail</th>
-                            <th scope="col">Rôle</th>
-                            <th scope="col">Créateur</th>
+                            <th scope="col">Nom</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -42,7 +38,7 @@ redirectUser();
                     $conn = Connexion::getDB()->get();
                     
 
-                    $sql = "SELECT * FROM utilisateur ORDER BY ID_User"; 
+                    $sql = "SELECT * FROM typelogiciel ORDER BY ID_Type"; 
                     $stmt = $conn->prepare($sql);
                     $stmt->execute();
                 
@@ -52,20 +48,9 @@ redirectUser();
 
                         echo '<tr>';
                         
-                            echo '<th scope="row">'. $row['ID_User'] .'</th>';
-                            echo '<td>'. $row['Reference_User'] . '</td>';
-                            echo '<td>'. $row['Nom']. " " . $row['Prenom'] . '</td>';
-                            echo '<td>'. $row['Mail'] . '</td>';          
-
-                            $value;
-                            if ($row['Admin_User'] == true) {
-                                $value = "Administrateur";
-                            } else {
-                                $value = "Utilisateur";
-                            }
-
-                            echo '<td>'. $value . '</td>';   
-                            echo '<td>'. $row['ID_Author'] . '</td>';  
+                            echo '<th scope="row">'. $row['ID_Type'] .'</th>';
+                            echo '<td>'. $row['Nom'] . '</td>';
+        
                         echo '</tr>';
                     }
                     ?>
@@ -78,7 +63,7 @@ redirectUser();
             <section>
         </div>
 
-        <a href="/pages/addUser.php" class="btn btn-outline-success mb-5" style="margin-top: 20px;">Ajoutez un Utilisateur</a>                               
+        <a href="/pages/addTypeLogiciel.php" class="btn btn-outline-success mb-5" style="margin-top: 20px;">Ajoutez un Type de Logiciel</a>                               
        
     </div>
 

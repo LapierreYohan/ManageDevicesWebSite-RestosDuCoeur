@@ -55,7 +55,67 @@ nodes.forEach((node) => {
             dataType:"json",
             data:value2, 
             success: function(data){
-                console.log(data);
+
+                let toolBarUo = document.getElementById('toolBarUo');
+                let toolBarMa = document.getElementById('toolBarMa');
+
+                if (data.CAN_INTERACTION && data.idUo != "") {
+
+                    let testEditUo = document.getElementById('editUo'); 
+                    let testRemoveUo = document.getElementById('removeUo'); 
+                    let testNewMa2 = document.getElementById('newMa'); 
+
+                    if (testNewMa2) {
+                        testNewMa2.remove();
+                    }
+
+                    if (testEditUo) {
+                        testEditUo.remove();
+                    }
+
+                    if (testRemoveUo) {
+                        testRemoveUo.remove();
+                    }
+
+                    let aEditUo = document.createElement('a');
+                    aEditUo.id = "editUo";
+                    aEditUo.classList.add('nav-link')
+                    aEditUo.href = "/pages/editSite.php?uo=" + data.idUo
+
+                    let h3EditUo = document.createElement('h3');
+                    h3EditUo.classList.add('bi')
+                    h3EditUo.classList.add('bi-pencil-square')
+
+                    aEditUo.prepend(h3EditUo);
+
+                    toolBarUo.append(aEditUo)
+
+                    let aRemoveUo = document.createElement('a');
+                    aRemoveUo.id = "removeUo";
+                    aRemoveUo.classList.add('nav-link')
+                    aRemoveUo.href = "/pages/removeSite.php?uo=" + data.idUo
+
+                    let h3RemoveUo = document.createElement('h3');
+                    h3RemoveUo.classList.add('bi')
+                    h3RemoveUo.classList.add('bi-trash3')
+
+                    aRemoveUo.prepend(h3RemoveUo);
+
+                    toolBarUo.append(aRemoveUo)
+
+                    let aNewMa = document.createElement('a');
+                    aNewMa.id = "newMa";
+                    aNewMa.classList.add('nav-link')
+                    aNewMa.href = "/pages/addMateriel.php?uo=" + data.idUo
+
+                    let h3NewMa = document.createElement('h3');
+                    h3NewMa.classList.add('bi')
+                    h3NewMa.classList.add('bi-plus-circle')
+
+                    aNewMa.prepend(h3NewMa);
+
+                    toolBarMa.append(aNewMa);
+                }
             }
         });
     });
