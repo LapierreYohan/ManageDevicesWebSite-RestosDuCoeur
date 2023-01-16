@@ -8,10 +8,10 @@ if (
     strlen($_POST['nom']) <= 35 &&
 
     !empty($_POST['prenom']) &&
-    strlen($_POST['prenom']) <= 180 &&
+    strlen($_POST['prenom']) <= 180 //&&
 
-    !empty($_POST['ref']) &&
-    strlen($_POST['ref']) <= 180
+    // !empty($_POST['com']) &&
+    // strlen($_POST['com']) <= 180
 
 ) {
 
@@ -58,7 +58,7 @@ if (
 
     $stmt->execute($array);
 
-    header('Location: /pages/profil.php');
+    header('Location: /pages/profil.php?id=' . $_POST["id"]);
     exit();
 }
 

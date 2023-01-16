@@ -33,37 +33,41 @@ function active_class(string $link, string $title): string
                     <?= active_class("", "Matériels") ?>
 
                     <?php if ($_SESSION['Admin'] === true) : ?>
-                    <li class="nav-item">
-                        <div class="dropdown">
-                            <a class="nav-link  dropdown-toggle" data-bs-toggle="dropdown" href="">Paramètres</a>
-                            <ul class="dropdown-menu dropdown-menu-dark shadow">
-                                <li><a class="dropdown-item" href="/pages/utilisateurs.php">Utilisateurs</a></li>
-                                <li><hr class="dropdown-divider"></li>
-                                <li><a class="dropdown-item" href="">Types Matériels</a></li>
-                            </ul>
-                        </div>
-                    </li>
+                        <li class="nav-item">
+                            <div class="dropdown">
+                                <a class="nav-link  dropdown-toggle" data-bs-toggle="dropdown" href="">Paramètres</a>
+                                <ul class="dropdown-menu dropdown-menu-dark shadow">
+                                    <li><a class="dropdown-item" href="/pages/utilisateurs.php">Utilisateurs</a></li>
+                                    <li>
+                                        <hr class="dropdown-divider">
+                                    </li>
+                                    <li><a class="dropdown-item" href="">Types Matériels</a></li>
+                                </ul>
+                            </div>
+                        </li>
                     <?php endif; ?>
                 </ul>
-                
+
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        
-                    <div class="flex-shrink-0 dropdown text-end me-3">
-                        <a href="#" class="d-flex align-items-center text-light link-light text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" data-bs-auto-close="inside" aria-expanded="false">
-                            <?php if (isset($_SESSION['User'])) { ?>
-                            <img src="<?= $_SESSION['User']['Image'] ?>" alt="" width="50" height="50" class="rounded-circle me-2">
-                            <strong><?= ucfirst($_SESSION['User']['Prenom']) . ' ' . $_SESSION['User']['Nom'] ?></strong>
-                            <?php } ?>
-                        </a>
-                        <ul class="dropdown-menu dropdown-menu-end dropdown-menu-dark shadow">
-                            <li><a class="dropdown-item" href="/pages/profil.php">Profile</a></li>
-                            <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item" href="/pages/disconnect.php">Se Déconnecter</a></li>
-                        </ul>
-                    </div>
 
-                        
+                        <div class="flex-shrink-0 dropdown text-end me-3">
+                            <a href="#" class="d-flex align-items-center text-light link-light text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" data-bs-auto-close="inside" aria-expanded="false">
+                                <?php if (isset($_SESSION['User'])) { ?>
+                                    <img src="<?= $_SESSION['User']['Image'] ?>" alt="" width="50" height="50" class="rounded-circle me-2">
+                                    <strong><?= ucfirst($_SESSION['User']['Prenom']) . ' ' . $_SESSION['User']['Nom'] ?></strong>
+                                <?php } ?>
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-end dropdown-menu-dark shadow">
+                                <li><a class="dropdown-item" href="/pages/profil.php">Profil</a></li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li><a class="dropdown-item" href="/pages/disconnect.php">Se Déconnecter</a></li>
+                            </ul>
+                        </div>
+
+
                     </li>
                 </ul>
             </div>

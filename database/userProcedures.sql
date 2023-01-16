@@ -152,7 +152,8 @@ TEXT) BEGIN
 	    Prenom = PRENOM,
 	    Commentaire = COMMENTAIRE
 	where u.ID_User = ID_USER;
-	ELSE SELECT 1;
+	ELSE update set Commentaire = COMMENTAIRE where u.ID_User = ID_USER;
+	;
 	End if;
 END$ 
 

@@ -6,9 +6,21 @@ require_once __DIR__ . "/../includes/MariaDB.php";
 
 $_idurl = false;
 
+
+
 if (!empty($_GET["id"])) {
     if (!$_SESSION["User"]["Admin_User"]) {
         header('Location: /pages/profil.php');
+    }
+    $ren = Connexion::getDB()->getResult("Select * from Utilisateur");
+    $goodid = false;
+    foreach ($ren as $num => $name) {
+        if ($name["ID_User"] == $_GET["id"]) {
+            $goodid = true;
+        }
+    }
+    if (!$goodid) {
+        header('Location: /pages/home.php');
     }
     $rec = Connexion::getDB()->getResult("Select * from Utilisateur where ID_User = " . $_GET["id"]);
     if ($rec[0]["ID_Author"] != NULL && $rec[0]["ID_Author"] != 0) {
@@ -85,12 +97,12 @@ if (!empty($_GET["id"])) {
                 </div>
                 <div class="mb-4">
                     <div class="input-group">
-                        <label class="input-group-text">Reférence</label>
-                        <input type="text" class="form-control" id="ref" name="ref" value="<?php if ($_idurl) {
-                                                                                                echo $rec[0]['Reference_User'];
-                                                                                            } else {
-                                                                                                echo $_SESSION["User"]["Reference_User"];
-                                                                                            } ?>" maxlength="47" required>
+                        <p class="input-group-text">Reférence</p>
+                        <p class="form-control"><?php if ($_idurl) {
+                                                    echo $rec[0]['Reference_User'];
+                                                } else {
+                                                    echo $_SESSION["User"]["Reference_User"];
+                                                } ?></p>
                     </div>
                     <input type="hidden" id="id" name="id" value="<?php if (!empty($_GET["id"])) {
                                                                         echo $_GET["id"];
