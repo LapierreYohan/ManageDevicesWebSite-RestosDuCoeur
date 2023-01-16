@@ -29,7 +29,7 @@ function active_class(string $link, string $title): string
                 <ul class="navbar-nav me-auto mb-2 mb-md-0">
                     <?= active_class("/pages/home.php", "Accueil") ?>
                     <?= active_class("", "DashBoard") ?>
-                    <?= active_class("", "Sites") ?>
+                    <?= active_class("/pages/sites.php", "Sites") ?>
                     <?= active_class("", "Matériels") ?>
 
                     <?php if ($_SESSION['Admin'] === true) : ?>
@@ -37,6 +37,8 @@ function active_class(string $link, string $title): string
                         <div class="dropdown">
                             <a class="nav-link  dropdown-toggle" data-bs-toggle="dropdown" href="">Paramètres</a>
                             <ul class="dropdown-menu dropdown-menu-dark shadow">
+                                <li><a class="dropdown-item" href="/pages/statut.php">Statut</a></li>
+                                <li><hr class="dropdown-divider"></li>
                                 <li><a class="dropdown-item" href="/pages/utilisateurs.php">Utilisateurs</a></li>
                                 <li><hr class="dropdown-divider"></li>
                                 <li><a class="dropdown-item" href="/pages/typesmateriels.php">Types Matériels</a></li>
@@ -44,6 +46,12 @@ function active_class(string $link, string $title): string
                                 <li><a class="dropdown-item" href="/pages/typeslogiciel.php">Types Logiciels</a></li>
                                 <li><hr class="dropdown-divider"></li>
                                 <li><a class="dropdown-item" href="/pages/systeme.php">Système d'Exploitation</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item" href="/pages/connexion.php">Connexion</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item" href="/pages/reseau.php">Réseau</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item" href="/pages/particularite.php">Particularité d'Imprimante</a></li>
                             </ul>
                         </div>
                     </li>
@@ -62,6 +70,9 @@ function active_class(string $link, string $title): string
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end dropdown-menu-dark shadow">
                             <li><a class="dropdown-item" href="/pages/profil.php">Profile</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="">Importer</a></li>
+                            <li><a class="dropdown-item" href="">Exporter</a></li>
                             <li><hr class="dropdown-divider"></li>
                             <li><a class="dropdown-item" href="/pages/disconnect.php">Se Déconnecter</a></li>
                         </ul>

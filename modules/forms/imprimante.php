@@ -31,26 +31,27 @@
     <hr class="my-4">        
     <h4 class="mb-3">Fonctionnalité</h4>
     <div class="col mb-4">
-        <div class="mb-3 form-check" style="margin-left: 2%;">
-            <label class="form-check-label" for="nb">Noir et Blanc</label>
-            <input type="checkbox" class="form-check-input" id="nb" name="fonctionNoirBlanc">
-        </div>
-        <div class="mb-3 form-check" style="margin-left: 2%;">
-            <label class="form-check-label" for="couleur">Couleurs</label>
-            <input type="checkbox" class="form-check-input" id="couleur" name="fonctionCouleur">
-        </div>
-        <div class="mb-3 form-check" style="margin-left: 2%;">
-            <label class="form-check-label" for="scanner">Scanner</label>
-            <input type="checkbox" class="form-check-input" id="scanner" name="fonctionScanner">
-        </div>
-        <div class="mb-3 form-check" style="margin-left: 2%;">
-            <label class="form-check-label" for="copieur">Copieur</label>
-            <input type="checkbox" class="form-check-input" id="copieur" name="fonctionCopieur">
-        </div>
-        <div class="mb-3 form-check" style="margin-left: 2%;">
-            <label class="form-check-label" for="3d">3 Dimensions</label>
-            <input type="checkbox" class="form-check-input" id="3d" name="fonction3d">
-        </div>
+        
+        <?php
+        require_once __DIR__ . "/../../includes/MariaDB.php";
+        $conn = Connexion::getDB()->get();
+                    
+        $sql = "SELECT * FROM particularite ORDER BY ID_Fonction"; 
+        $stmt = $conn->prepare($sql);
+        $stmt->execute();
+
+        $result = $stmt->fetchAll();
+
+        foreach($result as $row) {
+            
+            echo '<div class="mb-3 form-check" style="margin-left: 2%;">';
+            
+                echo '<label class="form-check-label" for="'. $row['Nom'] .'">'. $row['Nom'] .'</label>';
+                echo '<input type="checkbox" class="form-check-input" id="'. $row['Nom'] .'" name="fonction'. str_replace(' ', '', $row['Nom']) .'">';
+
+            echo '</div>';
+        }
+        ?>
     </div>
 
     <hr class="my-4">

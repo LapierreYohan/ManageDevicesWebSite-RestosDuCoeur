@@ -7,6 +7,7 @@ SET SQL_SAFE_UPDATES = 0;
 DROP PROCEDURE IF EXISTS insertUser;
 DROP PROCEDURE IF EXISTS deleteUser;
 DROP PROCEDURE IF EXISTS EDITUSER;
+DROP PROCEDURE IF EXISTS CONTROLEDITUSER;
 
 DELIMITER $
 
@@ -130,3 +131,27 @@ END$
 
 DELIMITER ;
 
+
+DELIMITER $
+
+CREATE PROCEDURE CONTROLEDITUSER(IN ID_USER INTEGER
+, IN NOM VARCHAR(50), IN PRENOM VARCHAR(50), IN COMMENTAIRE 
+TEXT) BEGIN 
+    IF (
+        Select Nom
+        from Utilisateur u
+        where
+            u.Nom = upper(NOM)
+            and u.Prenom = PRENOM
+    ) is null Then
+    Update Utilisateur u
+    SET
+        Nom = NOM,
+        Prenom = PRENOM,
+        Commentaire = COMMENTAIRE
+    where u.ID_User = ID_USER;
+    ELSE SELECT 1;
+    End if;
+END$ 
+
+DELIMITER ;

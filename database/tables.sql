@@ -433,6 +433,7 @@ CREATE TABLE
         ID_Dr INT NOT NULL,
         ID_Site INT NOT NULL,
         ID_Statut INT NOT NULL,
+        ID_Systeme INT NOT NULL,
         ID_Acces INT,
         ID_Serveur INT,
         ID_Switch INT,
@@ -475,7 +476,8 @@ CREATE TABLE
         CONSTRAINT `fk_telephone_statut` FOREIGN KEY(ID_Statut) REFERENCES Statut(ID_Statut) ON DELETE RESTRICT ON UPDATE RESTRICT,
         CONSTRAINT `fk_telephone_typeMateriel` FOREIGN KEY(ID_TypeMateriel) REFERENCES TypeMateriel(ID_TypeMateriel) ON DELETE RESTRICT ON UPDATE RESTRICT,
         CONSTRAINT `fk_telephone_abonnement` FOREIGN KEY(ID_Abonnement) REFERENCES Abonnement(ID_Abonnement) ON DELETE RESTRICT ON UPDATE RESTRICT,
-        CONSTRAINT `fk_telephone_pointAccesInternet` FOREIGN KEY(ID_Acces) REFERENCES PointAccesInternet(ID_Acces) ON DELETE RESTRICT ON UPDATE RESTRICT
+        CONSTRAINT `fk_telephone_pointAccesInternet` FOREIGN KEY(ID_Acces) REFERENCES PointAccesInternet(ID_Acces) ON DELETE RESTRICT ON UPDATE RESTRICT,
+		CONSTRAINT `fk_telephone_systeme` FOREIGN KEY (ID_Systeme) REFERENCES Systeme(ID_Systeme) ON DELETE RESTRICT ON UPDATE RESTRICT
     );
 
 CREATE TABLE

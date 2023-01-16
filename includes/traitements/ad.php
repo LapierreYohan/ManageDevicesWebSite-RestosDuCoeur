@@ -9,7 +9,7 @@ if (isset($_POST['buttons'])) {
     $res = Connexion::getDB()->getResult("SELECT ID_Site FROM Gerer WHERE ID_Site= ".$_POST['buttons']." AND ID_User = " . $_SESSION['User']['ID_User']);
     if (empty($res) && $_SESSION['Admin'] === false) {
 
-        $res = Connexion::getDb()->getResult("SELECT * FROM Site WHERE ID_Dr = ANY (SELECT * FROM Administrer) AND ID_Site = ".$_POST['buttons']);
+        $res = Connexion::getDb()->getResult("SELECT * FROM Site WHERE ID_Dr = ANY (SELECT ID_Dr FROM Administrer WHERE ID_User = ".$_SESSION['User']['ID_User'].") AND ID_Site = ".$_POST['buttons']);
         if (empty($res)) {
             echo '{"CAN_INTERACTION": false, "idAd": ""}';
         } else {

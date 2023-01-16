@@ -19,7 +19,7 @@ redirectUser();
         <div class="border border-secondary border-3 rounded-4 bg bg-light" style="margin: 50px 10% 0 10%;">
             <?php
                 if (!empty($_GET['materiel'])) {  
-                    include_once __DIR__ . "/../includes/forms/". $_GET['materiel'] .".php";      
+                    include_once __DIR__ . "/../modules/forms/". $_GET['materiel'] .".php";      
                 }
             ?>
         </div>
