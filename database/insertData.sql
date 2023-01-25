@@ -87,6 +87,9 @@ CALL insertUser("T08RDC0A75SC", "Santiago", "Chaney", "0000", "Utilisateur 08 de
 CALL insertUser("T09RDC0A84BI", "Beasley", "Iris", "0000", "Utilisateur 09 de Test", false, 2);
 CALL insertUser("T10RDC0A95BN", "Burnett", "Nathan", "0000", "Utilisateur 10 de Test", false, 2);
 
+UPDATE utilisateur SET Image = "/img/members/2.jpg" WHERE ID_User = 2;
+UPDATE utilisateur SET Image = "/img/members/6.PNG" WHERE ID_User = 6;
+
 /*------------------------------------------*/
 /*Insertion de Droits d'Utilisateurs        */
 /*------------------------------------------*/
