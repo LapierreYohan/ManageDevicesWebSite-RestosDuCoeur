@@ -37,7 +37,7 @@ nodes.forEach((node) => {
             dataType:"json",
             data:value, 
             success: function(data){
-
+                let passed = false;
                 $.each(data, function (index, value) {
 
                     var $cellElems = $('<input type="radio" name="uoSelector" id="' + value.ID_Site + '">');
@@ -45,8 +45,12 @@ nodes.forEach((node) => {
 
                     var $cellElem = $('<div class="carousel-cell"> <label for="' + value.ID_Site + '"> <img src="'+value.Image+'" alt="Icon maison"> <p><b>' + value.Reference + "</b></p> <br> <p class=\"adress\"><b>" + value.Adresse + '</b></p></label></div>');
                     flkty.append( $cellElem)
-
+                    passed = true;
                 })
+                if (passed == false) {
+                    var $cellElem = $('<div class="carousel-cell"> <h3 class="nothing">Vide</h3></div>');
+                    flkty.append( $cellElem)
+                }
                 
                 let script = document.createElement('script');
                 script.src = "/js/traitements/changeUo.js";
@@ -63,6 +67,7 @@ nodes.forEach((node) => {
             dataType:"json",
             data:value3, 
             success: function(data){
+                let passed = false;
                 $.each(data, function (index, value) {
                     let stat;
                     if (value.Etat == "Actif") {
@@ -79,8 +84,12 @@ nodes.forEach((node) => {
 
                     var $cellElem = $('<div class="carousel-cell"> ' + stat + ' <label for="' + value.Reference_Materiel + '"><img src="'+value.image+'" alt="Icon Matériels"> <p><b>' + value.Reference_Materiel + '</b></p></label></div>');
                     flkty2.append( $cellElem)
-
+                    passed = true;
                 })
+                if (passed == false) {
+                    var $cellElem = $('<div class="carousel-cell"> <h3 class="nothing">Vide</h3></div>');
+                    flkty2.append( $cellElem)
+                }
             }
         });
         
@@ -118,6 +127,17 @@ nodes.forEach((node) => {
 
                     if (testNewUo) {
                         testNewUo.remove();
+                    }
+
+                    let removeUoRemove = document.getElementById('removeUo'); 
+                    let editUoRemove = document.getElementById('editUo'); 
+
+                    if (removeUoRemove) {
+                        removeUoRemove.remove();
+                    }
+
+                    if (editUoRemove) {
+                        editUoRemove.remove();
                     }
 
                     let aEditAd = document.createElement('a');

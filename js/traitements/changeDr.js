@@ -12,6 +12,36 @@ nodes.forEach((node) => {
         carousel = document.createElement('div');
         carousel.classList.add("carousel");
         section.prepend(carousel)
+
+        let sectionUO = document.getElementById('uo');
+        let carouselUO = sectionUO.firstElementChild;
+        sectionUO.removeChild(carouselUO);
+        carouselUO = document.createElement('div');
+        carouselUO.classList.add("carousel");
+        sectionUO.prepend(carouselUO)
+
+        var flktyUO = new Flickity( carouselUO, {
+            groupCells: true, 
+            pageDots: false
+        });
+
+        var $cellElemUO = $('<div class="carousel-cell"> <h3 class="nothing">Vide</h3></div>');
+        flktyUO.append($cellElemUO)
+
+        let sectionMA = document.getElementById('ma');
+        let carouselMA = sectionMA.firstElementChild;
+        sectionMA.removeChild(carouselMA);
+        carouselMA = document.createElement('div');
+        carouselMA.classList.add("carousel");
+        sectionMA.prepend(carouselMA)
+
+        var flktyMA = new Flickity( carouselMA, {
+            groupCells: true, 
+            pageDots: false
+        });
+
+        var $cellElemMA = $('<div class="carousel-cell"> <h3 class="nothing">Vide</h3></div>');
+        flktyMA.append($cellElemMA)
     
         var flkty = new Flickity( carousel, {
             groupCells: true, 
@@ -25,7 +55,7 @@ nodes.forEach((node) => {
             dataType:"json",
             data:value, 
             success: function(data){
-
+                let passed = false;
                 $.each(data, function (index, value) {
 
                     var $cellElems = $('<input type="radio" name="adSelector" id="' + value.ID_Site + '">');
@@ -33,8 +63,13 @@ nodes.forEach((node) => {
 
                     var $cellElem = $('<div class="carousel-cell"> <label for="' + value.ID_Site + '"> <img src="'+value.Image+'" alt="Icon maison"> <p><b>' + value.Reference + "</b></p> <br> <p class=\"adress\"><b>" + value.Adresse + '</b></p></label></div>');
                     flkty.append( $cellElem)
-
+                    passed = true;
                 })
+
+                if (passed == false) {
+                    var $cellElem = $('<div class="carousel-cell"> <h3 class="nothing">Vide</h3></div>');
+                    flkty.append( $cellElem)
+                }
                 let script = document.createElement('script');
                 script.src = "/js/traitements/changeAd.js";
                 carousel.prepend(script);
@@ -52,6 +87,8 @@ nodes.forEach((node) => {
                 
                 let toolBarDr = document.getElementById('toolBarDr'); 
                 let toolBarAd = document.getElementById('toolBarAd');
+                let toolBarUo = document.getElementById('toolBarUo');
+                let toolBarMa = document.getElementById('toolBarMa');
 
                 if (data.CAN_INTERACTION && data.idDr != "") {
 
@@ -69,6 +106,39 @@ nodes.forEach((node) => {
 
                     if (testNewAd) {
                         testNewAd.remove();
+                    }
+
+                    let editAdRemove = document.getElementById('editAd'); 
+                    let removeAdRemove = document.getElementById('removeAd'); 
+
+                    if (editAdRemove) {
+                        editAdRemove.remove();
+                    }
+
+                    if (removeAdRemove) {
+                        removeAdRemove.remove();
+                    }
+
+                    let newUoRemove = document.getElementById('newUo'); 
+                    let removeUoRemove = document.getElementById('removeUo'); 
+                    let editUoRemove = document.getElementById('editUo'); 
+
+                    if (newUoRemove) {
+                        newUoRemove.remove();
+                    }
+
+                    if (removeUoRemove) {
+                        removeUoRemove.remove();
+                    }
+
+                    if (editUoRemove) {
+                        editUoRemove.remove();
+                    }
+
+                    let newMaRemove = document.getElementById('newMa'); 
+
+                    if (newMaRemove) {
+                        newMaRemove.remove();
                     }
 
                     let aEdit = document.createElement('a');
