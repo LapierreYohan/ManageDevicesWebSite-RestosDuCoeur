@@ -28,10 +28,10 @@
         </div>
     </div>
 
-    <hr class="my-4">        
+    <hr class="my-4">
     <h4 class="mb-3">La RAM</h4>
     <div class="col mb-4">
-        
+
         <div class="mb-3 form-check" style="margin-left: 2%;">
             <label class="form-check-label" for="4G">4G</label>
             <input type="radio" class="form-check-input" id="4G" name="ram" value="4G">
@@ -66,11 +66,11 @@
 
     <?php if (!empty($_GET['uo'])) : ?>
         <input type="hidden" name="uo" value="<?= $_GET['uo'] ?>">
-    <?php elseif (!empty($_GET['ad'])) : ?>    
+    <?php elseif (!empty($_GET['ad'])) : ?>
         <input type="hidden" name="ad" value="<?= $_GET['ad'] ?>">
     <?php endif; ?>
 
     <input type="hidden" name="materiel" value="<?= $_GET['materiel'] ?>">
 
-    <button class="w-35 btn btn-secondary btn-lg mb-4" type="submit">Ajouter un Serveur</button>
+    <button class="w-35 btn btn-secondary btn-lg mb-4" type="submit">Ajouter un Téléphone</button>
 </form>

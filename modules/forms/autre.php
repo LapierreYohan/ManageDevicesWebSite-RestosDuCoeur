@@ -46,11 +46,11 @@
 
     <?php if (!empty($_GET['uo'])) : ?>
         <input type="hidden" name="uo" value="<?= $_GET['uo'] ?>">
-    <?php elseif (!empty($_GET['ad'])) : ?>    
+    <?php elseif (!empty($_GET['ad'])) : ?>
         <input type="hidden" name="ad" value="<?= $_GET['ad'] ?>">
     <?php endif; ?>
 
     <input type="hidden" name="materiel" value="<?= $_GET['materiel'] ?>">
 
-    <button class="w-35 btn btn-secondary btn-lg mb-4" type="submit">Ajouter un Serveur</button>
+    <button class="w-35 btn btn-secondary btn-lg mb-4" type="submit">Ajouter</button>
 </form>
