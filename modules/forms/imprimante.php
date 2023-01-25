@@ -1,4 +1,4 @@
-<form method="POST" action="/includes/traitements/insertSite.php" enctype="multipart/form-data" style="margin: 30px 5% 0 5%;">
+<form method="POST" action="/includes/traitements/materiels/imprimante.php" enctype="multipart/form-data" style="margin: 30px 5% 0 5%;">
     <h4 class="mb-3">Informations</h4>
     <div class="mb-4">
         <div class="input-group">
@@ -68,8 +68,6 @@
     <?php elseif (!empty($_GET['ad'])) : ?>    
         <input type="hidden" name="ad" value="<?= $_GET['ad'] ?>">
     <?php endif; ?>
-
-    <input type="hidden" name="materiel" value="<?= $_GET['materiel'] ?>">
 
     <button class="w-35 btn btn-secondary btn-lg mb-4" type="submit">Ajouter une Imprimante</button>
 </form>

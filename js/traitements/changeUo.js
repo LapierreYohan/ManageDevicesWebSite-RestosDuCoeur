@@ -26,6 +26,7 @@ nodes.forEach((node) => {
             dataType:"json",
             data:value3, 
             success: function(data){
+                let passed = false;
                 $.each(data, function (index, value) {
                     let stat;
                     if (value.Etat == "Actif") {
@@ -42,8 +43,12 @@ nodes.forEach((node) => {
 
                     var $cellElem = $('<div class="carousel-cell"> ' + stat + ' <label for="' + value.Reference_Materiel + '"><img src="'+value.image+'" alt="Icon Matériels"> <p><b>' + value.Reference_Materiel + '</b></p></label></div>');
                     flkty2.append( $cellElem)
-
+                    passed = true;
                 })
+                if (passed == false) {
+                    var $cellElem = $('<div class="carousel-cell"> <h3 class="nothing">Vide</h3></div>');
+                    flkty2.append( $cellElem)
+                }
             }
         });
         
