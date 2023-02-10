@@ -15,13 +15,6 @@ if (
 
 ) {
 
-    $bool = 0;
-    if (!empty($_POST['admin'])) {
-        $bool = 1;
-    } else {
-        $bool = 0;
-    }
-
     $array = [
         "nom" => $_POST['nom'],
         "prenom" => $_POST['prenom'],

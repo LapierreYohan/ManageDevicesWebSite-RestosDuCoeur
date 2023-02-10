@@ -1,3 +1,22 @@
+body {
+    background-color: #330000;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='100%25' viewBox='0 0 800 400'%3E%3Cdefs%3E%3CradialGradient id='a' cx='396' cy='281' r='514' gradientUnits='userSpaceOnUse'%3E%3Cstop offset='0' stop-color='%23C600AA'/%3E%3Cstop offset='1' stop-color='%23330000'/%3E%3C/radialGradient%3E%3ClinearGradient id='b' gradientUnits='userSpaceOnUse' x1='400' y1='148' x2='400' y2='333'%3E%3Cstop offset='0' stop-color='%23FA3' stop-opacity='0'/%3E%3Cstop offset='1' stop-color='%23FA3' stop-opacity='0.5'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect fill='url(%23a)' width='800' height='400'/%3E%3Cg fill-opacity='0.33'%3E%3Ccircle fill='url(%23b)' cx='267.5' cy='61' r='300'/%3E%3Ccircle fill='url(%23b)' cx='532.5' cy='61' r='300'/%3E%3Ccircle fill='url(%23b)' cx='400' cy='30' r='300'/%3E%3C/g%3E%3C/svg%3E");
+    background-attachment: fixed;
+    background-size: cover;
+}
+
+.resetSelector {
+    color: rgb(140, 138, 138);
+}
+
+.resetSelector:hover {
+    color: rgb(255, 255, 255);
+}
+
+.headernav:hover {
+    color: darkgrey;
+}
+
 section {
  margin-top: 25px;
  margin-bottom: 25px;
@@ -38,6 +57,8 @@ section#ma {
     flex-direction: column;
     align-items: center;
     text-align: center;
+    width: 3%;
+    margin-left: 1%;
 }
 
 .toolBarDr a{
@@ -49,6 +70,8 @@ section#ma {
     flex-direction: column;
     align-items: center;
     text-align: center;
+    width: 3%;
+    margin-left: 1%;
 }
 
 .toolBarAd a{
@@ -60,6 +83,8 @@ section#ma {
     flex-direction: column;
     align-items: center;
     text-align: center;
+    width: 3%;
+    margin-left: 1%;
 }
 
 .toolBarUo a{
@@ -71,6 +96,8 @@ section#ma {
     flex-direction: column;
     align-items: center;
     text-align: center;
+    width: 3%;
+    margin-left: 1%;
 }
 
 .toolBarMa a{
@@ -94,7 +121,7 @@ section#ma {
     margin-left: 10px;
     margin-bottom: 5px;
     margin-top: 3px;
-    background: rgb(241, 240, 240);
+    background: rgb(28, 27, 27);
     border-radius: 20px;
     display: flex;
     align-items: center;
@@ -117,6 +144,7 @@ section#ma {
     margin-left: 10px;
     line-height: 120%;
     margin-right: 10px;
+    color: rgb(179, 173, 173);
 }
 
 .carousel-cell p.adress {
@@ -126,6 +154,7 @@ section#ma {
     margin-left: 10px;
     line-height: 100%;
     margin-right: 10px;
+    color: rgb(239, 236, 236);
 }
 
  .nothing {
@@ -139,10 +168,15 @@ section#ma {
 
 .carousel input:checked + .carousel-cell{
     border-style: solid;
-    background-color: rgb(188, 184, 184);
-    border-right: 1px;
-    border-left: 1px;
-    border-width: 2px;
+    background-color: #545454;
+    border-right: -1px;
+    border-left: -1px;
+    border-width: 3px;
+    color: #838383;
+}
+
+.carousel input:checked + .carousel-cell p{
+    color: white;
 }
 
 .trList:hover {

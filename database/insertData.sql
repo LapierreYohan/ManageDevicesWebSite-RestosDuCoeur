@@ -221,7 +221,8 @@ INSERT INTO typemateriel VALUES (null, "Tablette", "Telephone");
 /*Insertion d'ordinateur      */
 
 CALL INSERTORDINATEUR(35,"37282836T732202827","tkt",true,"orange","64","DDR4","500","pas de partition","Dell","un commentaire au hasard","1","1","1","1",NULL,NULL,'');
-CALL INSERTORDINATEUR(28, "37282836T73220287","tkt",true,"orange","64","DDR4","500","pas de partition","Dell","un commentaire au hasard","1","1","1","28",NULL,NULL,'');
+CALL INSERTORDINATEUR(36,"37282836T73220287","tkt",true,"orange","64","DDR4","500","pas de partition","Dell","un commentaire au hasard","2","1","1","1",NULL,NULL,'');
+CALL INSERTORDINATEUR(28, "37282836T73220287","tkt",true,"orange","64","DDR4","500","pas de partition","Dell","un commentaire au hasard","2","1","1","28",NULL,NULL,'');
 
 /*Insertion de switch      */
 
@@ -249,7 +250,9 @@ CALL INSERTAUTRE("55","OnePlus","Nord","638293679","v6 turbo 5L7","PAS DE COMMEN
 
 /*Insertion de telephone      */
 
-CALL INSERTTELEPHONE(1,"OnePlus","nord","12","256","PAS DE COMMENTAIRE","1","1","1",null);
+CALL INSERTTELEPHONE(1,"OnePlus","nord","12","256","PAS DE COMMENTAIRE","1","1","3",null);
+CALL INSERTTELEPHONE(2,"OnePlus","nord","12","256","PAS DE COMMENTAIRE","1","1","4",null);
+CALL INSERTTELEPHONE(3,"OnePlus","nord","12","256","PAS DE COMMENTAIRE","1","1","5",null);
 
 /*Insertion de telephone      */
 

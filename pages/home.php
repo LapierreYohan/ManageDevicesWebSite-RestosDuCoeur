@@ -1,16 +1,6 @@
 <?php
 require_once("../includes/fonctions/auth.php");
 redirectUser();
-
-/*
-<a id="newUo" href="" class="nav-link disabled"><h3 class="bi bi-plus-circle"></h3></a> 
-<a id="editUo"  href="" class="nav-link disabled"><h3 class="bi bi-pencil-square"></h3></a>
-<a id="removeUo"  href="" class="nav-link disabled"><h3 class="bi bi-trash3"></h3></a>
-
-<a id="newMa" href="" class="nav-link disabled"><h3 class="bi bi-plus-circle"></h3></a> 
-<a id="editMa" href="" class="nav-link disabled"><h3 class="bi bi-pencil-square"></h3></a>
-<a id="removeMa" href="" class="nav-link disabled"><h3 class="bi bi-trash3"></h3></a>
-*/
 ?>
 
 <html lang="fr">
@@ -18,7 +8,6 @@ redirectUser();
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=², initial-scale=1.0">
   <link rel="shortcut icon" href="/img/favicon.ico">
   
   <!-- CSS -->
@@ -31,6 +20,7 @@ redirectUser();
   <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
+
   <link rel="stylesheet" href="/css/home.css">
 
   <title>Accueil</title>
@@ -38,12 +28,14 @@ redirectUser();
 
 <body>
   <?php require_once __DIR__ . "/../modules/header.php";?>
-
-  <div class="container">
-    <section id="app">
-        <h5>Délégations Régionales</h5>
+    
+    <div class="container px-4 py-3 bg-dark border-2 border-secondary rounded-3" style="margin-top: 3%;">
+        <label for="noneDrSelected">
+            <h2 class="pb-2 border-bottom border-secondary resetSelector">Délégations Régionales</h2>
+        </label>
         <section id="dr">
-            <div class="carousel" data-flickity='{ "groupCells": true, "pageDots": false}'>
+        
+            <div class="carousel bg-dark border-0" data-flickity='{ "groupCells": true, "pageDots": false}'>
                 <?php
                 require_once(__DIR__ . "/../includes/MariaDB.php");
                 
@@ -56,21 +48,25 @@ redirectUser();
                 
                 Connexion::getDB()->printCarouselElements($res, "drSelector");
                 ?>
-
-                <script src="/js/traitements/changeDr.js"></script>
             </div>
             <div class="toolBarDr" id="toolBarDr">
                 <?php if ($_SESSION['Admin'] === true) {  ?>
-                    <a id="newDr" href="/pages/addSite.php" class="nav-link"><h3 class="bi bi-plus-circle"></h3></a> 
+                    <a id="newDr" href="/pages/addSite.php" class="nav-link"><h3 class="bi bi-plus-circle" style="color: rgb(179, 173, 173);"></h3></a> 
                 <?php } ?>
             </div>
-        </section>
+        </section> 
+    </div>
+    <input type="radio" name="drSelector" id="noneDrSelected" style="display: none;">
+    <script src="/js/traitements/changeDr.js"></script>
 
-        <h5>Associations Départementales</h5>
+    <div class="container px-4 py-3 bg-dark border-2 border-secondary rounded-3" style="margin-top: 3%;">
+        <label for="noneAdSelected">
+            <h2 class="pb-2 border-bottom border-secondary resetSelector">Associations Départementales</h2>
+        </label>
         <section id="ad">
-            <div class="carousel" data-flickity='{ "groupCells": true, "pageDots": false}'>
+            <div class="carousel bg-dark border-0" data-flickity='{ "groupCells": true, "pageDots": false}'>
                 <div class="carousel-cell">
-                    <h3 class="nothing">Vide</h3>
+                    <h3 class="nothing text-secondary">Vide</h3>
                 </div>
             </div>
             <div class="toolBarAd" id="toolBarAd">
@@ -78,12 +74,18 @@ redirectUser();
             </div>
 
         </section>
+    </div>
+    <input type="radio" name="adSelector" id="noneAdSelected" style="display: none;">
+    <script src="/js/traitements/changeAd.js"></script>
 
-        <h5>Unités Opérationelles</h5> 
+    <div class="container px-4 py-3 bg-dark border-2 border-secondary rounded-3" style="margin-top: 3%;">
+        <label for="noneUoSelected">
+            <h2 class="pb-2 border-bottom border-secondary resetSelector">Unités Opérationelles</h2>
+        </label>
         <section id="uo">
-            <div class="carousel" data-flickity='{ "groupCells": true, "pageDots": false}'>
+            <div class="carousel bg-dark border-0" data-flickity='{ "groupCells": true, "pageDots": false}'>
                 <div class="carousel-cell">
-                    <h3 class="nothing">Vide</h3>
+                    <h3 class="nothing text-secondary">Vide</h3>
                 </div>
             </div>
             <div class="toolBarUo" id="toolBarUo">
@@ -91,12 +93,18 @@ redirectUser();
             </div>
 
         </section>
+    </div>
+    <input type="radio" name="uoSelector" id="noneUoSelected" style="display: none;">
+    <script src="/js/traitements/changeUo.js"></script>
 
-        <h5>Matériels</h5>
+    <div class="container px-4 py-3 bg-dark border-2 border-secondary rounded-3" style="margin-top: 3%;">
+        <label for="noneMaSelected">
+            <h2 class="pb-2 border-bottom border-secondary resetSelector">Matériels</h2>
+        </label>
         <section id="ma">
-            <div class="carousel" data-flickity='{ "groupCells": true, "pageDots": false}'>
+            <div class="carousel bg-dark border-0" data-flickity='{ "groupCells": true, "pageDots": false}'>
                 <div class="carousel-cell">
-                    <h3 class="nothing">Vide</h3>
+                    <h3 class="nothing text-secondary">Vide</h3>
                 </div>
             </div>
             <div class="toolBarMa" id="toolBarMa">
@@ -104,11 +112,14 @@ redirectUser();
             </div>
 
         </section>
+    </div>
+    <input type="radio" name="maSelector" id="noneMaSelected" style="display: none;">
+    <script src="/js/traitements/changeMa.js"></script>
 
-        <div class="row" data-masonry='{"percentPosition": true }'>
-    </section>
+    <?php require_once __DIR__ . "/../modules/footer.php";?>
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+
 </body>
 
 </html>
