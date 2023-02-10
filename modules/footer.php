@@ -10,6 +10,6 @@
         <li class="ms-3"><a class="link-white" target="_blank" href="https:www.tiktok.com"><h5 class="bi bi-tiktok"></h5></a></li>
         <li class="ms-3"><a class="link-white" target="_blank" href="https:www.instagram.com"><h5 class="bi bi-instagram"></h5></a></li>
         <li class="ms-3"><a class="link-white" target="_blank" href="https:www.facebook.com"><h5 class="bi bi-facebook"></h5></a></li>
-        <li class="ms-3"><a class="link-white" target="_blank" href="https:www.youtube.com"><h5 class="bi bi-youtube"></h5></a></li>
+        <li class="ms-3"><a class="link-white" target="_blank" href="https://www.youtube.com/watch?v=xvFZjo5PgG0"><h5 class="bi bi-youtube"></h5></a></li>
     </ul>
 </footer>

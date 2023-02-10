@@ -9,9 +9,9 @@ class Connexion{
 	private function __construct() {
 		
 		$this->h = "localhost";
-		$this->d = "resto";
-		$this->u = "p2103678";
-		$this->p = "12103678";
+		$this->d = "rdc";
+		$this->u = "root";
+		$this->p = "Agrloul55555";
 
 		try {
             $this->connexion = new PDO('mysql:host='.$this->h.';dbname='.$this->d.';',$this->u,$this->p);
