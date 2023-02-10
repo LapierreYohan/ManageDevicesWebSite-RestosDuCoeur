@@ -11,6 +11,8 @@ nodes.forEach((node) => {
 
         carousel = document.createElement('div');
         carousel.classList.add("carousel");
+        carousel.classList.add('bg-dark')
+        carousel.classList.add('border-0')
         section.prepend(carousel)
 
         let sectionUO = document.getElementById('uo');
@@ -18,6 +20,8 @@ nodes.forEach((node) => {
         sectionUO.removeChild(carouselUO);
         carouselUO = document.createElement('div');
         carouselUO.classList.add("carousel");
+        carouselUO.classList.add('bg-dark')
+        carouselUO.classList.add('border-0')
         sectionUO.prepend(carouselUO)
 
         var flktyUO = new Flickity( carouselUO, {
@@ -25,7 +29,7 @@ nodes.forEach((node) => {
             pageDots: false
         });
 
-        var $cellElemUO = $('<div class="carousel-cell"> <h3 class="nothing">Vide</h3></div>');
+        var $cellElemUO = $('<div class="carousel-cell"> <h3 class="nothing text-secondary">Vide</h3></div>');
         flktyUO.append($cellElemUO)
 
         let sectionMA = document.getElementById('ma');
@@ -33,6 +37,8 @@ nodes.forEach((node) => {
         sectionMA.removeChild(carouselMA);
         carouselMA = document.createElement('div');
         carouselMA.classList.add("carousel");
+        carouselMA.classList.add('bg-dark')
+        carouselMA.classList.add('border-0')
         sectionMA.prepend(carouselMA)
 
         var flktyMA = new Flickity( carouselMA, {
@@ -40,7 +46,7 @@ nodes.forEach((node) => {
             pageDots: false
         });
 
-        var $cellElemMA = $('<div class="carousel-cell"> <h3 class="nothing">Vide</h3></div>');
+        var $cellElemMA = $('<div class="carousel-cell"> <h3 class="nothing text-secondary">Vide</h3></div>');
         flktyMA.append($cellElemMA)
     
         var flkty = new Flickity( carousel, {
@@ -67,7 +73,7 @@ nodes.forEach((node) => {
                 })
 
                 if (passed == false) {
-                    var $cellElem = $('<div class="carousel-cell"> <h3 class="nothing">Vide</h3></div>');
+                    var $cellElem = $('<div class="carousel-cell"> <h3 class="nothing text-secondary">Vide</h3></div>');
                     flkty.append( $cellElem)
                 }
                 let script = document.createElement('script');
@@ -90,56 +96,62 @@ nodes.forEach((node) => {
                 let toolBarUo = document.getElementById('toolBarUo');
                 let toolBarMa = document.getElementById('toolBarMa');
 
+                let testEditDr = document.getElementById('editDr'); 
+                let testRemoveDr = document.getElementById('removeDr'); 
+                let testNewAd = document.getElementById('newA'); 
+
+                if (testEditDr) {
+                    testEditDr.remove();
+                }
+
+                if (testRemoveDr) {
+                    testRemoveDr.remove();
+                }
+
+                if (testNewAd) {
+                    testNewAd.remove();
+                }
+
+                let newAdRemove = document.getElementById('newAd'); 
+                let editAdRemove = document.getElementById('editAd'); 
+                let removeAdRemove = document.getElementById('removeAd'); 
+
+                if (newAdRemove) {
+                    newAdRemove.remove();
+                }
+
+                if (editAdRemove) {
+                    editAdRemove.remove();
+                }
+
+                if (removeAdRemove) {
+                    removeAdRemove.remove();
+                }
+
+                let newUoRemove = document.getElementById('newUo'); 
+                let removeUoRemove = document.getElementById('removeUo'); 
+                let editUoRemove = document.getElementById('editUo'); 
+
+                if (newUoRemove) {
+                    newUoRemove.remove();
+                }
+
+                if (removeUoRemove) {
+                    removeUoRemove.remove();
+                }
+
+                if (editUoRemove) {
+                    editUoRemove.remove();
+                }
+
+                let newMaRemove = document.getElementById('newMa'); 
+
+                if (newMaRemove) {
+                    newMaRemove.remove();
+                }
+
                 if (data.CAN_INTERACTION && data.idDr != "") {
 
-                    let testEditDr = document.getElementById('editDr'); 
-                    let testRemoveDr = document.getElementById('removeDr'); 
-                    let testNewAd = document.getElementById('newA'); 
-
-                    if (testEditDr) {
-                        testEditDr.remove();
-                    }
-
-                    if (testRemoveDr) {
-                        testRemoveDr.remove();
-                    }
-
-                    if (testNewAd) {
-                        testNewAd.remove();
-                    }
-
-                    let editAdRemove = document.getElementById('editAd'); 
-                    let removeAdRemove = document.getElementById('removeAd'); 
-
-                    if (editAdRemove) {
-                        editAdRemove.remove();
-                    }
-
-                    if (removeAdRemove) {
-                        removeAdRemove.remove();
-                    }
-
-                    let newUoRemove = document.getElementById('newUo'); 
-                    let removeUoRemove = document.getElementById('removeUo'); 
-                    let editUoRemove = document.getElementById('editUo'); 
-
-                    if (newUoRemove) {
-                        newUoRemove.remove();
-                    }
-
-                    if (removeUoRemove) {
-                        removeUoRemove.remove();
-                    }
-
-                    if (editUoRemove) {
-                        editUoRemove.remove();
-                    }
-
-                    let newMaRemove = document.getElementById('newMa'); 
-
-                    if (newMaRemove) {
-                        newMaRemove.remove();
-                    }
 
                     let aEdit = document.createElement('a');
                     aEdit.id = "editDr";
@@ -149,6 +161,7 @@ nodes.forEach((node) => {
                     let h3Edit = document.createElement('h3');
                     h3Edit.classList.add('bi')
                     h3Edit.classList.add('bi-pencil-square')
+                    h3Edit.style.color = "rgb(179, 173, 173)";
 
                     aEdit.prepend(h3Edit);
 
@@ -162,6 +175,7 @@ nodes.forEach((node) => {
                     let h3Remove = document.createElement('h3');
                     h3Remove.classList.add('bi')
                     h3Remove.classList.add('bi-trash3')
+                    h3Remove.style.color = "rgb(179, 173, 173)";
 
                     aRemove.prepend(h3Remove);
 
@@ -175,6 +189,7 @@ nodes.forEach((node) => {
                     let h3New = document.createElement('h3');
                     h3New.classList.add('bi')
                     h3New.classList.add('bi-plus-circle')
+                    h3New.style.color = "rgb(179, 173, 173)";
 
                     aNew.prepend(h3New);
 

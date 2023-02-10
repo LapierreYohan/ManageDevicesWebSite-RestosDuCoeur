@@ -11,6 +11,8 @@ nodes.forEach((node) => {
 
         carousel2 = document.createElement('div');
         carousel2.classList.add("carousel");
+        carousel2.classList.add('bg-dark')
+        carousel2.classList.add('border-0')
         sectionMa.prepend(carousel2)
 
         var flkty2 = new Flickity( carousel2, {
@@ -46,7 +48,7 @@ nodes.forEach((node) => {
                     passed = true;
                 })
                 if (passed == false) {
-                    var $cellElem = $('<div class="carousel-cell"> <h3 class="nothing">Vide</h3></div>');
+                    var $cellElem = $('<div class="carousel-cell"> <h3 class="nothing text-secondary">Vide</h3></div>');
                     flkty2.append( $cellElem)
                 }
             }
@@ -60,27 +62,26 @@ nodes.forEach((node) => {
             dataType:"json",
             data:value2, 
             success: function(data){
-
                 let toolBarUo = document.getElementById('toolBarUo');
                 let toolBarMa = document.getElementById('toolBarMa');
 
+                let testEditUo = document.getElementById('editUo'); 
+                let testRemoveUo = document.getElementById('removeUo'); 
+                let testNewMa2 = document.getElementById('newMa'); 
+
+                if (testNewMa2) {
+                    testNewMa2.remove();
+                }
+
+                if (testEditUo) {
+                    testEditUo.remove();
+                }
+
+                if (testRemoveUo) {
+                    testRemoveUo.remove();
+                }
+
                 if (data.CAN_INTERACTION && data.idUo != "") {
-
-                    let testEditUo = document.getElementById('editUo'); 
-                    let testRemoveUo = document.getElementById('removeUo'); 
-                    let testNewMa2 = document.getElementById('newMa'); 
-
-                    if (testNewMa2) {
-                        testNewMa2.remove();
-                    }
-
-                    if (testEditUo) {
-                        testEditUo.remove();
-                    }
-
-                    if (testRemoveUo) {
-                        testRemoveUo.remove();
-                    }
 
                     let aEditUo = document.createElement('a');
                     aEditUo.id = "editUo";
@@ -90,6 +91,7 @@ nodes.forEach((node) => {
                     let h3EditUo = document.createElement('h3');
                     h3EditUo.classList.add('bi')
                     h3EditUo.classList.add('bi-pencil-square')
+                    h3EditUo.style.color = "rgb(179, 173, 173)";
 
                     aEditUo.prepend(h3EditUo);
 
@@ -103,6 +105,7 @@ nodes.forEach((node) => {
                     let h3RemoveUo = document.createElement('h3');
                     h3RemoveUo.classList.add('bi')
                     h3RemoveUo.classList.add('bi-trash3')
+                    h3RemoveUo.style.color = "rgb(179, 173, 173)";
 
                     aRemoveUo.prepend(h3RemoveUo);
 
@@ -116,6 +119,7 @@ nodes.forEach((node) => {
                     let h3NewMa = document.createElement('h3');
                     h3NewMa.classList.add('bi')
                     h3NewMa.classList.add('bi-plus-circle')
+                    h3NewMa.style.color = "rgb(179, 173, 173)";
 
                     aNewMa.prepend(h3NewMa);
 

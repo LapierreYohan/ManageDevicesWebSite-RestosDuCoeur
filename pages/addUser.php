@@ -1,6 +1,7 @@
 <?php
 require_once("../includes/fonctions/auth.php");
 redirectUser();
+isAdmin();
 ?>
 
 <html lang="fr">

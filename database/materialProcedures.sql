@@ -17,6 +17,7 @@ TEXT, IN ID_TYPEMATERIEL INT, IN ID_SYSTEME INT, IN
 ID_DR INT, IN ID_SITE INT, IN ID_ACCES INT, IN ID_SWITCH 
 INT, IN IMAGE VARCHAR(600)) BEGIN 
 	DECLARE v_statut BOOLEAN DEFAULT true;
+    DECLARE v_image VARCHAR(600);
 	DECLARE v_ref VARCHAR(50) DEFAULT CONCAT("OR-", REF);
 	IF (
 	    SELECT
@@ -31,6 +32,12 @@ INT, IN IMAGE VARCHAR(600)) BEGIN
 	    IMAGE = ''
 	    or IMAGE IS NULL
 	) then
+    if (ID_TYPEMATERIEL = 2) THEN
+		SET v_image := "/img/icon/Laptop.png";
+	else
+		SET v_image := "/img/icon/Desktop.png";
+	END IF;
+    
 	INSERT INTO Ordinateur
 	VALUES (
 	        null,
@@ -55,7 +62,7 @@ INT, IN IMAGE VARCHAR(600)) BEGIN
 	        ID_SITE,
 	        ID_Acces,
 	        ID_Switch,
-	        DEFAULT
+	        v_image
 	    );
 	ELSE
 	INSERT INTO Ordinateur
@@ -520,6 +527,7 @@ VARCHAR(50), IN MODELE VARCHAR(50), IN RAM VARCHAR
 IN ID_DR INT, IN ID_SITE INT, IN ID_TYPEMATERIEL INT
 , IN IMAGE VARCHAR(600)) BEGIN 
 	DECLARE v_statut BOOLEAN DEFAULT true;
+    DECLARE v_image VARCHAR(600);
 	DECLARE v_ref VARCHAR(50) DEFAULT CONCAT("TE-", REF);
 	IF (
 	    SELECT
@@ -534,6 +542,13 @@ IN ID_DR INT, IN ID_SITE INT, IN ID_TYPEMATERIEL INT
 	    IMAGE = ''
 	    or IMAGE IS NULL
 	) then
+    if (ID_TYPEMATERIEL = 3) THEN
+		SET v_image := "/img/icon/Phone.png";
+	ELSEIF (ID_TYPEMATERIEL = 5) THEN
+		SET v_image := "/img/icon/Tablette.png";
+	else
+		SET v_image := "/img/icon/Smartphone.png";
+	END IF;
 	INSERT INTO Telephone
 	VALUES (
 	        null,
@@ -552,7 +567,7 @@ IN ID_DR INT, IN ID_SITE INT, IN ID_TYPEMATERIEL INT
 	        ID_TYPEMATERIEL,
 	        ID_Dr,
 	        ID_Site,
-	        DEFAULT
+	        v_image
 	    );
 	else
 	INSERT INTO Telephone

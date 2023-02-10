@@ -67,6 +67,7 @@ class Connexion{
             echo '<p><b>' . $row["Reference"] . '</b></p>';
 			echo '</label>';
             echo '</div>';
+			set_time_limit(10);
 			
         }
         return true;

@@ -15,10 +15,14 @@ nodes.forEach((node) => {
 
         carousel = document.createElement('div');
         carousel.classList.add("carousel");
+        carousel.classList.add('bg-dark')
+        carousel.classList.add('border-0')
         section.prepend(carousel)
 
         carousel2 = document.createElement('div');
         carousel2.classList.add("carousel");
+        carousel2.classList.add('bg-dark')
+        carousel2.classList.add('border-0')
         sectionMa.prepend(carousel2)
     
         var flkty = new Flickity( carousel, {
@@ -48,7 +52,7 @@ nodes.forEach((node) => {
                     passed = true;
                 })
                 if (passed == false) {
-                    var $cellElem = $('<div class="carousel-cell"> <h3 class="nothing">Vide</h3></div>');
+                    var $cellElem = $('<div class="carousel-cell"> <h3 class="nothing text-secondary">Vide</h3></div>');
                     flkty.append( $cellElem)
                 }
                 
@@ -87,7 +91,7 @@ nodes.forEach((node) => {
                     passed = true;
                 })
                 if (passed == false) {
-                    var $cellElem = $('<div class="carousel-cell"> <h3 class="nothing">Vide</h3></div>');
+                    var $cellElem = $('<div class="carousel-cell"> <h3 class="nothing text-secondary">Vide</h3></div>');
                     flkty2.append( $cellElem)
                 }
             }
@@ -106,39 +110,39 @@ nodes.forEach((node) => {
                 let toolBarUo = document.getElementById('toolBarUo');
                 let toolBarMa = document.getElementById('toolBarMa');
 
+                let testEditAd = document.getElementById('editAd'); 
+                let testRemoveAd = document.getElementById('removeAd'); 
+                let testNewUo = document.getElementById('newUo');
+                let testNewMa = document.getElementById('newMa'); 
+
+                if (testNewMa) {
+                    testNewMa.remove();
+                }
+
+                if (testEditAd) {
+                    testEditAd.remove();
+                }
+
+                if (testRemoveAd) {
+                    testRemoveAd.remove();
+                }
+
+                if (testNewUo) {
+                    testNewUo.remove();
+                }
+
+                let removeUoRemove = document.getElementById('removeUo'); 
+                let editUoRemove = document.getElementById('editUo'); 
+
+                if (removeUoRemove) {
+                    removeUoRemove.remove();
+                }
+
+                if (editUoRemove) {
+                    editUoRemove.remove();
+                }
+
                 if (data.CAN_INTERACTION && data.idAd != "") {
-
-                    let testEditAd = document.getElementById('editAd'); 
-                    let testRemoveAd = document.getElementById('removeAd'); 
-                    let testNewUo = document.getElementById('newUo');
-                    let testNewMa = document.getElementById('newMa'); 
-
-                    if (testNewMa) {
-                        testNewMa.remove();
-                    }
-
-                    if (testEditAd) {
-                        testEditAd.remove();
-                    }
-
-                    if (testRemoveAd) {
-                        testRemoveAd.remove();
-                    }
-
-                    if (testNewUo) {
-                        testNewUo.remove();
-                    }
-
-                    let removeUoRemove = document.getElementById('removeUo'); 
-                    let editUoRemove = document.getElementById('editUo'); 
-
-                    if (removeUoRemove) {
-                        removeUoRemove.remove();
-                    }
-
-                    if (editUoRemove) {
-                        editUoRemove.remove();
-                    }
 
                     let aEditAd = document.createElement('a');
                     aEditAd.id = "editAd";
@@ -148,6 +152,7 @@ nodes.forEach((node) => {
                     let h3EditAd = document.createElement('h3');
                     h3EditAd.classList.add('bi')
                     h3EditAd.classList.add('bi-pencil-square')
+                    h3EditAd.style.color = "rgb(179, 173, 173)";
 
                     aEditAd.prepend(h3EditAd);
 
@@ -161,6 +166,7 @@ nodes.forEach((node) => {
                     let h3RemoveAd = document.createElement('h3');
                     h3RemoveAd.classList.add('bi')
                     h3RemoveAd.classList.add('bi-trash3')
+                    h3RemoveAd.style.color = "rgb(179, 173, 173)";
 
                     aRemoveAd.prepend(h3RemoveAd);
 
@@ -174,6 +180,7 @@ nodes.forEach((node) => {
                     let h3NewUo = document.createElement('h3');
                     h3NewUo.classList.add('bi')
                     h3NewUo.classList.add('bi-plus-circle')
+                    h3NewUo.style.color = "rgb(179, 173, 173)";
 
                     aNewUo.prepend(h3NewUo);
 
@@ -187,6 +194,7 @@ nodes.forEach((node) => {
                     let h3NewMa = document.createElement('h3');
                     h3NewMa.classList.add('bi')
                     h3NewMa.classList.add('bi-plus-circle')
+                    h3NewMa.style.color = "rgb(179, 173, 173)";
 
                     aNewMa.prepend(h3NewMa);
 
