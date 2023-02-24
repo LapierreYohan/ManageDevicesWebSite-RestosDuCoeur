@@ -82,18 +82,18 @@ if (!empty($_GET["id"])) {
                     <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Admin" class="rounded-circle" width="150">
                     <div class="mt-3">
                       <h4 class="text-light"><?php if ($_idurl) {
-                                                                                                        echo $rec[0]['Prenom'];
-                                                                                                    } else {
-                                                                                                        echo $_SESSION["User"]["Prenom"];
-                                                                                                    } ?></h4>
+                                                                  echo $rec[0]['Prenom'];
+                                                                 } else {
+                                                                  echo $_SESSION["User"]["Prenom"];
+                                                                } ?></h4>
                       <!-- <p class="text-light mb-1">
                         <?php if ($rec[0]['admin']) {
                             echo "Administrateur";
-                        } else {
+                        } else {                                // à remttre plus tard avec la nouvelle bdd
                             echo "Non administrateur";
                         } ?>
                       </p> -->
-                      <p class="text-muted font-size-sm">Bay Area, San Francisco, CA</p>
+
                     </div>
                   </div>
                 </div>
@@ -146,7 +146,11 @@ if (!empty($_GET["id"])) {
                       <h6 class="mb-0 text-light">Email</h6>
                     </div>
                     <div class="col-sm-9 text-light">
-                      fip@jukmuh.al
+                      <input type="text" class="form-control bg-dark text-light" id="prenom" name="prenom" value="<?php if ($_idurl) {
+                                                    echo $rec[0]['Mail'];
+                                                } else {
+                                                    echo $_SESSION["User"]["Mail"];
+                                                } ?>" maxlength="47" required>
                     </div>
                   </div>
                   <hr>
