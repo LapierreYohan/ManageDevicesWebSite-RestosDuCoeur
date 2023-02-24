@@ -2,6 +2,7 @@
 session_start();
 require_once __DIR__ . "/../MariaDB.php";
 
+if ($_SESSION["User"]["Admin_User"]){
 if (
         !empty($_POST['ref']) &&
         strlen($_POST['ref']) <= 47 &&
@@ -53,9 +54,10 @@ if (
     
         $stmt->execute($array);
 
-        header('Location: /pages/utilisateurs.php');
+        header('Location: /pages/parametres.php?param=utilisateurs');
         exit();
        
 } 
+}
 
 header('Location: /pages/addUser.php');

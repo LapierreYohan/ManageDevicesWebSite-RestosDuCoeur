@@ -1,5 +1,8 @@
 <?php
 require_once __DIR__ . "/../MariaDB.php";
+require_once __DIR__ . "/../fonctions/auth.php";
+is_connected();
+isAuthorized3();
 
 if (
         !empty($_POST['ref']) &&

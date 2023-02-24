@@ -106,7 +106,7 @@ INSERT INTO Administrer VALUES (5, 2);
 INSERT INTO Administrer VALUES (6, 9);
 INSERT INTO Administrer VALUES (6, 5);
 
--- INSERT INTO Gerer VALUES (3, 1, 2);
+INSERT INTO Gerer VALUES (3, 1, 2);
 
 /*------------------------------------------*/
 /*Insertion des Systèmes                    */

@@ -1,6 +1,7 @@
 <?php
 require_once("../includes/fonctions/auth.php");
 redirectUser();
+isAuthorized2();
 ?>
 
 <html lang="fr">
